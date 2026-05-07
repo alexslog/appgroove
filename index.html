@@ -237,6 +237,24 @@
   .section { margin-bottom: 64px; }
   .section:last-child { margin-bottom: 0; }
 
+  /* Screens view: full-bleed iframe below the proto header */
+  body.view-screens .page { max-width: none; margin: 0; padding: 0; }
+  .screens-frame-wrap {
+    position: fixed;
+    top: var(--proto-header-h, 56px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background: #2B2B2B;
+  }
+  .screens-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
   /* Hero */
   .hero {
     text-align: center;
@@ -3787,6 +3805,7 @@
   <nav class="proto-nav">
     <button type="button" class="proto-link active" data-view="home-return" onclick="switchView('home-return')">Home</button>
     <button type="button" class="proto-link" data-view="funnel-builder" onclick="switchView('funnel-builder')">Builder</button>
+    <button type="button" class="proto-link" data-view="all-screens" onclick="switchView('all-screens')">Screens</button>
   </nav>
   <button type="button" class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
     <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -4668,6 +4687,13 @@
   </div>
 </template>
 
+<!-- ============== ALL-SCREENS (funnel screens library, embedded) ============== -->
+<template id="tpl-all-screens">
+  <div class="screens-frame-wrap">
+    <iframe class="screens-frame" src="all-screen-types.html" title="Funnel Screens Library" loading="lazy"></iframe>
+  </div>
+</template>
+
 <script>
   // ---- Menus ----
   function closeAllMenus(except) {
@@ -5280,7 +5306,7 @@
 
   // ---- View switching ----
   function switchView(name) {
-    if (!['home-return', 'funnel-builder'].includes(name)) name = 'home-return';
+    if (!['home-return', 'funnel-builder', 'all-screens'].includes(name)) name = 'home-return';
     closeAllMenus();
     const root = document.getElementById('view-root');
     const tpl = document.getElementById('tpl-' + name);
@@ -5293,6 +5319,7 @@
     document.body.classList.toggle('view-builder', name === 'funnel-builder');
     document.body.classList.toggle('view-return', name === 'home-return');
     document.body.classList.toggle('view-new', name === 'home-new');
+    document.body.classList.toggle('view-screens', name === 'all-screens');
     sortState = { key: null, dir: 'asc' };
     if (name === 'funnel-builder') {
       // Reset Builder state on (re)entry: Preview tab + chat sidebar expanded
