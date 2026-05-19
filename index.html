@@ -660,6 +660,7 @@
     flex: 1; overflow-y: auto;
     padding: 20px 18px;
     display: flex; flex-direction: column;
+    justify-content: flex-end;
     gap: 12px;
   }
   .ar-row {
@@ -807,6 +808,133 @@
     margin: 0;
   }
   .ar-label span { display: none; }
+
+  /* ============================================================
+     Signup modal — light theme, matches Home/Landing
+     ============================================================ */
+  body.is-modal-open { overflow: hidden; }
+  .su-modal {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  }
+  .su-modal[hidden] { display: none; }
+  .su-overlay {
+    position: absolute; inset: 0;
+    background: rgba(20, 20, 20, 0.32);
+    backdrop-filter: blur(4px);
+  }
+  .su-card {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.06);
+    color: #111;
+  }
+  .su-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 28px; height: 28px; border-radius: 999px;
+    border: 0; background: transparent;
+    color: #8A8A8A; font-size: 20px;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .su-close:hover { background: #F4F4F4; color: #111; }
+
+  .su-progress {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .su-step {
+    height: 4px;
+    border-radius: 999px;
+    background: #ECECEC;
+  }
+  .su-step.is-active { background: #1A8649; }
+
+  .su-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #8A8A8A;
+    text-transform: uppercase;
+  }
+  .su-title {
+    margin: 6px 0 22px;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #0B0B0B;
+  }
+
+  .su-form { display: flex; flex-direction: column; gap: 14px; }
+  .su-field { display: flex; flex-direction: column; gap: 6px; }
+  .su-label { font-size: 13px; color: #5A5A5A; font-weight: 500; }
+  .su-input {
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid #ECECEC;
+    border-radius: 12px;
+    background: #FFFFFF;
+    font: inherit;
+    font-size: 14px;
+    color: #111;
+    outline: 0;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .su-input::placeholder { color: #9A9A9A; }
+  .su-input:focus {
+    border-color: #111;
+    box-shadow: 0 0 0 3px rgba(17,17,17,0.06);
+  }
+
+  .su-submit {
+    margin-top: 4px;
+    height: 44px;
+    border: 0; border-radius: 12px;
+    background: #111; color: #FFF;
+    font-size: 14px; font-weight: 600;
+    cursor: pointer;
+    transition: background .15s ease, transform .1s ease;
+  }
+  .su-submit:hover { background: #000; }
+  .su-submit:active { transform: translateY(1px); }
+
+  .su-or {
+    display: flex; align-items: center; gap: 10px;
+    color: #8A8A8A;
+    font-size: 12px;
+    margin: 18px 0;
+  }
+  .su-or::before, .su-or::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ECECEC;
+  }
+
+  .su-google {
+    width: 100%;
+    height: 44px;
+    border: 1px solid #ECECEC;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #111;
+    font-size: 14px; font-weight: 500;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .su-google:hover { background: #FAFAFA; border-color: #D5D5D5; }
 
   .ar-preview {
     order: 0;
@@ -4806,6 +4934,50 @@ body:has(.home-ref) .proto-header {
   <div id="view-root"></div>
 </div>
 
+<!-- ============== SIGNUP MODAL (light, opened from audit-review send) ============== -->
+<div id="signup-modal" class="su-modal" hidden role="dialog" aria-modal="true" aria-labelledby="su-title">
+  <div class="su-overlay" onclick="closeSignupModal()"></div>
+  <div class="su-card" role="document">
+    <button type="button" class="su-close" aria-label="Close" onclick="closeSignupModal()">×</button>
+    <div class="su-progress" aria-hidden="true">
+      <span class="su-step is-active"></span>
+      <span class="su-step"></span>
+      <span class="su-step"></span>
+      <span class="su-step"></span>
+    </div>
+    <div class="su-eyebrow">STEP 1 OF 4</div>
+    <h2 id="su-title" class="su-title">Claim your spot</h2>
+
+    <form class="su-form" onsubmit="event.preventDefault(); closeSignupModal();">
+      <label class="su-field">
+        <span class="su-label">Email</span>
+        <input type="email" class="su-input" placeholder="you@company.com" autocomplete="email">
+      </label>
+      <label class="su-field">
+        <span class="su-label">Create password</span>
+        <input type="password" class="su-input" placeholder="Minimum 8 characters" autocomplete="new-password">
+      </label>
+      <label class="su-field">
+        <span class="su-label">Confirm password</span>
+        <input type="password" class="su-input" placeholder="Re-enter your password" autocomplete="new-password">
+      </label>
+      <button type="submit" class="su-submit">Continue</button>
+    </form>
+
+    <div class="su-or"><span>or</span></div>
+
+    <button type="button" class="su-google">
+      <svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+      </svg>
+      <span>Continue with Google</span>
+    </button>
+  </div>
+</div>
+
 <!-- ============== HOME-RETURN (returning user) ============== -->
 <template id="tpl-home-return">
 <div class="home-ref">
@@ -5785,14 +5957,18 @@ body:has(.home-ref) .proto-header {
             I've loaded first 10 screens. Is this the right funnel? Do you want to continue?
           </div>
         </div>
+        <div class="ar-row ar-row--user">
+          <div class="ar-bubble ar-bubble--user">Analyze</div>
+          <span class="ar-avatar ar-avatar--user" aria-hidden="true">A</span>
+        </div>
       </div>
       <div class="ar-input-area">
         <div class="ar-input-wrap">
           <button type="button" class="ar-input-plus" aria-label="Attach">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
           </button>
-          <input type="text" class="ar-input" value="Continue" placeholder="Ask a follow-up">
-          <button type="button" class="ar-send" aria-label="Send">
+          <input type="text" class="ar-input" placeholder="Ask a follow-up">
+          <button type="button" class="ar-send" aria-label="Send" onclick="openSignupModal()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 6l6 6-6 6"/></svg>
           </button>
         </div>
@@ -6830,6 +7006,22 @@ body:has(.home-ref) .proto-header {
     input.value = text;
     input.focus();
     input.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
+  // ---- Signup modal ----
+  function openSignupModal() {
+    const m = document.getElementById('signup-modal');
+    if (!m) return;
+    m.hidden = false;
+    document.body.classList.add('is-modal-open');
+    const esc = (ev) => { if (ev.key === 'Escape') { closeSignupModal(); document.removeEventListener('keydown', esc); } };
+    document.addEventListener('keydown', esc);
+  }
+  function closeSignupModal() {
+    const m = document.getElementById('signup-modal');
+    if (!m) return;
+    m.hidden = true;
+    document.body.classList.remove('is-modal-open');
   }
 
   // ---- Wireframes sub-tab switching ----
