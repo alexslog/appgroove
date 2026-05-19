@@ -589,6 +589,208 @@
   .audit-submit:hover { background: #000; }
   .audit-submit:active { transform: translateY(1px); }
 
+  /* ============================================================
+     Audit Review — chat sidebar + 10-screen grid (dark theme)
+     ============================================================ */
+  body.view-audit-review { background: #1a1e24; }
+  body.view-audit-review .page { max-width: none; margin: 0; padding: 0; }
+  body.view-audit-review .proto-header {
+    background: #1e2229;
+    border-bottom: 1px solid #2a2e36;
+    color: #ddd;
+  }
+  body.view-audit-review .proto-header .brand,
+  body.view-audit-review .proto-link { color: #ddd; }
+  body.view-audit-review .proto-link.active { color: #fff; }
+
+  .ar-wrap {
+    position: fixed;
+    top: var(--proto-header-h, 56px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    background: #1a1e24;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
+  }
+
+  .ar-sidebar {
+    width: 360px;
+    min-width: 360px;
+    background: #1e2229;
+    border-right: 1px solid #2a2e36;
+    display: flex;
+    flex-direction: column;
+  }
+  .ar-chat-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid #2a2e36;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ar-chat-header h2 { font-size: 14px; font-weight: 600; color: #ccc; margin: 0; }
+  .ar-collapse {
+    width: 28px; height: 28px;
+    border: 0; background: transparent; color: #888;
+    font-size: 18px; cursor: pointer; border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .ar-collapse:hover { background: #2a2e36; color: #ccc; }
+
+  .ar-messages {
+    flex: 1; overflow-y: auto;
+    padding: 20px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .ar-msg {
+    max-width: 88%;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .ar-msg--user {
+    align-self: flex-end;
+    background: #2d5a3d; color: #d4eedd;
+    border-bottom-right-radius: 4px;
+  }
+  .ar-msg--bot {
+    align-self: flex-start;
+    background: #2a2e36; color: #ccc;
+    border-bottom-left-radius: 4px;
+  }
+  .ar-time { display: block; font-size: 11px; color: #777; margin-top: 6px; }
+  .ar-msg-actions { display: flex; gap: 8px; padding: 4px 0 0 4px; }
+  .ar-msg-actions button {
+    background: none; border: 0; color: #666;
+    font-size: 16px; cursor: pointer; padding: 2px;
+  }
+  .ar-msg-actions button:hover { color: #aaa; }
+
+  .ar-input-area { padding: 16px 20px; border-top: 1px solid #2a2e36; }
+  .ar-input-wrap {
+    display: flex; align-items: center; gap: 10px;
+    background: #262a32;
+    border: 1px solid #363a42;
+    border-radius: 14px;
+    padding: 10px 12px 10px 16px;
+  }
+  .ar-input {
+    flex: 1; background: transparent; border: 0; outline: 0;
+    color: #e0e0e0; font: inherit; font-size: 13.5px;
+  }
+  .ar-input::placeholder { color: #666; }
+  .ar-send {
+    width: 32px; height: 32px; border-radius: 10px; border: 0;
+    background: #3a7d52; color: #fff; font-size: 16px;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+    transition: background .15s ease;
+  }
+  .ar-send:hover { background: #4a9a65; }
+
+  .ar-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .ar-main-header {
+    padding: 16px 28px;
+    border-bottom: 1px solid #2a2e36;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .ar-logo {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: #3a7d52; color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .ar-main-header h1 { font-size: 15px; font-weight: 600; color: #ddd; margin: 0; }
+
+  .ar-grid-area { flex: 1; overflow-y: auto; padding: 28px; }
+  .ar-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+  @media (max-width: 1400px) { .ar-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 1100px) { .ar-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 820px)  { .ar-sidebar { width: 300px; min-width: 300px; } .ar-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .ar-card { display: flex; flex-direction: column; gap: 10px; }
+  .ar-num { color: #888; font-size: 12px; font-weight: 600; text-align: right; padding-right: 4px; }
+  .ar-preview {
+    background: #f5f5f5;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 9 / 16;
+    position: relative;
+    cursor: pointer;
+    display: flex; flex-direction: column;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .ar-preview:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  /* Phone-screen mock atoms (scoped to audit-review) */
+  .ar-preview .sp-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 12px 0;
+  }
+  .ar-preview .sp-back { font-size: 16px; color: #444; font-weight: 600; }
+  .ar-preview .sp-logo { font-size: 8px; color: #888; background: #e0e0e0; padding: 3px 8px; border-radius: 10px; font-weight: 600; }
+  .ar-preview .sp-dots { display: flex; gap: 3px; }
+  .ar-preview .sp-dots span { width: 5px; height: 5px; border-radius: 50%; background: #ccc; }
+  .ar-preview .sp-dots span.active { background: #3a7d52; }
+  .ar-preview .sp-body { padding: 10px 12px; flex: 1; display: flex; flex-direction: column; }
+  .ar-preview .sp-title { font-size: 10px; font-weight: 700; color: #222; margin-bottom: 4px; line-height: 1.3; }
+  .ar-preview .sp-text { font-size: 7px; color: #888; line-height: 1.4; margin-bottom: 6px; }
+  .ar-preview .sp-image-placeholder { background: linear-gradient(135deg, #c8e6d4, #a3d4b5); border-radius: 8px; height: 40%; margin-bottom: 6px; }
+  .ar-preview .sp-option { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 6px 8px; margin-bottom: 4px; font-size: 7px; color: #444; font-weight: 500; }
+  .ar-preview .sp-option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 6px; }
+  .ar-preview .sp-option-grid .sp-option { text-align: center; margin-bottom: 0; }
+  .ar-preview .sp-cta {
+    margin-top: auto;
+    background: #3a7d52; color: #fff;
+    border-radius: 20px; padding: 7px 10px;
+    font-size: 8px; font-weight: 700; text-align: center;
+    margin: 0 12px 12px;
+  }
+  .ar-preview .sp-likert { display: flex; justify-content: center; gap: 3px; margin: 6px 0; }
+  .ar-preview .sp-likert span {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 1.5px solid #3a7d52; display: inline-flex;
+    align-items: center; justify-content: center;
+    font-size: 6px; font-weight: 700; color: #3a7d52;
+  }
+  .ar-preview .sp-multi-option {
+    display: flex; align-items: center; gap: 5px;
+    padding: 5px 8px; margin-bottom: 3px;
+    background: #fff; border: 1px solid #ddd; border-radius: 8px;
+    font-size: 7px; color: #444;
+  }
+  .ar-preview .sp-checkbox {
+    width: 10px; height: 10px; border-radius: 3px;
+    border: 1.5px solid #bbb; flex-shrink: 0;
+  }
+  .ar-preview .sp-benefit {
+    background: #f0f7f2; border-radius: 8px;
+    padding: 6px 8px; margin-bottom: 4px;
+    font-size: 7px; color: #333;
+  }
+  .ar-preview .sp-check-icon {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #3a7d52; color: #fff;
+    font-size: 8px; display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700;
+  }
+  .ar-preview .sp-x-icon {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #ccc; color: #fff;
+    font-size: 8px; display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700;
+  }
+
+  .ar-label { padding: 0 2px; }
+  .ar-label h3 { font-size: 13px; font-weight: 600; color: #ddd; margin: 0; }
+  .ar-label span { font-size: 11px; color: #777; }
+
   /* Hero */
   .hero {
     text-align: center;
@@ -5349,7 +5551,7 @@ body:has(.home-ref) .proto-header {
             </div>
             <input type="file" id="chat-file" accept="image/*" hidden onchange="chatHandleFile(event)">
           </div>
-          <button type="button" class="audit-submit">Audit My Funnel</button>
+          <button type="button" class="audit-submit" onclick="switchView('audit-review')">Audit My Funnel</button>
         </div>
       </div>
 
@@ -5374,6 +5576,227 @@ body:has(.home-ref) .proto-header {
         </div>
       </div>
     </div>
+  </div>
+</template>
+
+<!-- ============== AUDIT REVIEW (chat sidebar + 10-screen grid) ============== -->
+<template id="tpl-audit-review">
+  <div class="ar-wrap">
+    <aside class="ar-sidebar">
+      <div class="ar-chat-header">
+        <h2>Chat with AI</h2>
+        <button type="button" class="ar-collapse" aria-label="Collapse">&lsaquo;</button>
+      </div>
+      <div class="ar-messages">
+        <div class="ar-msg ar-msg--user">
+          Audit my funnel:<br>https://app.example.com/funnel/onboarding
+          <span class="ar-time">15:03</span>
+        </div>
+        <div class="ar-msg ar-msg--bot">
+          I've loaded your funnel. It has <strong>10 screens</strong> — from Welcome through to the Result page.<br><br>
+          Is this the right funnel? Do you want to continue?
+          <span class="ar-time">15:04</span>
+        </div>
+        <div class="ar-msg-actions">
+          <button type="button" title="Like">&#x1F44D;</button>
+          <button type="button" title="Dislike">&#x1F44E;</button>
+        </div>
+      </div>
+      <div class="ar-input-area">
+        <div class="ar-input-wrap">
+          <input type="text" class="ar-input" value="Continue" placeholder="Ask or tweak the brief…">
+          <button type="button" class="ar-send" aria-label="Send">&#x27A4;</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="ar-main">
+      <div class="ar-main-header">
+        <div class="ar-logo">FA</div>
+        <h1>Funnel Auditor</h1>
+      </div>
+      <div class="ar-grid-area">
+        <div class="ar-grid">
+
+          <div class="ar-card">
+            <div class="ar-num">01</div>
+            <div class="ar-preview">
+              <div class="sp-header"><span class="sp-back">&lsaquo;</span><span class="sp-logo">BRAND</span><span></span></div>
+              <div style="padding:6px 12px;"><div class="sp-image-placeholder" style="height:35%;"></div></div>
+              <div class="sp-body">
+                <div class="sp-title">Master your meetings with Nota</div>
+                <div class="sp-text">Transform your voice notes into structured, actionable intelligence.</div>
+                <div class="sp-benefit">&#x2022; AI-powered productivity</div>
+              </div>
+              <div class="sp-cta">Start Diagnostic</div>
+            </div>
+            <div class="ar-label"><h3>Welcome</h3><span>welcome</span></div>
+          </div>
+
+          <div class="ar-card">
+            <div class="ar-num">02</div>
+            <div class="ar-preview">
+              <div class="sp-header"><span class="sp-back">&lsaquo;</span><span class="sp-logo">BRAND</span><span></span></div>
+              <div class="sp-body">
+                <div class="sp-title" style="margin-top:8px;">How do you lead your day?</div>
+                <div class="sp-text">Select the professional role that best describes your daily workflow.</div>
+                <div class="sp-option-grid">
+                  <div class="sp-option">Executive Leadership</div>
+                  <div class="sp-option">Product &amp; Operations</div>
+                  <div class="sp-option">Sales &amp; Business Dev</div>
+                  <div class="sp-option">Creative &amp; Design</div>
+                  <div class="sp-option">Consulting &amp; Legal</div>
+                  <div class="sp-option">Education &amp; Research</div>
+                </div>
+              </div>
+            </div>
+            <div class="ar-label"><h3>Start</h3><span>start</span></div>
+          </div>
+
+          <div class="ar-card">
+            <div class="ar-num">03</div>
+            <div class="ar-preview">
+              <div class="sp-header"><span class="sp-back">&lsaquo;</span><span class="sp-dots"><span class="active"></span><span class="active"></span><span></span><span></span><span></span></span><span></span></div>
+              <div class="sp-body">
+                <div class="sp-title" style="margin-top:8px;">Where do you capture your most critical information?</div>
+                <div class="sp-text">Select the primary environment where your cognitive load is highest.</div>
+                <div class="sp-option">Corporate Meetings</div>
+                <div class="sp-option">Academic Lectures</div>
+                <div class="sp-option">Client Consultations</div>
+                <div class="sp-option">Creative Brainstorming</div>
+                <div class="sp-option">Field Research</div>
+              </div>
+              <div class="sp-cta">Continue</div>
+            </div>
+            <div class="ar-label"><h3>Single Select Question</h3><span>question</span></div>
+          </div>
+
+          <div class="ar-card">
+            <div class="ar-num">04</div>
+            <div class="ar-preview">
+              <div class="sp-header"><span class="sp-back">&lsaquo;</span><span class="sp-dots"><span class="active"></span><span class="active"></span><span class="active"></span><span></span><span></span></span><span></span></div>
+              <div class="sp-body">
+                <div class="sp-title" style="margin-top:8px;">How do you currently capture key information?</div>
+                <div class="sp-text">Select all the methods you use to track action items and insights.</div>
+                <div class="sp-multi-option"><div class="sp-checkbox"></div> Handwritten notes</div>
+                <div class="sp-multi-option"><div class="sp-checkbox"></div> Typing in docs or apps</div>
+                <div class="sp-multi-option"><div class="sp-checkbox"></div> Basic voice memos</div>
+                <div class="sp-multi-option"><div class="sp-checkbox"></div> Screenshots and photos</div>
+                <div class="sp-multi-option"><div class="sp-checkbox"></div> Mental notes only</div>
+              </div>
+              <div class="sp-cta">Continue</div>
+            </div>
+            <div class="ar-label"><h3>Multi Select Question</h3><span>question</span></div>
+          </div>
+
+          <div class="ar-card">
+            <div class="ar-num">05</div>
+            <div class="ar-preview">
+              <div class="sp-header"><span class="sp-back">&lsaquo;</span><span class="sp-dots"><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span></span></span><span></span></div>
+              <div class="sp-body">
+                <div class="sp-title" style="margin-top:8px;">How often do you worry about missing critical details during meetings?</div>
+                <div class="sp-text">Your level of information retention confidence helps us tailor your intelligence dashboard.</div>
+                <div class="sp-likert"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+              </div>
+              <div class="sp-cta">Continue</div>
+            </div>
+            <div class="ar-label"><h3>Likert Question</h3><span>question</span></div>
+          </div>
+
+          <div class="ar-card">
+            <div class="ar-num">06</div>
+            <div class="ar-preview">
+              <div class="sp-header"><span class="sp-back">&lsaquo;</span><span class="sp-logo">BRAND</span><span></span></div>
+              <div style="padding:4px 12px;"><div class="sp-image-placeholder" style="height:50px;"></div></div>
+              <div class="sp-body">
+                <div class="sp-title">Your productivity profile is taking shape.</div>
+                <div class="sp-text">Based on your capture habits, we've identified how your current meeting role impacts cognitive load.</div>
+                <div class="sp-benefit"><strong>Automated Synthesis</strong></div>
+                <div class="sp-benefit"><strong>Mental Clarity</strong></div>
+              </div>
+              <div class="sp-cta">View My Full Profile</div>
+            </div>
+            <div class="ar-label"><h3>Interstitial</h3><span>interstitial</span></div>
+          </div>
+
+          <div class="ar-card">
+            <div class="ar-num">07</div>
+            <div class="ar-preview">
+              <div class="sp-header"><span class="sp-back">&lsaquo;</span><span class="sp-dots"><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span></span><span></span></div>
+              <div class="sp-body">
+                <div class="sp-title" style="margin-top:8px;">What is your biggest output bottleneck?</div>
+                <div class="sp-text">Identify the primary friction point preventing you from turning conversations into actionable intelligence.</div>
+                <div class="sp-option-grid">
+                  <div class="sp-option">Manual Note-taking</div>
+                  <div class="sp-option">Forgotten Details</div>
+                  <div class="sp-option">Admin Overhead</div>
+                  <div class="sp-option">Delayed Follow-up</div>
+                </div>
+              </div>
+              <div class="sp-cta">Continue</div>
+            </div>
+            <div class="ar-label"><h3>Visual Grid Question</h3><span>question</span></div>
+          </div>
+
+          <div class="ar-card">
+            <div class="ar-num">08</div>
+            <div class="ar-preview">
+              <div class="sp-header"><span class="sp-back">&lsaquo;</span><span class="sp-dots"><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span></span><span></span></div>
+              <div class="sp-body">
+                <div class="sp-title" style="margin-top:8px;">How do you prefer to digest your meeting intelligence?</div>
+                <div class="sp-text">Select the format that best integrates with your existing workflow.</div>
+                <div class="sp-option">Executive Summary</div>
+                <div class="sp-option">Action Item Checklist</div>
+                <div class="sp-option">Full Structured Transcript</div>
+                <div class="sp-option">Topic-Based Mind Map</div>
+              </div>
+              <div class="sp-cta">Continue</div>
+            </div>
+            <div class="ar-label"><h3>Single Select Question</h3><span>question</span></div>
+          </div>
+
+          <div class="ar-card">
+            <div class="ar-num">09</div>
+            <div class="ar-preview">
+              <div class="sp-header"><span class="sp-back">&lsaquo;</span><span class="sp-dots"><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span></span><span></span></div>
+              <div class="sp-body">
+                <div class="sp-title" style="margin-top:8px;">How much critical information is lost after your meetings?</div>
+                <div class="sp-text">Research shows 70% of meeting details are forgotten within 24 hours.</div>
+                <div style="display:flex;gap:6px;margin-top:8px;">
+                  <div style="flex:1;text-align:center;padding:10px 4px;border-radius:10px;border:1.5px solid #3a7d52;background:#f0f9f4;">
+                    <div class="sp-check-icon" style="margin:0 auto 4px;">&#x2713;</div>
+                    <div style="font-size:7px;font-weight:700;color:#333;">Significant</div>
+                  </div>
+                  <div style="flex:1;text-align:center;padding:10px 4px;border-radius:10px;border:1.5px solid #ddd;">
+                    <div class="sp-x-icon" style="margin:0 auto 4px;">&#x2717;</div>
+                    <div style="font-size:7px;font-weight:700;color:#333;">Minimal Loss</div>
+                  </div>
+                </div>
+              </div>
+              <div class="sp-cta">Continue</div>
+            </div>
+            <div class="ar-label"><h3>Binary Choice</h3><span>question</span></div>
+          </div>
+
+          <div class="ar-card">
+            <div class="ar-num">10</div>
+            <div class="ar-preview">
+              <div class="sp-header"><span class="sp-back">&lsaquo;</span><span class="sp-logo">BRAND</span><span></span></div>
+              <div style="padding:4px 12px;"><div class="sp-image-placeholder" style="height:50px;"></div></div>
+              <div class="sp-body">
+                <div class="sp-title">We've identified your productivity friction points.</div>
+                <div class="sp-text">Based on your assessment, your professional workflow is currently losing critical data.</div>
+                <div class="sp-benefit"><strong>Information Decay</strong></div>
+                <div class="sp-benefit"><strong>Automated Structure</strong></div>
+              </div>
+              <div class="sp-cta">View My Personalized Plan</div>
+            </div>
+            <div class="ar-label"><h3>Result</h3><span>result</span></div>
+          </div>
+
+        </div>
+      </div>
+    </main>
   </div>
 </template>
 
@@ -6002,7 +6425,7 @@ body:has(.home-ref) .proto-header {
 
   // ---- View switching ----
   function switchView(name) {
-    if (!['home-return', 'funnel-builder', 'wireframes', 'landing', 'audit'].includes(name)) name = 'home-return';
+    if (!['home-return', 'funnel-builder', 'wireframes', 'landing', 'audit', 'audit-review'].includes(name)) name = 'home-return';
     closeAllMenus();
     const root = document.getElementById('view-root');
     const tpl = document.getElementById('tpl-' + name);
@@ -6018,6 +6441,7 @@ body:has(.home-ref) .proto-header {
     document.body.classList.toggle('view-wireframes', name === 'wireframes');
     document.body.classList.toggle('view-landing', name === 'landing');
     document.body.classList.toggle('view-audit', name === 'audit');
+    document.body.classList.toggle('view-audit-review', name === 'audit-review');
     if (name === 'landing') {
       renderLandingPills('web');
     }
