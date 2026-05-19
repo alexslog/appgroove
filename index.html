@@ -459,6 +459,18 @@
     background: #F4F4F4;
     border-color: #D5D5D5;
   }
+  .ld-pill.is-hidden { display: none; }
+  .ld-pill--more {
+    background: transparent;
+    border-color: transparent;
+    color: #5A5A5A;
+    font-weight: 500;
+  }
+  .ld-pill--more:hover {
+    background: #ECECEC;
+    border-color: #ECECEC;
+    color: #111;
+  }
 
   /* Hero */
   .hero {
@@ -5916,14 +5928,28 @@ body:has(.home-ref) .proto-header {
     const wrap = document.getElementById('landing-quiztypes');
     if (!wrap) return;
     const order = Object.keys(LANDING_PROMPTS[comboId] || {});
-    // sort the canonical short-label list by the combo's recommended order
     const sorted = LANDING_QUIZ_TYPES.slice().sort(
       (a, b) => order.indexOf(a.key) - order.indexOf(b.key)
     );
-    wrap.innerHTML = sorted.map(t =>
-      `<button type="button" class="ld-pill ld-pill--type" data-combo="${comboId}" data-type="${t.key.replace(/"/g, '&quot;')}" onclick="pasteLandingPrompt(this)">${t.label}</button>`
-    ).join('');
+    const top = sorted.slice(0, 3);
+    const rest = sorted.slice(3);
+    const pill = (t, extra = '') =>
+      `<button type="button" class="ld-pill ld-pill--type${extra}" data-combo="${comboId}" data-type="${t.key.replace(/"/g, '&quot;')}" onclick="pasteLandingPrompt(this)">${t.label}</button>`;
+    const moreBtn = rest.length
+      ? `<button type="button" class="ld-pill ld-pill--more" onclick="expandLandingQuizTypes(this)">More +${rest.length}</button>`
+      : '';
+    wrap.innerHTML =
+      top.map(t => pill(t)).join('') +
+      rest.map(t => pill(t, ' is-hidden')).join('') +
+      moreBtn;
     wrap.hidden = false;
+  }
+
+  function expandLandingQuizTypes(btn) {
+    const wrap = document.getElementById('landing-quiztypes');
+    if (!wrap) return;
+    wrap.querySelectorAll('.ld-pill--type.is-hidden').forEach(p => p.classList.remove('is-hidden'));
+    btn.remove();
   }
 
   function switchLandingPlatform(which) {
