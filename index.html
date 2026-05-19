@@ -561,6 +561,33 @@
     font-weight: 700;
     color: #1A1A1A;
   }
+  .audit-card-sub {
+    margin: 6px 0 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #6B6B6B;
+  }
+
+  /* Audit chat — half the Landing height */
+  .audit-chat .landing-input {
+    min-height: 42px;
+  }
+
+  /* Audit submit (text button) */
+  .audit-submit {
+    height: 32px;
+    padding: 0 14px;
+    background: #111;
+    color: #FFF;
+    border: 0;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s ease, transform .1s ease;
+  }
+  .audit-submit:hover { background: #000; }
+  .audit-submit:active { transform: translateY(1px); }
 
   /* Hero */
   .hero {
@@ -5299,12 +5326,12 @@ body:has(.home-ref) .proto-header {
 <template id="tpl-audit">
   <div class="landing-ref audit-ref">
     <div class="landing-content audit-content">
-      <h1 class="landing-title">Funnel Auditor</h1>
-      <p class="landing-sub">Check your funnel for accessibility, usability, and logic</p>
+      <h1 class="landing-title">Find What's Killing Your Conversions</h1>
+      <p class="landing-sub">Upload your funnel. Get actionable fixes for UX, accessibility, and conversion.</p>
 
       <div class="landing-chat audit-chat">
-        <textarea id="chat-input" class="landing-input" rows="3"
-          placeholder="Paste funnel URL or upload screens"></textarea>
+        <textarea id="chat-input" class="landing-input" rows="1"
+          placeholder="Paste a URL or drag screenshots here"></textarea>
         <div class="landing-chat-row">
           <div class="landing-plus-wrap">
             <button type="button" class="landing-plus" aria-label="Attach" aria-haspopup="menu" aria-expanded="false" onclick="toggleChatPlus(event)">
@@ -5322,26 +5349,27 @@ body:has(.home-ref) .proto-header {
             </div>
             <input type="file" id="chat-file" accept="image/*" hidden onchange="chatHandleFile(event)">
           </div>
-          <button type="button" class="landing-send" aria-label="Send">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
+          <button type="button" class="audit-submit">Audit My Funnel</button>
         </div>
       </div>
 
       <div class="audit-benefits">
-        <h2 class="audit-benefits-title">What you get</h2>
+        <h2 class="audit-benefits-title">Your audit includes</h2>
         <div class="audit-cards">
           <div class="audit-card">
             <div class="audit-card-emoji">📋</div>
             <h3 class="audit-card-title">Audit Report</h3>
+            <p class="audit-card-sub">Screen-by-screen issue breakdown</p>
           </div>
           <div class="audit-card">
             <div class="audit-card-emoji">🎨</div>
             <h3 class="audit-card-title">UX Recommendations</h3>
+            <p class="audit-card-sub">Specific usability and accessibility fixes</p>
           </div>
           <div class="audit-card">
             <div class="audit-card-emoji">📈</div>
-            <h3 class="audit-card-title">CR Recommendations</h3>
+            <h3 class="audit-card-title">Conversion Recommendations</h3>
+            <p class="audit-card-sub">Changes to lift sign-ups and purchases</p>
           </div>
         </div>
       </div>
