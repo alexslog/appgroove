@@ -299,6 +299,145 @@
     background: #2B2B2B;
   }
 
+  /* Landing view */
+  body.view-landing {
+    background:
+      radial-gradient(circle at center, #D8D8D8 0.9px, transparent 1.2px) 0 0 / 18px 18px,
+      #F3F3F3;
+  }
+  body.view-landing .proto-header {
+    background: rgba(243, 243, 243, 0.85);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid #E6E6E6;
+  }
+  body.view-landing .page { max-width: 1100px; }
+
+  .landing-ref {
+    min-height: calc(100vh - var(--proto-header-h, 56px) - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  }
+  .landing-content {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+  .landing-title {
+    margin: 0;
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #0B0B0B;
+    background: none;
+    -webkit-text-fill-color: initial;
+  }
+  .landing-sub {
+    margin: 0;
+    font-size: 15px;
+    color: #5A5A5A;
+  }
+
+  .landing-toggle {
+    display: inline-flex;
+    background: #E8E8E8;
+    border-radius: 999px;
+    padding: 4px;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .ld-tab {
+    background: transparent;
+    color: #5A5A5A;
+    border: 0;
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+  }
+  .ld-tab:hover { color: #111; }
+  .ld-tab.active {
+    background: #111;
+    color: #FFF;
+  }
+
+  .landing-chat {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 18px;
+    padding: 18px 18px 14px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.02);
+    margin-top: 6px;
+    text-align: left;
+  }
+  .landing-input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    resize: none;
+    font: inherit;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #1A1A1A;
+    background: transparent;
+    min-height: 84px;
+  }
+  .landing-input::placeholder { color: #9A9A9A; }
+  .landing-chat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .landing-plus, .landing-send {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    border: 1px solid #ECECEC;
+    background: #FFFFFF;
+    color: #5A5A5A;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .landing-plus:hover, .landing-send:hover {
+    background: #F4F4F4;
+    color: #111;
+    border-color: #DDD;
+  }
+
+  .landing-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .ld-pill {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    color: #1A1A1A;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, transform .1s ease;
+  }
+  .ld-pill:hover { border-color: #D5D5D5; background: #FAFAFA; }
+  .ld-pill:active { transform: translateY(1px); }
+
   /* Hero */
   .hero {
     text-align: center;
@@ -4100,6 +4239,7 @@ body:has(.home-ref) .proto-header {
     <span>appgroo</span>
   </div>
   <nav class="proto-nav">
+    <button type="button" class="proto-link" data-view="landing" onclick="switchView('landing')">Landing</button>
     <button type="button" class="proto-link active" data-view="home-return" onclick="switchView('home-return')">Home</button>
     <button type="button" class="proto-link" data-view="funnel-builder" onclick="switchView('funnel-builder')">Builder</button>
     <button type="button" class="proto-link" data-view="wireframes" onclick="switchView('wireframes')">Wireframes</button>
@@ -4986,6 +5126,36 @@ body:has(.home-ref) .proto-header {
   </div>
 </template>
 
+<!-- ============== LANDING (welcome + chat + prompt pills) ============== -->
+<template id="tpl-landing">
+  <div class="landing-ref">
+    <div class="landing-content">
+      <h1 class="landing-title">Welcome to Appgroo</h1>
+      <p class="landing-sub">Let's create your first funnel</p>
+
+      <div class="landing-toggle" role="tablist" aria-label="Platform">
+        <button type="button" class="ld-tab active" data-ld="web" onclick="switchLandingPlatform('web')">Web funnels</button>
+        <button type="button" class="ld-tab" data-ld="inapp" onclick="switchLandingPlatform('inapp')">In-app funnels</button>
+      </div>
+
+      <div class="landing-chat">
+        <textarea id="landing-input" class="landing-input" rows="3"
+          placeholder="Describe the funnel you want to build: traffic source, audience, offer, key screens, references…"></textarea>
+        <div class="landing-chat-row">
+          <button type="button" class="landing-plus" aria-label="Attach">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <button type="button" class="landing-send" aria-label="Send">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="landing-pills" id="landing-pills"></div>
+    </div>
+  </div>
+</template>
+
 <!-- ============== WIREFRAMES (web / in-app sub-tabs, embedded) ============== -->
 <template id="tpl-wireframes">
   <div class="wireframes-wrap">
@@ -5611,7 +5781,7 @@ body:has(.home-ref) .proto-header {
 
   // ---- View switching ----
   function switchView(name) {
-    if (!['home-return', 'funnel-builder', 'wireframes'].includes(name)) name = 'home-return';
+    if (!['home-return', 'funnel-builder', 'wireframes', 'landing'].includes(name)) name = 'home-return';
     closeAllMenus();
     const root = document.getElementById('view-root');
     const tpl = document.getElementById('tpl-' + name);
@@ -5625,6 +5795,10 @@ body:has(.home-ref) .proto-header {
     document.body.classList.toggle('view-return', name === 'home-return');
     document.body.classList.toggle('view-new', name === 'home-new');
     document.body.classList.toggle('view-wireframes', name === 'wireframes');
+    document.body.classList.toggle('view-landing', name === 'landing');
+    if (name === 'landing') {
+      renderLandingPills('web');
+    }
     sortState = { key: null, dir: 'asc' };
     if (name === 'funnel-builder') {
       // Reset Builder state on (re)entry: Preview tab + chat sidebar expanded
@@ -5638,6 +5812,82 @@ body:has(.home-ref) .proto-header {
       document.body.classList.remove('is-chat-collapsed');
     }
     window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  // ---- Landing: decision-tree prompts ----
+  const LANDING_PROMPTS = {
+    'web-subs': {
+      'Goal / Outcome Builder':       'Create a Goal / Outcome Builder quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Subscriptions. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Progressive Profiling':        'Create a Progressive Profiling quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Subscriptions. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Diagnostic / Assessment':      'Create a Diagnostic / Assessment quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Subscriptions. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Knowledge / Gap Reveal':       'Create a Knowledge / Gap Reveal quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Subscriptions. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Personality / Identity':       'Create a Personality / Identity quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Subscriptions. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Product / Plan Recommendation':'Create a Product / Plan Recommendation quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Subscriptions. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Comparison / Matcher':         'Create a Comparison / Matcher quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Subscriptions. App description: [brief — what the app does, who it’s for, core value prop].'
+    },
+    'web-inst': {
+      'Personality / Identity':       'Create a Personality / Identity quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Installs. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Product / Plan Recommendation':'Create a Product / Plan Recommendation quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Installs. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Comparison / Matcher':         'Create a Comparison / Matcher quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Installs. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Goal / Outcome Builder':       'Create a Goal / Outcome Builder quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Installs. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Progressive Profiling':        'Create a Progressive Profiling quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Installs. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Diagnostic / Assessment':      'Create a Diagnostic / Assessment quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Installs. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Knowledge / Gap Reveal':       'Create a Knowledge / Gap Reveal quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: Web. Goal: Installs. App description: [brief — what the app does, who it’s for, core value prop].'
+    },
+    'app-onb': {
+      'Progressive Profiling':        'Create a Progressive Profiling quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: In-app. Goal: Onboarding. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Goal / Outcome Builder':       'Create a Goal / Outcome Builder quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: In-app. Goal: Onboarding. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Product / Plan Recommendation':'Create a Product / Plan Recommendation quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: In-app. Goal: Onboarding. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Comparison / Matcher':         'Create a Comparison / Matcher quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: In-app. Goal: Onboarding. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Knowledge / Gap Reveal':       'Create a Knowledge / Gap Reveal quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: In-app. Goal: Onboarding. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Diagnostic / Assessment':      'Create a Diagnostic / Assessment quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: In-app. Goal: Onboarding. App description: [brief — what the app does, who it’s for, core value prop].',
+      'Personality / Identity':       'Create a Personality / Identity quiz funnel for [app name]. Category: [category]. Subcategory: [subcategory]. Platform: In-app. Goal: Onboarding. App description: [brief — what the app does, who it’s for, core value prop].'
+    }
+  };
+
+  // Pills shown per platform; each maps to a combo + the recommended (first) quiz type for that combo
+  const LANDING_PILLS = {
+    web: [
+      { label: 'Subscriptions', combo: 'web-subs', type: 'Goal / Outcome Builder' },
+      { label: 'Downloads',     combo: 'web-inst', type: 'Personality / Identity' },
+      { label: 'Diagnostic',    combo: 'web-subs', type: 'Diagnostic / Assessment' },
+      { label: 'Personality',   combo: 'web-subs', type: 'Personality / Identity' },
+      { label: 'Comparison',    combo: 'web-subs', type: 'Comparison / Matcher' }
+    ],
+    inapp: [
+      { label: 'Onboarding',     combo: 'app-onb', type: 'Progressive Profiling' },
+      { label: 'Goal Builder',   combo: 'app-onb', type: 'Goal / Outcome Builder' },
+      { label: 'Recommendation', combo: 'app-onb', type: 'Product / Plan Recommendation' },
+      { label: 'Diagnostic',     combo: 'app-onb', type: 'Diagnostic / Assessment' },
+      { label: 'Personality',    combo: 'app-onb', type: 'Personality / Identity' }
+    ]
+  };
+
+  function renderLandingPills(platform) {
+    const wrap = document.getElementById('landing-pills');
+    if (!wrap) return;
+    const pills = LANDING_PILLS[platform] || [];
+    wrap.innerHTML = pills.map(p =>
+      `<button type="button" class="ld-pill" data-combo="${p.combo}" data-type="${p.type.replace(/"/g, '&quot;')}" onclick="pasteLandingPrompt(this)">${p.label}</button>`
+    ).join('');
+  }
+
+  function switchLandingPlatform(which) {
+    document.querySelectorAll('.ld-tab').forEach(b => {
+      b.classList.toggle('active', b.dataset.ld === which);
+    });
+    renderLandingPills(which);
+  }
+
+  function pasteLandingPrompt(btn) {
+    const combo = btn.getAttribute('data-combo');
+    const type  = btn.getAttribute('data-type');
+    const text  = (LANDING_PROMPTS[combo] || {})[type] || '';
+    const input = document.getElementById('landing-input');
+    if (!input || !text) return;
+    input.value = text;
+    input.focus();
+    input.dispatchEvent(new Event('input', { bubbles: true }));
   }
 
   // ---- Wireframes sub-tab switching ----
