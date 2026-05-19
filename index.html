@@ -932,6 +932,158 @@
   }
   .su-google:hover { background: #FAFAFA; border-color: #D5D5D5; }
 
+  /* ============================================================
+     Builder reskin — light theme matching audit-review/Home/Landing
+     Pure CSS overrides scoped to body.view-builder. No HTML changes.
+     ============================================================ */
+  body.view-builder { background: #F5F5F5; }
+  body.view-builder .proto-header {
+    background: rgba(243, 243, 243, 0.85);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid #E6E6E6;
+  }
+
+  /* Chat sidebar */
+  body.view-builder .builder-sidebar {
+    background: #F7F7F7;
+    border-right: 1px solid #E6E6E6;
+    box-shadow: none;
+  }
+  body.view-builder .sidebar-collapse-btn {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    color: #5A5A5A;
+  }
+  body.view-builder .sidebar-collapse-btn:hover { background: #F4F4F4; color: #111; }
+
+  body.view-builder .chat-bubble {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    color: #1A1A1A;
+    box-shadow: none;
+  }
+  body.view-builder .chat-msg.user .chat-bubble {
+    background: #FFFFFF;
+    color: #1A1A1A;
+    border: 1px solid #ECECEC;
+  }
+  body.view-builder .chat-msg.ai .chat-avatar {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    color: #5A5A5A;
+    box-shadow: none;
+  }
+  body.view-builder .chat-msg.ai .chat-avatar svg path { fill: #5A5A5A; }
+  body.view-builder .chat-msg.user .chat-avatar {
+    background: #111;
+    color: #FFFFFF;
+  }
+  body.view-builder .chat-summary-card {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 12px;
+    color: #1A1A1A;
+    box-shadow: none;
+  }
+  body.view-builder .chat-summary-key { color: #8A8A8A; }
+  body.view-builder .chat-summary-val { color: #1A1A1A; }
+  body.view-builder .typing-indicator span { background: #B7B7B7; }
+
+  /* Composer */
+  body.view-builder .sidebar-composer {
+    background: rgba(247, 247, 247, 0.85);
+    border-top: 1px solid #ECECEC;
+  }
+  body.view-builder .sidebar-input-wrap {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 999px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.02);
+    padding: 6px 6px 6px 16px;
+  }
+  body.view-builder .sidebar-input-wrap:focus-within {
+    border-color: #D5D5D5;
+    box-shadow: 0 0 0 3px rgba(17,17,17,0.05);
+  }
+  body.view-builder .sidebar-input {
+    background: transparent;
+    color: #1A1A1A;
+    font-size: 13.5px;
+  }
+  body.view-builder .sidebar-input::placeholder { color: #9A9A9A; }
+  body.view-builder .sidebar-send {
+    background: #FFFFFF;
+    border: 1px solid #E2E2E2;
+    color: #5A5A5A;
+    border-radius: 999px;
+  }
+  body.view-builder .sidebar-send:hover {
+    background: #111;
+    color: #FFFFFF;
+    border-color: #111;
+  }
+  body.view-builder .sidebar-send.disabled {
+    background: #F2F2F2;
+    border-color: #ECECEC;
+    color: #B7B7B7;
+  }
+
+  /* Sub-header + tabs */
+  body.view-builder .builder-main { background: #FAFAFA; }
+  body.view-builder .builder-subheader {
+    background: rgba(250, 250, 250, 0.85);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid #ECECEC;
+  }
+  body.view-builder .builder-tab {
+    color: #6B6B6B;
+    background: transparent;
+    border: 0;
+    font-weight: 500;
+  }
+  body.view-builder .builder-tab:hover { color: #111; background: #F1F1F1; }
+  body.view-builder .builder-tab.active {
+    color: #111;
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  body.view-builder .builder-tab-count {
+    background: #F1F1F1;
+    color: #5A5A5A;
+  }
+  body.view-builder .builder-tab.active .builder-tab-count {
+    background: #111;
+    color: #FFFFFF;
+  }
+  body.view-builder .builder-subheader-actions .preview-tool-btn {
+    background: #111 !important;
+    color: #FFFFFF !important;
+    border-color: #111 !important;
+    border-radius: 999px !important;
+  }
+  body.view-builder .builder-subheader-actions .preview-tool-btn:hover {
+    background: #000 !important;
+  }
+
+  /* Preview grid */
+  body.view-builder .preview-grid-wrap { background: #FAFAFA; }
+  body.view-builder .funnel-card {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  body.view-builder .funnel-card:hover {
+    border-color: #D5D5D5;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Empty/placeholder states */
+  body.view-builder .builder-empty-title { color: #1A1A1A; }
+  body.view-builder .builder-empty-sub { color: #6B6B6B; }
+
   .ar-preview {
     order: 0;
     background: #FFFFFF;
