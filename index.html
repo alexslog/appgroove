@@ -6021,18 +6021,17 @@ body:has(.home-ref) .proto-header {
     menu.hidden = !willOpen;
     btn.setAttribute('aria-expanded', String(willOpen));
     if (willOpen) {
-      const close = (ev) => {
-        if (menu.contains(ev.target) || btn.contains(ev.target)) return;
+      const close = () => {
         menu.hidden = true;
         btn.setAttribute('aria-expanded', 'false');
-        document.removeEventListener('click', close);
+        document.removeEventListener('click', close, true);
         document.removeEventListener('keydown', esc);
       };
       const esc = (ev) => {
-        if (ev.key === 'Escape') close(ev);
+        if (ev.key === 'Escape') close();
       };
       setTimeout(() => {
-        document.addEventListener('click', close);
+        document.addEventListener('click', close, true);
         document.addEventListener('keydown', esc);
       }, 0);
     }
