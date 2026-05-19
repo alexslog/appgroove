@@ -508,6 +508,60 @@
     color: #111;
   }
 
+  /* Audit view — reuses Landing chrome and adds the What-you-get cards */
+  body.view-audit {
+    background:
+      radial-gradient(circle at center, #D8D8D8 0.9px, transparent 1.2px) 0 0 / 18px 18px,
+      #F3F3F3;
+  }
+  body.view-audit .proto-header {
+    background: rgba(243, 243, 243, 0.85);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid #E6E6E6;
+  }
+  body.view-audit .page { max-width: 1100px; }
+
+  .audit-benefits {
+    width: 100%;
+    margin-top: 24px;
+    text-align: center;
+  }
+  .audit-benefits-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #111;
+    margin: 0 0 18px;
+  }
+  .audit-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  @media (max-width: 720px) {
+    .audit-cards { grid-template-columns: 1fr; }
+  }
+  .audit-card {
+    background: #FFFFFF;
+    border: 1px solid #ECECEC;
+    border-radius: 18px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .audit-card:hover { border-color: #D5D5D5; }
+  .audit-card-emoji {
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .audit-card-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1A1A1A;
+  }
+
   /* Hero */
   .hero {
     text-align: center;
@@ -4310,6 +4364,7 @@ body:has(.home-ref) .proto-header {
   </div>
   <nav class="proto-nav">
     <button type="button" class="proto-link" data-view="landing" onclick="switchView('landing')">Landing</button>
+    <button type="button" class="proto-link" data-view="audit" onclick="switchView('audit')">Audit</button>
     <button type="button" class="proto-link active" data-view="home-return" onclick="switchView('home-return')">Home</button>
     <button type="button" class="proto-link" data-view="funnel-builder" onclick="switchView('funnel-builder')">Builder</button>
     <button type="button" class="proto-link" data-view="wireframes" onclick="switchView('wireframes')">Wireframes</button>
@@ -5209,24 +5264,24 @@ body:has(.home-ref) .proto-header {
       </div>
 
       <div class="landing-chat">
-        <textarea id="landing-input" class="landing-input" rows="3"
+        <textarea id="chat-input" class="landing-input" rows="3"
           placeholder="Describe the funnel you want to build: traffic source, audience, offer, key screens, references…"></textarea>
         <div class="landing-chat-row">
           <div class="landing-plus-wrap">
-            <button type="button" class="landing-plus" aria-label="Attach" aria-haspopup="menu" aria-expanded="false" onclick="toggleLandingPlus(event)">
+            <button type="button" class="landing-plus" aria-label="Attach" aria-haspopup="menu" aria-expanded="false" onclick="toggleChatPlus(event)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 5v14M5 12h14"/></svg>
             </button>
-            <div class="landing-plus-menu" id="landing-plus-menu" role="menu" hidden>
-              <button type="button" class="lp-item" role="menuitem" onclick="landingUploadImage()">
+            <div class="landing-plus-menu" id="chat-plus-menu" role="menu" hidden>
+              <button type="button" class="lp-item" role="menuitem" onclick="chatUploadImage()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.5"/></svg>
                 <span>Upload image</span>
               </button>
-              <button type="button" class="lp-item" role="menuitem" onclick="landingPasteUrl()">
+              <button type="button" class="lp-item" role="menuitem" onclick="chatPasteUrl()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
                 <span>Paste URL</span>
               </button>
             </div>
-            <input type="file" id="landing-file" accept="image/*" hidden onchange="landingHandleFile(event)">
+            <input type="file" id="chat-file" accept="image/*" hidden onchange="chatHandleFile(event)">
           </div>
           <button type="button" class="landing-send" aria-label="Send">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6-6 6"/></svg>
@@ -5236,6 +5291,60 @@ body:has(.home-ref) .proto-header {
 
       <div class="landing-pills landing-pills--goal" id="landing-pills"></div>
       <div class="landing-pills landing-pills--type" id="landing-quiztypes" hidden></div>
+    </div>
+  </div>
+</template>
+
+<!-- ============== AUDIT (funnel auditor — URL/screens chat + What you get) ============== -->
+<template id="tpl-audit">
+  <div class="landing-ref audit-ref">
+    <div class="landing-content audit-content">
+      <h1 class="landing-title">Funnel Auditor</h1>
+      <p class="landing-sub">Check your funnel for accessibility, usability, and logic</p>
+
+      <div class="landing-chat audit-chat">
+        <textarea id="chat-input" class="landing-input" rows="3"
+          placeholder="Paste funnel URL or upload screens"></textarea>
+        <div class="landing-chat-row">
+          <div class="landing-plus-wrap">
+            <button type="button" class="landing-plus" aria-label="Attach" aria-haspopup="menu" aria-expanded="false" onclick="toggleChatPlus(event)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+            <div class="landing-plus-menu" id="chat-plus-menu" role="menu" hidden>
+              <button type="button" class="lp-item" role="menuitem" onclick="chatUploadImage()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.5"/></svg>
+                <span>Upload image</span>
+              </button>
+              <button type="button" class="lp-item" role="menuitem" onclick="chatPasteUrl()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+                <span>Paste URL</span>
+              </button>
+            </div>
+            <input type="file" id="chat-file" accept="image/*" hidden onchange="chatHandleFile(event)">
+          </div>
+          <button type="button" class="landing-send" aria-label="Send">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="audit-benefits">
+        <h2 class="audit-benefits-title">What you get</h2>
+        <div class="audit-cards">
+          <div class="audit-card">
+            <div class="audit-card-emoji">📋</div>
+            <h3 class="audit-card-title">Audit Report</h3>
+          </div>
+          <div class="audit-card">
+            <div class="audit-card-emoji">🎨</div>
+            <h3 class="audit-card-title">UX Recommendations</h3>
+          </div>
+          <div class="audit-card">
+            <div class="audit-card-emoji">📈</div>
+            <h3 class="audit-card-title">CR Recommendations</h3>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -5865,7 +5974,7 @@ body:has(.home-ref) .proto-header {
 
   // ---- View switching ----
   function switchView(name) {
-    if (!['home-return', 'funnel-builder', 'wireframes', 'landing'].includes(name)) name = 'home-return';
+    if (!['home-return', 'funnel-builder', 'wireframes', 'landing', 'audit'].includes(name)) name = 'home-return';
     closeAllMenus();
     const root = document.getElementById('view-root');
     const tpl = document.getElementById('tpl-' + name);
@@ -5880,6 +5989,7 @@ body:has(.home-ref) .proto-header {
     document.body.classList.toggle('view-new', name === 'home-new');
     document.body.classList.toggle('view-wireframes', name === 'wireframes');
     document.body.classList.toggle('view-landing', name === 'landing');
+    document.body.classList.toggle('view-audit', name === 'audit');
     if (name === 'landing') {
       renderLandingPills('web');
     }
@@ -6013,9 +6123,9 @@ body:has(.home-ref) .proto-header {
     renderLandingGoals(platform);
   }
 
-  function toggleLandingPlus(e) {
+  function toggleChatPlus(e) {
     e.stopPropagation();
-    const menu = document.getElementById('landing-plus-menu');
+    const menu = document.getElementById('chat-plus-menu');
     const btn  = e.currentTarget;
     if (!menu) return;
     const willOpen = menu.hidden;
@@ -6038,23 +6148,23 @@ body:has(.home-ref) .proto-header {
     }
   }
 
-  function closeLandingPlus() {
-    const menu = document.getElementById('landing-plus-menu');
+  function closeChatPlus() {
+    const menu = document.getElementById('chat-plus-menu');
     const btn  = document.querySelector('.landing-plus');
     if (menu) menu.hidden = true;
     if (btn) btn.setAttribute('aria-expanded', 'false');
   }
 
-  function landingUploadImage() {
-    closeLandingPlus();
-    const file = document.getElementById('landing-file');
+  function chatUploadImage() {
+    closeChatPlus();
+    const file = document.getElementById('chat-file');
     if (file) file.click();
   }
 
-  function landingHandleFile(e) {
+  function chatHandleFile(e) {
     const f = e.target.files && e.target.files[0];
     if (!f) return;
-    const input = document.getElementById('landing-input');
+    const input = document.getElementById('chat-input');
     if (input) {
       const tag = `[image: ${f.name}]`;
       input.value = input.value ? `${input.value}\n${tag}` : tag;
@@ -6063,11 +6173,11 @@ body:has(.home-ref) .proto-header {
     e.target.value = '';
   }
 
-  function landingPasteUrl() {
-    closeLandingPlus();
+  function chatPasteUrl() {
+    closeChatPlus();
     const url = window.prompt('Paste URL');
     if (!url) return;
-    const input = document.getElementById('landing-input');
+    const input = document.getElementById('chat-input');
     if (input) {
       input.value = input.value ? `${input.value}\n${url}` : url;
       input.focus();
@@ -6078,7 +6188,7 @@ body:has(.home-ref) .proto-header {
     const combo = btn.getAttribute('data-combo');
     const type  = btn.getAttribute('data-type');
     const text  = (LANDING_PROMPTS[combo] || {})[type] || '';
-    const input = document.getElementById('landing-input');
+    const input = document.getElementById('chat-input');
     if (!input || !text) return;
     input.value = text;
     input.focus();
