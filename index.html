@@ -437,6 +437,28 @@
   }
   .ld-pill:hover { border-color: #D5D5D5; background: #FAFAFA; }
   .ld-pill:active { transform: translateY(1px); }
+  .ld-pill.active {
+    background: #111;
+    color: #FFF;
+    border-color: #111;
+  }
+  .landing-pills--type {
+    margin-top: 2px;
+    padding-top: 12px;
+    border-top: 1px dashed #DCDCDC;
+  }
+  .ld-pill--type {
+    background: #FFFFFF;
+    color: #5A5A5A;
+    border-color: #ECECEC;
+    font-size: 12.5px;
+    padding: 6px 12px;
+  }
+  .ld-pill--type:hover {
+    color: #111;
+    background: #F4F4F4;
+    border-color: #D5D5D5;
+  }
 
   /* Hero */
   .hero {
@@ -5151,7 +5173,8 @@ body:has(.home-ref) .proto-header {
         </div>
       </div>
 
-      <div class="landing-pills" id="landing-pills"></div>
+      <div class="landing-pills landing-pills--goal" id="landing-pills"></div>
+      <div class="landing-pills landing-pills--type" id="landing-quiztypes" hidden></div>
     </div>
   </div>
 </template>
@@ -5845,38 +5868,74 @@ body:has(.home-ref) .proto-header {
     }
   };
 
-  // Pills shown per platform; each maps to a combo + the recommended (first) quiz type for that combo
-  const LANDING_PILLS = {
+  // Level 2 — Goals per platform
+  const LANDING_GOALS = {
     web: [
-      { label: 'Subscriptions', combo: 'web-subs', type: 'Goal / Outcome Builder' },
-      { label: 'Downloads',     combo: 'web-inst', type: 'Personality / Identity' },
-      { label: 'Diagnostic',    combo: 'web-subs', type: 'Diagnostic / Assessment' },
-      { label: 'Personality',   combo: 'web-subs', type: 'Personality / Identity' },
-      { label: 'Comparison',    combo: 'web-subs', type: 'Comparison / Matcher' }
+      { label: 'Subscriptions', combo: 'web-subs' },
+      { label: 'Downloads',     combo: 'web-inst' }
     ],
     inapp: [
-      { label: 'Onboarding',     combo: 'app-onb', type: 'Progressive Profiling' },
-      { label: 'Goal Builder',   combo: 'app-onb', type: 'Goal / Outcome Builder' },
-      { label: 'Recommendation', combo: 'app-onb', type: 'Product / Plan Recommendation' },
-      { label: 'Diagnostic',     combo: 'app-onb', type: 'Diagnostic / Assessment' },
-      { label: 'Personality',    combo: 'app-onb', type: 'Personality / Identity' }
+      { label: 'Onboarding',    combo: 'app-onb' }
     ]
   };
 
-  function renderLandingPills(platform) {
+  // Level 3 — Quiz types (short labels paired with tree keys)
+  const LANDING_QUIZ_TYPES = [
+    { label: 'Goal Builder',    key: 'Goal / Outcome Builder' },
+    { label: 'Progressive',     key: 'Progressive Profiling' },
+    { label: 'Diagnostic',      key: 'Diagnostic / Assessment' },
+    { label: 'Knowledge',       key: 'Knowledge / Gap Reveal' },
+    { label: 'Personality',     key: 'Personality / Identity' },
+    { label: 'Recommendation',  key: 'Product / Plan Recommendation' },
+    { label: 'Comparison',      key: 'Comparison / Matcher' }
+  ];
+
+  function renderLandingGoals(platform) {
     const wrap = document.getElementById('landing-pills');
+    const types = document.getElementById('landing-quiztypes');
     if (!wrap) return;
-    const pills = LANDING_PILLS[platform] || [];
-    wrap.innerHTML = pills.map(p =>
-      `<button type="button" class="ld-pill" data-combo="${p.combo}" data-type="${p.type.replace(/"/g, '&quot;')}" onclick="pasteLandingPrompt(this)">${p.label}</button>`
+    const goals = LANDING_GOALS[platform] || [];
+    wrap.innerHTML = goals.map(g =>
+      `<button type="button" class="ld-pill" data-combo="${g.combo}" onclick="selectLandingGoal(this)">${g.label}</button>`
     ).join('');
+    if (types) {
+      types.hidden = true;
+      types.innerHTML = '';
+    }
+  }
+
+  function selectLandingGoal(btn) {
+    const combo = btn.getAttribute('data-combo');
+    document.querySelectorAll('#landing-pills .ld-pill').forEach(b => {
+      b.classList.toggle('active', b === btn);
+    });
+    renderLandingQuizTypes(combo);
+  }
+
+  function renderLandingQuizTypes(comboId) {
+    const wrap = document.getElementById('landing-quiztypes');
+    if (!wrap) return;
+    const order = Object.keys(LANDING_PROMPTS[comboId] || {});
+    // sort the canonical short-label list by the combo's recommended order
+    const sorted = LANDING_QUIZ_TYPES.slice().sort(
+      (a, b) => order.indexOf(a.key) - order.indexOf(b.key)
+    );
+    wrap.innerHTML = sorted.map(t =>
+      `<button type="button" class="ld-pill ld-pill--type" data-combo="${comboId}" data-type="${t.key.replace(/"/g, '&quot;')}" onclick="pasteLandingPrompt(this)">${t.label}</button>`
+    ).join('');
+    wrap.hidden = false;
   }
 
   function switchLandingPlatform(which) {
     document.querySelectorAll('.ld-tab').forEach(b => {
       b.classList.toggle('active', b.dataset.ld === which);
     });
-    renderLandingPills(which);
+    renderLandingGoals(which);
+  }
+
+  // Backward-compat shim — initial render after switchView still calls this name
+  function renderLandingPills(platform) {
+    renderLandingGoals(platform);
   }
 
   function pasteLandingPrompt(btn) {
