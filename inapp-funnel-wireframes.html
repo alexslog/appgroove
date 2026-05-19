@@ -1,0 +1,1562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>In-App Funnel Wireframes</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      background: #2B2B2B;
+      color: #EAEAEA;
+      padding: 56px 24px 96px;
+      min-height: 100vh;
+    }
+    .page-title { text-align: center; font-weight: 700; font-size: 32px; letter-spacing: -0.3px; margin: 0 0 8px; }
+    .page-sub { text-align: center; color: #9A9A9A; font-size: 14px; margin: 0 auto 48px; max-width: 700px; line-height: 1.5; }
+
+    /* ==================== Sections ==================== */
+    .section { max-width: 1760px; margin: 0 auto 64px; }
+    .section-title {
+      font-size: 13px; font-weight: 700; letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: #CFCFCF;
+      margin: 0 0 24px;
+      padding: 0 4px 10px;
+      border-bottom: 1px solid #3A3A3A;
+      text-align: left;
+    }
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 390px);
+      justify-content: center;
+      gap: 56px 40px;
+      max-width: 1760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 390px);
+      justify-content: center;
+      gap: 56px 40px;
+      margin-top: 56px;
+    }
+
+    .screen-card { display: flex; flex-direction: column; align-items: center; }
+    .screen-label {
+      color: #CFCFCF; font-size: 13px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.4px;
+      margin-bottom: 16px; text-align: center;
+    }
+
+    /* ==================== Viewport ==================== */
+    .viewport {
+      width: 390px; height: 844px;
+      background: #FAFAFA;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      display: flex; flex-direction: column;
+      box-shadow: 0 16px 44px rgba(0,0,0,0.35);
+      color: #111;
+    }
+
+    /* ==================== Unified Header ==================== */
+    .vp-header {
+      height: 56px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid #ECECEC;
+    }
+    .vp-header .back { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: #6A6A6A; font-size: 22px; visibility: hidden; }
+    .vp-header .logo-chip {
+      font-size: 11px; font-weight: 700; color: #7A7A7A;
+      letter-spacing: 0.6px;
+      border: 1px dashed #BFBFBF;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #F3F3F3;
+    }
+    .vp-header .right-slot { width: 32px; }
+
+    /* ==================== Progress ==================== */
+    .vp-progress { height: 4px; margin: 10px 20px 0; background: rgba(0,0,0,0.06); border-radius: 2px; flex-shrink: 0; }
+    .vp-progress .fill { height: 100%; background: #222; border-radius: 2px; }
+
+    /* ==================== Body ==================== */
+    .vp-body {
+      flex: 1;
+      padding: 18px 20px 22px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .vp-title { font-size: 26px; font-weight: 700; line-height: 1.15; color: #111; margin: 4px 0 8px; }
+    .vp-title.display { font-size: 30px; letter-spacing: -0.3px; }
+    .vp-subtitle { font-size: 15px; color: #6A6A6A; font-weight: 400; margin: 0 0 16px; line-height: 1.4; }
+    .vp-body-para { font-size: 15px; color: #333; line-height: 1.45; margin: 0 0 14px; }
+    .overline {
+      font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+      color: #888; font-weight: 600; margin: 0 0 10px;
+    }
+
+    /* ==================== Standardized image placeholder ==================== */
+    .img-opt {
+      position: relative;
+      width: 100%; background: #ECECEC; border-radius: 14px;
+      border: 1.5px dashed #C4C4C4;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2px;
+      color: #8A8A8A;
+      flex-shrink: 0;
+      padding: 8px;
+    }
+    .img-opt .opt-tag {
+      font-size: 9px; letter-spacing: 1.8px; font-weight: 700;
+      color: #9A9A9A; text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .img-opt .opt-name {
+      font-size: 14px; font-weight: 700; color: #555;
+      letter-spacing: 0.2px;
+    }
+    .img-opt .opt-size {
+      font-size: 11px; color: #8A8A8A; font-weight: 600; letter-spacing: 0.4px;
+      margin-top: 1px;
+    }
+
+    .img-xl { height: 350px; margin-bottom: 16px; }
+    .img-l  { height: 240px; margin-bottom: 14px; }
+    .img-m  { height: 120px; margin-bottom: 14px; }
+    .img-s  { height: 120px; margin-bottom: 14px; }
+    .img-xs { height: 120px; margin-bottom: 14px; }
+
+    .img-square-s {
+      width: 120px; height: 120px; border-radius: 18px;
+      margin: 8px auto 16px;
+    }
+    .img-square-s .opt-name { font-size: 12px; }
+    .img-square-s .opt-size { font-size: 10px; }
+
+    /* ==================== Questions — shared patterns ==================== */
+    .q-options { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .q-item {
+      min-height: 56px;
+      border: 1px solid #DADADA; border-radius: 14px;
+      background: #FFF; color: #111;
+      display: flex; align-items: center;
+      padding: 0 18px;
+      font-size: 16px; font-weight: 600;
+    }
+    .q-item.selected { border: 2px solid #111; background: #F6F6F6; }
+
+    /* Binary */
+    .binary-row { display: flex; gap: 12px; margin-top: 6px; }
+    .binary-btn {
+      flex: 1; height: 88px; border: 1px solid #DADADA; border-radius: 18px;
+      background: #FFF; color: #111;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 700;
+    }
+
+    /* Multi-select */
+    .ms-item {
+      min-height: 56px;
+      border: 1px solid #DADADA; border-radius: 14px;
+      background: #FFF; color: #111;
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 16px;
+      font-size: 15px; font-weight: 600;
+    }
+    .ms-check {
+      width: 22px; height: 22px; border-radius: 6px;
+      border: 1.5px solid #BFBFBF; background: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      color: #FFF; font-size: 14px;
+      flex-shrink: 0;
+    }
+    .ms-item.checked { border-color: #111; background: #F6F6F6; }
+    .ms-item.checked .ms-check { background: #111; border-color: #111; }
+    .ms-item.checked .ms-check::after { content: "✓"; }
+
+    /* Rating stars */
+    .rating-row { display: flex; justify-content: space-between; margin: 28px 0 12px; gap: 8px; }
+    .rating-num {
+      flex: 1; aspect-ratio: 1/1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: 700; color: #444; line-height: 1;
+      background: #F2F2F2; border: 1.5px solid #E6E6E6;
+      border-radius: 16px;
+    }
+    .rating-num.selected { color: #FFF; background: #111; border-color: #111; }
+    .rating-labels { display: flex; justify-content: space-between; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 20px; }
+
+    /* Visual grid */
+    .vis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+    .vis-card {
+      position: relative;
+      border: 1px solid #DADADA; border-radius: 16px;
+      background: #FFF; padding: 10px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .vis-card.checked {
+      border: 2px solid #111; padding: 9px;
+      background: #F8F8F8;
+    }
+    .vis-check {
+      position: absolute; top: 10px; right: 10px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #FFF; border: 1.5px solid #BFBFBF;
+      display: flex; align-items: center; justify-content: center;
+      color: transparent; font-size: 13px; font-weight: 700;
+      z-index: 2;
+    }
+    .vis-card.checked .vis-check {
+      background: #111; border-color: #111; color: #FFF;
+    }
+    .vis-card.checked .vis-check::after { content: "✓"; }
+    .vis-card .vis-img {
+      width: 100%; height: 118px;
+      background: #ECECEC; border: 1.5px dashed #C4C4C4; border-radius: 10px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1px; color: #8A8A8A;
+      padding: 6px;
+    }
+    .vis-card .vis-img .opt-tag { font-size: 8px; letter-spacing: 1.4px; font-weight: 700; color: #9A9A9A; }
+    .vis-card .vis-img .opt-name { font-size: 11px; font-weight: 700; color: #555; }
+    .vis-card .vis-img .opt-size { font-size: 9px; font-weight: 600; color: #8A8A8A; }
+    .vis-card .vis-label { font-size: 14px; font-weight: 600; color: #111; text-align: center; padding-bottom: 4px; }
+
+    /* Text input */
+    .text-area {
+      width: 100%; min-height: 180px;
+      border: 1px solid #DADADA; border-radius: 14px;
+      padding: 16px;
+      background: #FFF;
+      font-size: 15px; color: #B5B5B5;
+      line-height: 1.5;
+    }
+    .char-counter { text-align: right; font-size: 11px; color: #9A9A9A; margin-top: 6px; }
+
+    /* ==================== CTA ==================== */
+    .vp-cta-group { margin-top: auto; padding-top: 20px; flex-shrink: 0; }
+    .vp-cta {
+      height: 56px; border-radius: 28px;
+      background: #111; color: #FFF;
+      font-size: 17px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .vp-cta.disabled { background: #D2D2D2; color: #8A8A8A; }
+    .vp-cta.outline { background: transparent; border: 1.5px solid #DADADA; color: #111; }
+    .vp-cta.danger { background: #E53935; }
+    .vp-cta.secondary { background: transparent; color: #111; font-size: 14px; height: 44px; text-decoration: underline; }
+    .legal-micro { font-size: 11px; color: #9A9A9A; text-align: center; margin-top: 8px; line-height: 1.4; }
+
+    /* ==================== Welcome D/E (Splash + Stats) ==================== */
+    .splash-logo {
+      width: 60px; height: 24px;
+      border: 1.5px dashed #CCCCCC; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: #AAAAAA; font-weight: 500;
+      margin: 0 auto 8px;
+    }
+    .splash-tagline { font-size: 15px; color: #888; text-align: center; margin-bottom: 24px; }
+    .stats-row { display: flex; gap: 12px; margin-bottom: 16px; }
+    .stat-card {
+      flex: 1; background: #F5F5F5; border-radius: 14px; padding: 14px 10px; text-align: center;
+    }
+    .stat-num { font-size: 22px; font-weight: 800; color: #111; margin-bottom: 2px; }
+    .stat-label { font-size: 11px; color: #888; font-weight: 500; }
+
+    /* ==================== Sign In ==================== */
+    .auth-btn {
+      display: flex; align-items: center; gap: 12px;
+      border: 1.5px solid #DADADA; border-radius: 14px;
+      padding: 14px 16px;
+      background: #FFF;
+      font-size: 16px; font-weight: 600; color: #111;
+    }
+    .auth-icon {
+      width: 24px; height: 24px; border-radius: 6px;
+      background: #F0F0F0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: #999;
+      flex-shrink: 0;
+    }
+    .auth-divider {
+      display: flex; align-items: center; gap: 12px;
+      margin: 4px 0;
+    }
+    .auth-divider-line { flex: 1; height: 1px; background: #E4E4E4; }
+    .auth-divider-text { font-size: 12px; color: #AAAAAA; font-weight: 500; }
+    .auth-login-link { text-align: center; margin-top: 12px; font-size: 13px; color: #888; }
+    .auth-login-link a { color: #111; font-weight: 600; text-decoration: underline; }
+    .auth-trust-badge {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: #888; margin-bottom: 16px;
+    }
+
+    /* ==================== Feature Tour ==================== */
+    .tour-overline {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #888; margin: 0 0 10px;
+    }
+    .tour-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 14px; }
+    .tour-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #DDDDDD;
+    }
+    .tour-dot.active { background: #111; }
+
+    /* Feature Tour B (Full-bleed) */
+    .tour-fullbleed {
+      position: relative; flex: 1; display: flex; flex-direction: column;
+    }
+    .tour-fullbleed-img {
+      flex: 1; background: #ECECEC; border: 1.5px dashed #C4C4C4;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2px; color: #8A8A8A;
+    }
+    .tour-bottom {
+      padding: 18px 20px 22px; display: flex; flex-direction: column;
+    }
+    .tour-bottom-text {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ==================== Profile / Goal chips ==================== */
+    .goal-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .goal-chip {
+      padding: 10px 18px; border-radius: 999px;
+      border: 1px solid #DADADA; background: #FFF;
+      font-size: 14px; font-weight: 500; color: #333;
+    }
+    .goal-chip.selected { border-color: #111; background: #F6F6F6; font-weight: 600; color: #111; }
+
+    /* ==================== Churn Survey ==================== */
+    .churn-reason {
+      min-height: 56px;
+      border: 1px solid #DADADA; border-radius: 14px;
+      background: #FFF; color: #111;
+      display: flex; align-items: center;
+      padding: 0 18px;
+      font-size: 15px; font-weight: 500;
+    }
+    .churn-reason.selected { border: 2px solid #E53935; background: #FFF5F5; }
+    .churn-followup {
+      margin-top: 12px; padding: 14px;
+      background: #FAFAFA; border-radius: 14px;
+      border: 1px solid #ECECEC;
+    }
+    .churn-followup-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+
+    /* ==================== Permission Request ==================== */
+    .perm-icon {
+      width: 80px; height: 80px; border-radius: 20px;
+      background: #F0F0F0;
+      display: flex; align-items: center; justify-content: center;
+      margin: 20px auto 18px;
+      font-size: 36px;
+    }
+    .perm-benefit-list { display: flex; flex-direction: column; gap: 14px; margin: 16px 0; }
+    .perm-benefit {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 0 4px;
+    }
+    .perm-benefit-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #F0F0F0; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+    .perm-benefit-text { font-size: 14px; color: #333; line-height: 1.4; }
+    .perm-benefit-text b { font-weight: 600; color: #111; }
+    .perm-skip { text-align: center; font-size: 13px; color: #888; margin-top: 8px; text-decoration: underline; }
+
+    /* Permission D · Multi-permission checklist */
+    .perm-checklist { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+    .perm-check-item {
+      display: flex; align-items: center; gap: 14px;
+      background: #F5F5F5; border-radius: 16px;
+      padding: 16px 18px;
+    }
+    .perm-check-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #FFF; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .perm-check-content { flex: 1; min-width: 0; }
+    .perm-check-name { font-size: 15px; font-weight: 600; color: #111; }
+    .perm-check-desc { font-size: 12px; color: #7A7A7A; margin-top: 2px; line-height: 1.3; }
+    .perm-check-toggle {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1.5px solid #BFBFBF; background: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: transparent;
+      flex-shrink: 0;
+    }
+    .perm-check-item.granted .perm-check-toggle {
+      background: #111; border-color: #111; color: #FFF;
+    }
+    .perm-check-item.granted .perm-check-toggle::after { content: "✓"; }
+
+    /* ==================== Activation Milestone ==================== */
+    .milestone-badge {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: #F0F0F0; border: 3px solid #111;
+      display: flex; align-items: center; justify-content: center;
+      margin: 20px auto 16px;
+      font-size: 44px;
+    }
+    .milestone-confetti { text-align: center; font-size: 13px; color: #888; margin-bottom: 14px; }
+    .milestone-progress-wrap { margin: 14px 0; }
+    .milestone-progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #888; margin-bottom: 6px; }
+    .milestone-progress { height: 8px; background: #ECECEC; border-radius: 4px; overflow: hidden; }
+    .milestone-progress-fill { height: 100%; background: #111; border-radius: 4px; }
+
+    /* ==================== Trait tiles (used in Milestone B) ==================== */
+    .trait-tiles { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .trait-tile {
+      display: flex; align-items: center; gap: 12px;
+      background: #F2F2F2; border-radius: 14px;
+      padding: 12px 14px;
+    }
+    .trait-tile .tt-icon {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #FFF; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #333; font-weight: 700;
+    }
+    .trait-tile .tt-label { flex: 1; font-size: 14px; font-weight: 700; color: #111; }
+    .trait-tile .tt-meta { font-size: 12px; color: #7A7A7A; font-weight: 500; }
+
+    /* ==================== Loss Aversion ==================== */
+    .loss-feature-list { display: flex; flex-direction: column; gap: 10px; }
+    .loss-feature {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px;
+      background: #FFF; border: 1px solid #EAEAEA; border-radius: 14px;
+    }
+    .loss-feature-icon {
+      width: 28px; height: 28px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .loss-feature-text { font-size: 14px; color: #111; font-weight: 500; flex: 1; }
+    .loss-feature .loss-x { color: #E53935; font-size: 18px; font-weight: 700; flex-shrink: 0; }
+    .loss-stat-row { display: flex; gap: 10px; margin: 14px 0; }
+    .loss-stat {
+      flex: 1; background: #FFF5F5; border-radius: 14px; padding: 14px 10px; text-align: center;
+      border: 1px solid #FFCDD2;
+    }
+    .loss-stat-num { font-size: 22px; font-weight: 800; color: #E53935; margin-bottom: 2px; }
+    .loss-stat-label { font-size: 11px; color: #888; font-weight: 500; }
+
+    /* ==================== Save Offer ==================== */
+    .save-badge {
+      display: inline-block;
+      background: #111; color: #FFF;
+      font-size: 12px; font-weight: 700;
+      padding: 4px 14px; border-radius: 999px;
+      letter-spacing: 0.6px;
+      margin-bottom: 12px;
+    }
+    .save-offer-card {
+      border: 2px solid #111; border-radius: 18px;
+      padding: 20px 16px; text-align: center;
+      margin-bottom: 14px; background: #FAFAFA;
+    }
+    .save-offer-price { font-size: 36px; font-weight: 800; color: #111; letter-spacing: -1px; }
+    .save-offer-was { font-size: 14px; color: #8A8A8A; text-decoration: line-through; margin-top: 4px; }
+    .save-offer-desc { font-size: 14px; color: #555; margin-top: 8px; line-height: 1.4; }
+    .save-countdown { text-align: center; margin: 10px 0; font-size: 13px; color: #888; }
+    .save-countdown b { color: #111; font-weight: 700; }
+
+    /* ==================== Win-Back ==================== */
+    .winback-hero {
+      text-align: center; padding: 20px 0 10px;
+    }
+    .winback-emoji { font-size: 48px; margin-bottom: 10px; }
+    .winback-highlight {
+      background: #F0FFF0; border: 1px solid #C8E6C9; border-radius: 14px;
+      padding: 14px 16px; margin: 14px 0;
+    }
+    .winback-highlight-title { font-size: 14px; font-weight: 700; color: #2E7D32; margin-bottom: 6px; }
+    .winback-highlight-text { font-size: 13px; color: #555; line-height: 1.4; }
+    .winback-new-features { display: flex; flex-direction: column; gap: 10px; }
+    .winback-feature {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px;
+      background: #FAFAFA; border-radius: 12px;
+    }
+    .winback-feature-badge {
+      background: #111; color: #FFF; font-size: 9px; font-weight: 700;
+      padding: 3px 8px; border-radius: 999px; letter-spacing: 0.6px;
+    }
+    .winback-feature-text { font-size: 14px; color: #111; font-weight: 500; }
+
+    /* ==================== Paywall A ==================== */
+    .timer-bar {
+      height: 36px; background: #111; color: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.4px;
+      flex-shrink: 0;
+    }
+    .plan-card {
+      border: 1px solid #DADADA; border-radius: 14px;
+      background: #FFF;
+      padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 10px;
+    }
+    .plan-card.selected { border: 2px solid #111; background: #F8F8F8; }
+    .plan-radio { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #BFBFBF; flex-shrink: 0; position: relative; }
+    .plan-card.selected .plan-radio { background: #111; border-color: #111; }
+    .plan-card.selected .plan-radio::after { content: ""; width: 8px; height: 8px; background: #FFF; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .plan-main { flex: 1; }
+    .plan-name { font-size: 15px; font-weight: 600; color: #111; }
+    .plan-was { font-size: 12px; color: #8A8A8A; text-decoration: line-through; margin-top: 2px; }
+    .plan-price-col { text-align: right; }
+    .plan-price { font-size: 24px; font-weight: 700; color: #111; letter-spacing: -0.5px; }
+    .plan-price-unit { font-size: 10px; color: #8A8A8A; }
+    .plan-total { font-size: 10px; color: #8A8A8A; margin-top: 2px; }
+    .pay-trust { display: flex; flex-wrap: wrap; gap: 8px 10px; font-size: 11px; color: #7A7A7A; margin: 10px 0 4px; }
+
+    /* ==================== Paywall B (Promo + Timer) ==================== */
+    .vp-sticky-top {
+      background: #FFF;
+      border: 2px solid #111;
+      border-radius: 999px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 4px 4px 4px 22px;
+      margin: 12px 14px 0;
+      flex-shrink: 0;
+    }
+    .sticky-timer { font-size: 22px; font-weight: 800; color: #111; letter-spacing: 0.5px; }
+    .sticky-btn { background: #111; color: #FFF; font-weight: 700; font-size: 14px; padding: 10px 22px; border-radius: 999px; }
+
+    .promo-block {
+      border: 1.5px solid #111; border-radius: 16px;
+      background: #F4F4F4;
+      padding: 14px 14px;
+      margin-bottom: 16px;
+    }
+    .promo-head {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      font-weight: 800; font-size: 17px; color: #111;
+      margin-bottom: 12px;
+    }
+    .promo-head .promo-badge {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: #111; color: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800;
+    }
+    .promo-row { display: flex; gap: 8px; align-items: stretch; }
+    .promo-code {
+      flex: 1; background: #FFF; border-radius: 10px;
+      padding: 8px 12px;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 700; color: #111;
+    }
+    .promo-code .chk {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: #111; color: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; flex-shrink: 0;
+    }
+    .promo-timer {
+      background: #111; color: #FFF; border-radius: 10px;
+      padding: 6px 14px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-width: 94px;
+    }
+    .promo-timer .pt-val { font-size: 22px; font-weight: 800; line-height: 1; letter-spacing: 0.5px; }
+    .promo-timer .pt-unit {
+      font-size: 9px; opacity: 0.8; margin-top: 3px;
+      display: flex; gap: 16px; letter-spacing: 1px;
+    }
+
+    .plan-card-b {
+      background: #FFF;
+      border: 1.5px solid #DADADA;
+      border-radius: 16px;
+      padding: 14px 14px;
+      margin-bottom: 10px;
+    }
+    .plan-card-b.selected { border: 2px solid #111; }
+    .plan-b-name {
+      font-size: 16px; font-weight: 800; color: #111;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .plan-b-body { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .plan-b-price-col { display: flex; flex-direction: column; gap: 2px; }
+    .plan-b-was { font-size: 13px; color: #8A8A8A; text-decoration: line-through; }
+    .plan-b-price { font-size: 22px; font-weight: 800; color: #111; letter-spacing: -0.3px; }
+    .plan-b-perday {
+      background: #EFEFEF; border-radius: 12px; padding: 8px 14px;
+      display: flex; align-items: center; gap: 10px;
+      min-width: 128px; justify-content: flex-end;
+    }
+    .plan-b-perday-was { font-size: 12px; color: #8A8A8A; text-decoration: line-through; }
+    .plan-b-perday-now { display: flex; align-items: flex-start; }
+    .plan-b-perday-now .pd-sign { font-size: 14px; font-weight: 800; color: #111; margin-top: 4px; }
+    .plan-b-perday-now .pd-val { font-size: 26px; font-weight: 800; color: #111; line-height: 1; letter-spacing: -0.8px; }
+    .plan-b-perday-now .pd-unit { display: flex; flex-direction: column; font-size: 9px; color: #6A6A6A; font-weight: 600; line-height: 1.1; margin-top: 2px; margin-left: 2px; }
+    .plan-card-b.selected .plan-b-perday { background: #111; }
+    .plan-card-b.selected .plan-b-perday-was { color: #BBB; }
+    .plan-card-b.selected .plan-b-perday-now .pd-sign,
+    .plan-card-b.selected .plan-b-perday-now .pd-val { color: #FFF; }
+    .plan-card-b.selected .plan-b-perday-now .pd-unit { color: #BBB; }
+
+    .pay-methods-row {
+      display: flex; gap: 8px; justify-content: center;
+      margin-top: 14px; flex-wrap: wrap;
+    }
+    .pay-method {
+      height: 32px; padding: 0 10px;
+      background: #FFF; border: 1px solid #E4E4E4; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: #111; letter-spacing: 0.4px;
+      min-width: 52px;
+    }
+    .pay-method.dark { background: #111; color: #FFF; border-color: #111; }
+    .pay-safe {
+      text-align: center; font-size: 13px; color: #555;
+      margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-weight: 600;
+    }
+    .pay-safe .shield {
+      width: 18px; height: 18px; border-radius: 4px;
+      background: #111; color: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+    }
+
+    /* ==================== Paywall C (Long-scroll) ==================== */
+    .pw-logo {
+      width: 60px; height: 24px;
+      border: 1.5px dashed #CCCCCC; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: #AAAAAA; font-weight: 500;
+      margin: 0 auto;
+    }
+    .pw-feat-list { display: flex; flex-direction: column; gap: 12px; padding: 0 8px; }
+    .pw-feat-item { display: flex; align-items: center; gap: 10px; }
+    .pw-feat-check {
+      width: 20px; height: 20px; border-radius: 50%; background: #E8F5E9;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 11px; color: #4CAF50;
+    }
+    .pw-feat-text { font-size: 14px; color: #333; }
+    .pw-plan-card {
+      border: 1.5px solid #E0E0E0; border-radius: 16px; padding: 16px; margin-bottom: 10px;
+    }
+    .pw-plan-card.featured { border: 2px solid #111; position: relative; }
+    .pw-plan-badge {
+      position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+      background: #111; color: #fff; font-size: 11px; font-weight: 600;
+      padding: 2px 12px; border-radius: 20px;
+    }
+    .pw-plan-row { display: flex; justify-content: space-between; align-items: flex-start; }
+    .pw-plan-name { font-size: 16px; font-weight: 700; color: #111; }
+    .pw-plan-price { font-size: 13px; color: #888; margin-top: 3px; }
+    .pw-plan-trial { font-size: 12px; color: #888; margin-top: 2px; }
+    .pw-plan-save {
+      background: #FFF9E6; border-radius: 8px; padding: 2px 8px;
+      font-size: 11px; font-weight: 600; color: #B8860B;
+      display: inline-block; margin-left: 8px;
+    }
+    .pw-radio {
+      width: 22px; height: 22px; border-radius: 50%; border: 2px solid #CCCCCC;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+    }
+    .pw-radio.selected { border-color: #111; }
+    .pw-radio.selected::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: #111; }
+    .pw-cta-btn {
+      background: #111; color: #fff; border-radius: 16px; padding: 16px;
+      text-align: center; font-size: 17px; font-weight: 600;
+    }
+    .pw-terms { font-size: 11px; color: #AAAAAA; text-align: center; line-height: 1.5; margin-top: 12px; }
+    .pw-terms u { text-decoration: underline; }
+    .pw-safe-badge {
+      display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 14px;
+    }
+    .pw-safe-icon {
+      width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #CCCCCC;
+      display: flex; align-items: center; justify-content: center; font-size: 10px; color: #AAAAAA;
+    }
+    .pw-safe-text { font-size: 13px; color: #AAAAAA; font-weight: 500; }
+    .pw-guarantee {
+      background: #FAFAFA; border-radius: 16px; padding: 24px 20px; text-align: center;
+    }
+    .pw-guarantee-icon {
+      width: 48px; height: 48px; border-radius: 50%; background: #E8F5E9;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px; font-size: 22px; color: #4CAF50;
+    }
+    .pw-guarantee-title { font-size: 17px; font-weight: 700; color: #111; margin-bottom: 8px; }
+    .pw-guarantee-text { font-size: 13px; color: #888; line-height: 1.5; }
+    .pw-benefits-title { font-size: 18px; font-weight: 700; color: #111; text-align: center; margin-bottom: 18px; }
+    .pw-benefit-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+    .pw-benefit-dot { width: 10px; height: 10px; border-radius: 50%; background: #CCCCCC; flex-shrink: 0; margin-top: 4px; }
+    .pw-benefit-text { font-size: 15px; color: #111; line-height: 1.4; }
+    .pw-divider { height: 1px; background: #F0F0F0; margin: 24px 0 20px; }
+    .pw-faq-title { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 12px; }
+    .pw-faq-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; border-bottom: 1px solid #F0F0F0;
+    }
+    .pw-faq-q { font-size: 14px; font-weight: 500; color: #111; }
+    .pw-faq-chevron { font-size: 16px; color: #CCCCCC; }
+    .pw-footer { text-align: center; padding: 20px 0 10px; font-size: 12px; color: #AAAAAA; }
+    .pw-cta-sub { text-align: center; font-size: 11px; color: #AAAAAA; margin-top: 8px; font-weight: 500; letter-spacing: 0.5px; }
+
+    /* ==================== Social Proof D (App Store Reviews) ==================== */
+    .sp-review-card {
+      border: 1.5px solid #F0F0F0; border-radius: 14px; padding: 14px 16px; margin-bottom: 10px;
+    }
+    .sp-review-head {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+    }
+    .sp-review-av { width: 28px; height: 28px; border-radius: 50%; background: #F0F0F0; flex-shrink: 0; }
+    .sp-review-name { font-size: 13px; font-weight: 600; color: #111; }
+    .sp-review-date { font-size: 11px; color: #AAAAAA; }
+    .sp-review-stars { margin-left: auto; font-size: 12px; color: #FFB800; }
+    .sp-review-text { font-size: 13px; color: #555; line-height: 1.45; margin: 0; }
+    .sp-rating-header { text-align: center; margin-bottom: 12px; }
+    .sp-rating-label { font-size: 13px; color: #888; font-weight: 500; }
+    .sp-rating-stars { display: flex; justify-content: center; gap: 3px; margin-top: 6px; font-size: 14px; color: #FFB800; }
+    .sp-rating-score { font-size: 13px; color: #888; margin-left: 4px; }
+
+    /* Carousel (testimonials) */
+    .carousel-track {
+      display: flex; gap: 10px; overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+      margin: 0 -20px 12px;
+      padding-left: 20px; padding-right: 20px;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-item {
+      min-width: 280px; max-width: 280px;
+      background: #FFF; border: 1px solid #EAEAEA; border-radius: 14px;
+      padding: 14px; flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .testi-head { display: flex; align-items: center; gap: 10px; }
+    .testi-av { width: 36px; height: 36px; border-radius: 50%; background: #D8D8D8; flex-shrink: 0; }
+    .testi-meta { flex: 1; }
+    .testi-name { font-size: 13px; font-weight: 600; color: #111; }
+    .testi-loc { font-size: 11px; color: #7A7A7A; }
+    .testi-stars { font-size: 13px; color: #222; letter-spacing: 1px; }
+    .testi-quote { font-size: 14px; color: #222; line-height: 1.45; }
+    .carousel-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 10px; }
+    .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: #D4D4D4; }
+    .carousel-dot.active { background: #222; width: 20px; border-radius: 3px; }
+
+    /* Aggregate rating hero */
+    .rating-hero {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px; background: #F5F5F5; border-radius: 16px;
+      margin-bottom: 14px;
+    }
+    .rating-hero .rh-score { font-size: 40px; font-weight: 800; color: #111; line-height: 1; letter-spacing: -1px; }
+    .rating-hero .rh-meta { display: flex; flex-direction: column; gap: 4px; }
+    .rating-hero .rh-stars { color: #111; font-size: 18px; letter-spacing: 2px; }
+    .rating-hero .rh-count { font-size: 12px; color: #7A7A7A; }
+
+    /* Compact logo row block (mentioned / featured) */
+    .logo-row-block { margin-bottom: 18px; }
+    .logo-row-head {
+      font-size: 10px; color: #7A7A7A; text-align: center;
+      text-transform: uppercase; letter-spacing: 2.2px; margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .logo-row {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 12px 16px; align-items: center;
+    }
+
+    /* As-seen / press logos */
+    .as-seen-logo { font-family: Georgia, "Times New Roman", serif; font-weight: 700; color: #222; font-size: 20px; letter-spacing: -0.5px; }
+    .as-seen-logo.wired { background: #222; color: #FFF; padding: 2px 8px; font-family: sans-serif; letter-spacing: 2px; font-size: 15px; }
+    .as-seen-logo.time { font-style: normal; font-size: 24px; }
+    .as-seen-logo.guardian { font-style: italic; }
+    .press-logo { color: #111; display: inline-block; line-height: 1; }
+    .press-logo.times { font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 19px; letter-spacing: 0.5px; }
+    .press-logo.bbc { display: inline-flex; gap: 2px; }
+    .press-logo.bbc span { background: #111; color: #FFF; font-weight: 900; font-size: 11px; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
+    .press-logo.tc { display: inline-flex; align-items: center; gap: 4px; }
+    .press-logo.tc .tc-box { background: #111; color: #FFF; padding: 2px 5px; font-weight: 900; font-size: 10px; border-radius: 1px; }
+    .press-logo.tc .tc-text { font-weight: 800; font-size: 13px; }
+    .press-logo.nyt { font-family: "Times New Roman", Georgia, serif; font-style: italic; font-size: 17px; letter-spacing: 0.4px; font-weight: 500; }
+
+    /* ==================== Upsell ==================== */
+    .upsell-comparison { border: 1px solid #EAEAEA; border-radius: 18px; overflow: hidden; margin-bottom: 14px; }
+    .upsell-plan-header {
+      display: flex;
+    }
+    .upsell-plan-col {
+      flex: 1; padding: 12px 10px; text-align: center;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.6px;
+      text-transform: uppercase; color: #888;
+    }
+    .upsell-plan-col.current { background: #F5F5F5; }
+    .upsell-plan-col.upgrade { background: #111; color: #FFF; }
+    .upsell-row {
+      display: flex; border-top: 1px solid #F0F0F0;
+    }
+    .upsell-cell {
+      flex: 1; padding: 10px; text-align: center;
+      font-size: 13px; color: #333;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .upsell-cell.label { text-align: left; font-weight: 500; justify-content: flex-start; padding-left: 14px; }
+    .upsell-check { color: #111; font-size: 16px; font-weight: 700; }
+    .upsell-dash { color: #CCCCCC; font-size: 16px; }
+    .upsell-banner {
+      background: #F5F5F5; border-radius: 14px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .upsell-banner-icon { font-size: 24px; flex-shrink: 0; }
+    .upsell-banner-text { font-size: 14px; color: #333; line-height: 1.4; }
+    .upsell-banner-text b { font-weight: 700; color: #111; }
+
+    /* ==================== Input fields ==================== */
+    .input-label {
+      font-size: 12px; color: #7A7A7A; font-weight: 600;
+      letter-spacing: 0.4px; margin: 0 0 6px 2px;
+    }
+    .input-field {
+      width: 100%; height: 56px;
+      border: 1px solid #DADADA; border-radius: 12px;
+      background: #FFF; color: #B5B5B5;
+      padding: 0 16px;
+      display: flex; align-items: center;
+      font-size: 16px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-title">In-App Funnel Wireframes</h1>
+  <p class="page-sub">Platform: In-App. iPhone frame: 390 × 844px.</p>
+
+  <!-- ==================== WELCOME ==================== -->
+  <section class="section">
+    <h2 class="section-title">Welcome</h2>
+    <div class="section-grid">
+
+      <!-- Welcome A — hero image on top -->
+      <div class="screen-card">
+        <div class="screen-label">Welcome A — Hero on Top</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <div class="img-opt img-xl"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Hero</div><div class="opt-size">350 × 350</div></div>
+            <h1 class="vp-title display">Your big outcome-framed headline</h1>
+            <p class="vp-subtitle">One-liner on the promise — outcome + time.</p>
+            <div class="vp-cta-group"><div class="vp-cta">Start Now</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Welcome B — text on top, hero in center -->
+      <div class="screen-card">
+        <div class="screen-label">Welcome B — Text on Top</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <h1 class="vp-title display">Your big outcome-framed headline</h1>
+            <p class="vp-subtitle">One-liner on the promise — outcome + time.</p>
+            <div class="img-opt img-xl" style="margin-top:8px;"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Hero</div><div class="opt-size">350 × 350</div></div>
+            <div class="vp-cta-group"><div class="vp-cta">Start Now</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SIGN IN ==================== -->
+  <section class="section">
+    <h2 class="section-title">Sign In</h2>
+    <div class="section-grid">
+
+      <!-- Welcome + Auth Combo -->
+      <div class="screen-card">
+        <div class="screen-label">Welcome + Auth Combo</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <div class="overline">[APP NAME]</div>
+            <h1 class="vp-title display" style="margin-top:0;">Your big value prop headline here</h1>
+            <div class="auth-trust-badge"><span>Enterprise-grade security</span><span style="color:#CCC;">|</span><span>SOC 2 Certified ✓</span></div>
+            <div class="img-opt img-l"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Hero / product visual</div><div class="opt-size">350 × 240</div></div>
+            <div class="vp-cta-group">
+              <div class="vp-cta">Get Started</div>
+              <div class="auth-login-link">Already have an account? <a>Log In</a></div>
+              <div class="legal-micro">By continuing, you agree to our Terms of Service and Privacy Policy.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Auth -->
+      <div class="screen-card">
+        <div class="screen-label">Social Auth</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <div class="img-opt img-m" style="margin-top:4px;"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Hero / product visual</div><div class="opt-size">350 × 120</div></div>
+            <h1 class="vp-title" style="margin-top:8px;">Create your account</h1>
+            <p class="vp-subtitle">Sign up to save your progress and unlock your plan.</p>
+            <div class="q-options" style="gap:10px;">
+              <div class="auth-btn"><div class="auth-icon">G</div>Continue with Google</div>
+              <div class="auth-btn"><div class="auth-icon"></div>Continue with Apple</div>
+              <div class="auth-btn"><div class="auth-icon">M</div>Continue with Microsoft</div>
+              <div class="auth-divider"><div class="auth-divider-line"></div><div class="auth-divider-text">or</div><div class="auth-divider-line"></div></div>
+              <div class="auth-btn"><div class="auth-icon">@</div>Continue with email</div>
+            </div>
+            <div class="vp-cta-group" style="padding-top:10px;">
+              <div class="auth-login-link">Already have an account? <a>Log In</a></div>
+              <div class="legal-micro">By continuing, you agree to our Terms of Service and Privacy Policy.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FEATURE TOUR ==================== -->
+  <section class="section">
+    <h2 class="section-title">Feature Tour</h2>
+    <div class="section-grid">
+
+      <!-- Single Feature -->
+      <div class="screen-card">
+        <div class="screen-label">Single Feature</div>
+        <div class="viewport">
+
+          <div class="vp-body" style="text-align:center;">
+            <div class="img-opt img-l" style="margin-left:auto; margin-right:auto;"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Feature screenshot / illustration</div><div class="opt-size">350 × 240</div></div>
+            <div class="tour-overline">STEP 1 OF 3</div>
+            <h1 class="vp-title" style="margin-top:0;">Just hit record</h1>
+            <p class="vp-body-para" style="color:#666;">Press the button and we handle the rest. Your notes, summaries, and action items — generated instantly.</p>
+            <div class="vp-cta-group">
+              <div class="tour-dots"><div class="tour-dot active"></div><div class="tour-dot"></div><div class="tour-dot"></div></div>
+              <div class="vp-cta">Continue</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full-bleed -->
+      <div class="screen-card">
+        <div class="screen-label">Full-bleed</div>
+        <div class="viewport" style="display:flex; flex-direction:column;">
+          <div class="tour-fullbleed">
+            <div class="tour-fullbleed-img" style="flex:1;">
+              <div class="opt-tag" style="font-size:9px; letter-spacing:1.8px; font-weight:700; color:#9A9A9A;">OPTIONAL</div>
+              <div class="opt-name" style="font-size:14px; font-weight:700; color:#555;">Full-bleed screenshot</div>
+              <div class="opt-size" style="font-size:11px; color:#8A8A8A; font-weight:600;">390 × 460</div>
+            </div>
+            <div style="height:1px; background:#ECECEC;"></div>
+            <div class="tour-bottom">
+              <div class="tour-bottom-text">
+                <div>
+                  <h1 class="vp-title" style="text-align:center; margin:0 0 6px;">Instantly summarize any audio or video. Here's how 🚀</h1>
+                </div>
+              </div>
+              <div style="margin-top:auto;">
+                <div class="tour-dots" style="margin-bottom:14px;"><div class="tour-dot active"></div><div class="tour-dot"></div><div class="tour-dot"></div></div>
+                <div class="vp-cta">Continue</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== QUESTIONS ==================== -->
+  <section class="section">
+    <h2 class="section-title">Questions</h2>
+    <div class="section-grid">
+
+      <!-- Single Select -->
+      <div class="screen-card">
+        <div class="screen-label">Single Select</div>
+        <div class="viewport">
+
+          <div class="vp-progress"><div class="fill" style="width:14%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">What's your main goal?</h1>
+            <p class="vp-subtitle">Pick the one that fits best.</p>
+            <div class="q-options">
+              <div class="q-item">Lose weight</div>
+              <div class="q-item selected">Build consistent habits</div>
+              <div class="q-item">Sleep better</div>
+              <div class="q-item">Reduce stress</div>
+              <div class="q-item">Something else</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-select -->
+      <div class="screen-card">
+        <div class="screen-label">Multi-select</div>
+        <div class="viewport">
+
+          <div class="vp-progress"><div class="fill" style="width:28%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">Which apply to you?</h1>
+            <p class="vp-subtitle">Select all that apply.</p>
+            <div class="q-options">
+              <div class="ms-item checked"><div class="ms-check"></div>Trouble focusing</div>
+              <div class="ms-item checked"><div class="ms-check"></div>Low energy</div>
+              <div class="ms-item"><div class="ms-check"></div>Scattered priorities</div>
+              <div class="ms-item checked"><div class="ms-check"></div>Poor sleep</div>
+              <div class="ms-item"><div class="ms-check"></div>Overthinking</div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Binary + Rating — separate row -->
+    <div class="section-grid-2">
+
+      <!-- Binary (Yes/No) -->
+      <div class="screen-card">
+        <div class="screen-label">Binary (Yes/No)</div>
+        <div class="viewport">
+
+          <div class="vp-progress"><div class="fill" style="width:70%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">Do you often feel stuck on autopilot?</h1>
+            <p class="vp-subtitle">Your answer helps us tailor your path.</p>
+            <div class="binary-row">
+              <div class="binary-btn">Yes</div>
+              <div class="binary-btn">No</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rating 1–5 -->
+      <div class="screen-card">
+        <div class="screen-label">Rating 1–5</div>
+        <div class="viewport">
+
+          <div class="vp-progress"><div class="fill" style="width:84%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">How would you rate your current energy?</h1>
+            <p class="vp-subtitle">1 = very low · 5 = very high</p>
+            <div class="rating-row">
+              <div class="rating-num">1</div>
+              <div class="rating-num">2</div>
+              <div class="rating-num selected">3</div>
+              <div class="rating-num">4</div>
+              <div class="rating-num">5</div>
+            </div>
+            <div class="rating-labels"><span>Very Low</span><span>Very High</span></div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Visual Grid + Visual Multi-select — separate row -->
+    <div class="section-grid-2">
+
+      <!-- Visual Grid -->
+      <div class="screen-card">
+        <div class="screen-label">Visual Grid</div>
+        <div class="viewport">
+
+          <div class="vp-progress"><div class="fill" style="width:42%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">Which looks most like you now?</h1>
+            <p class="vp-subtitle">Tap one to continue.</p>
+            <div class="vis-grid">
+              <div class="vis-card"><div class="vis-img"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Option</div><div class="opt-size">150 × 120</div></div><div class="vis-label">Type 1</div></div>
+              <div class="vis-card"><div class="vis-img"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Option</div><div class="opt-size">150 × 120</div></div><div class="vis-label">Type 2</div></div>
+              <div class="vis-card"><div class="vis-img"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Option</div><div class="opt-size">150 × 120</div></div><div class="vis-label">Type 3</div></div>
+              <div class="vis-card"><div class="vis-img"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Option</div><div class="opt-size">150 × 120</div></div><div class="vis-label">Type 4</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Multi-select -->
+      <div class="screen-card">
+        <div class="screen-label">Visual Multi-select</div>
+        <div class="viewport">
+
+          <div class="vp-progress"><div class="fill" style="width:56%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">Which areas apply to you?</h1>
+            <p class="vp-subtitle">Select all that feel true.</p>
+            <div class="vis-grid">
+              <div class="vis-card checked"><div class="vis-check"></div><div class="vis-img"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Option</div><div class="opt-size">150 × 120</div></div><div class="vis-label">Focus</div></div>
+              <div class="vis-card checked"><div class="vis-check"></div><div class="vis-img"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Option</div><div class="opt-size">150 × 120</div></div><div class="vis-label">Energy</div></div>
+              <div class="vis-card"><div class="vis-check"></div><div class="vis-img"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Option</div><div class="opt-size">150 × 120</div></div><div class="vis-label">Sleep</div></div>
+              <div class="vis-card checked"><div class="vis-check"></div><div class="vis-img"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Option</div><div class="opt-size">150 × 120</div></div><div class="vis-label">Stress</div></div>
+              <div class="vis-card"><div class="vis-check"></div><div class="vis-img"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Option</div><div class="opt-size">150 × 120</div></div><div class="vis-label">Mood</div></div>
+              <div class="vis-card"><div class="vis-check"></div><div class="vis-img"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Option</div><div class="opt-size">150 × 120</div></div><div class="vis-label">Clarity</div></div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ==================== INTERSTITIAL ==================== -->
+  <section class="section">
+    <h2 class="section-title">Interstitial</h2>
+    <div class="section-grid">
+
+      <!-- Image Above -->
+      <div class="screen-card">
+        <div class="screen-label">Image Above</div>
+        <div class="viewport">
+
+          <div class="vp-progress"><div class="fill" style="width:50%"></div></div>
+          <div class="vp-body">
+            <div class="img-opt img-l"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Supportive illustration</div><div class="opt-size">350 × 240</div></div>
+            <h1 class="vp-title">You're not alone in this</h1>
+            <p class="vp-body-para" style="color:#555;">78% of our users felt exactly the same way before starting. Most see a change within the first week.</p>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PERMISSION REQUEST ==================== -->
+  <section class="section">
+    <h2 class="section-title">Permission Request</h2>
+    <!-- Benefit-framed + Pre-prompt — row 1 -->
+    <div class="section-grid-2">
+
+      <!-- Benefit-framed -->
+      <div class="screen-card">
+        <div class="screen-label">Benefit-framed</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <div class="img-opt img-l"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Illustration</div><div class="opt-size">350 × 240</div></div>
+            <h1 class="vp-title" style="text-align:center;">Users who enable notifications are 3× more likely to reach their goal</h1>
+            <p class="vp-subtitle" style="text-align:center;">We'll only send what's useful. Promise.</p>
+            <div class="vp-cta-group">
+              <div class="vp-cta">Turn On Notifications</div>
+              <div class="perm-skip">Skip for now</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pre-prompt -->
+      <div class="screen-card">
+        <div class="screen-label">Pre-prompt</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <div class="perm-icon">🔔</div>
+            <h1 class="vp-title" style="text-align:center;">Stay on track with reminders</h1>
+            <p class="vp-subtitle" style="text-align:center;">Get gentle nudges to build your daily habit. You can turn them off anytime.</p>
+            <div class="perm-benefit-list">
+              <div class="perm-benefit"><div class="perm-benefit-icon">📊</div><div class="perm-benefit-text"><b>Daily check-ins</b> — quick prompts at the time you choose</div></div>
+              <div class="perm-benefit"><div class="perm-benefit-icon">🎯</div><div class="perm-benefit-text"><b>Goal reminders</b> — stay focused on what matters</div></div>
+              <div class="perm-benefit"><div class="perm-benefit-icon">🏆</div><div class="perm-benefit-text"><b>Streak alerts</b> — don't lose your progress</div></div>
+            </div>
+            <div class="vp-cta-group">
+              <div class="vp-cta">Enable Notifications</div>
+              <div class="perm-skip">Not now</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tracking (ATT) + Multi-permission Checklist — row 2 -->
+    <div class="section-grid-2">
+
+      <!-- Tracking (ATT) -->
+      <div class="screen-card">
+        <div class="screen-label">Tracking (ATT)</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <div class="perm-icon">🛡️</div>
+            <h1 class="vp-title" style="text-align:center;">Help us improve your experience</h1>
+            <p class="vp-subtitle" style="text-align:center;">We use this data to personalize your content and show relevant recommendations. We never sell your data.</p>
+            <div class="perm-benefit-list">
+              <div class="perm-benefit"><div class="perm-benefit-icon">✓</div><div class="perm-benefit-text"><b>Personalized content</b> tailored to your interests</div></div>
+              <div class="perm-benefit"><div class="perm-benefit-icon">✓</div><div class="perm-benefit-text"><b>Fewer irrelevant ads</b> — only see what's useful</div></div>
+            </div>
+            <div class="vp-cta-group">
+              <div class="vp-cta">Allow</div>
+              <div class="perm-skip">Not now</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-permission Checklist -->
+      <div class="screen-card">
+        <div class="screen-label">Multi-permission Checklist</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <h1 class="vp-title" style="text-align:center;">Set up [App Name]</h1>
+            <p class="vp-subtitle" style="text-align:center;">We need a few permissions to provide you with a good experience</p>
+            <div class="perm-checklist">
+              <div class="perm-check-item granted">
+                <div class="perm-check-icon">🎤</div>
+                <div class="perm-check-content">
+                  <div class="perm-check-name">Microphone access</div>
+                  <div class="perm-check-desc">Necessary for the app to listen</div>
+                </div>
+                <div class="perm-check-toggle"></div>
+              </div>
+              <div class="perm-check-item granted">
+                <div class="perm-check-icon">🔔</div>
+                <div class="perm-check-content">
+                  <div class="perm-check-name">Push notifications</div>
+                  <div class="perm-check-desc">For summaries and reminders. No spam.</div>
+                </div>
+                <div class="perm-check-toggle"></div>
+              </div>
+              <div class="perm-check-item">
+                <div class="perm-check-icon">📍</div>
+                <div class="perm-check-content">
+                  <div class="perm-check-name">Location</div>
+                  <div class="perm-check-desc">Tag recordings by meeting location</div>
+                </div>
+                <div class="perm-check-toggle"></div>
+              </div>
+            </div>
+            <div class="vp-cta-group">
+              <div class="vp-cta">Continue</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== LOADING ==================== -->
+  <section class="section">
+    <h2 class="section-title">Loading</h2>
+    <div class="section-grid">
+
+      <!-- Personalizing -->
+      <div class="screen-card">
+        <div class="screen-label">Personalizing</div>
+        <div class="viewport">
+
+          <div class="vp-body" style="align-items:center; justify-content:center; text-align:center;">
+            <div class="overline">ANALYZING YOUR ANSWERS</div>
+            <h1 class="vp-title display" style="text-align:center; margin:8px 0 12px;">Setting up your experience</h1>
+            <p class="vp-subtitle" style="text-align:center;">This takes just a moment.</p>
+            <div style="width:200px; margin:24px auto 0;">
+              <div class="vp-progress" style="margin:0; height:6px; border-radius:3px;">
+                <div class="fill" style="width:65%; border-radius:3px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step Checklist -->
+      <div class="screen-card">
+        <div class="screen-label">Step Checklist</div>
+        <div class="viewport">
+
+          <div class="vp-body" style="align-items:center; justify-content:center; text-align:center;">
+            <h1 class="vp-title" style="text-align:center; margin:0 0 24px;">Building your plan</h1>
+            <div style="text-align:left; width:100%; max-width:280px;">
+              <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                <div style="width:24px; height:24px; border-radius:50%; background:#111; color:#FFF; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0;">✓</div>
+                <span style="font-size:15px; color:#111; font-weight:500;">Preferences saved</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                <div style="width:24px; height:24px; border-radius:50%; background:#111; color:#FFF; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0;">✓</div>
+                <span style="font-size:15px; color:#111; font-weight:500;">Content matched</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                <div style="width:24px; height:24px; border-radius:50%; background:#ECECEC; color:#999; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0;">3</div>
+                <span style="font-size:15px; color:#999; font-weight:500;">Generating schedule...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== RESULT ==================== -->
+  <section class="section">
+    <h2 class="section-title">Result</h2>
+    <div class="section-grid">
+
+      <!-- Score + Tiles -->
+      <div class="screen-card">
+        <div class="screen-label">Score + Tiles</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <div class="img-opt img-l" style="margin-left:auto; margin-right:auto;"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Personalized result visual</div><div class="opt-size">350 × 240</div></div>
+            <div class="overline">YOUR RESULTS</div>
+            <h1 class="vp-title display" style="margin-top:0;">Your wellness score: 64/100</h1>
+            <p class="vp-subtitle">Here's what we found based on your answers.</p>
+            <div class="trait-tiles">
+              <div class="trait-tile"><div class="tt-icon">😴</div><div class="tt-label">Sleep quality</div><div class="tt-meta">Needs work</div></div>
+              <div class="trait-tile"><div class="tt-icon">⚡</div><div class="tt-label">Energy levels</div><div class="tt-meta">Below average</div></div>
+              <div class="trait-tile"><div class="tt-icon">🧠</div><div class="tt-label">Focus</div><div class="tt-meta">Good</div></div>
+              <div class="trait-tile"><div class="tt-icon">💪</div><div class="tt-label">Activity</div><div class="tt-meta">Strong</div></div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">See My Plan</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image + Text -->
+      <div class="screen-card">
+        <div class="screen-label">Image + Text</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <div class="img-opt img-l"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Personalized result visual</div><div class="opt-size">350 × 240</div></div>
+            <div class="overline">YOUR TYPE</div>
+            <h1 class="vp-title display" style="margin-top:0;">The Steady Builder</h1>
+            <p class="vp-body-para" style="color:#555;">You prefer consistency over intensity. Small daily actions compound into big results for your type. Your plan is optimized for gradual, sustainable progress.</p>
+            <div class="vp-cta-group"><div class="vp-cta">Start My Plan</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Traits Grid -->
+      <div class="screen-card">
+        <div class="screen-label">Traits Grid</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <div class="img-opt img-l" style="margin-left:auto; margin-right:auto;"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Personalized result visual</div><div class="opt-size">350 × 240</div></div>
+            <h1 class="vp-title" style="text-align:center;">Your profile</h1>
+            <p class="vp-subtitle" style="text-align:center;">Based on your answers, here's what makes you unique.</p>
+            <div class="vis-grid">
+              <div class="vis-card" style="border:none; background:#F5F5F5; padding:14px;">
+                <div style="font-size:28px; text-align:center;">🎯</div>
+                <div class="vis-label">Goal-driven</div>
+              </div>
+              <div class="vis-card" style="border:none; background:#F5F5F5; padding:14px;">
+                <div style="font-size:28px; text-align:center;">🌅</div>
+                <div class="vis-label">Morning person</div>
+              </div>
+              <div class="vis-card" style="border:none; background:#F5F5F5; padding:14px;">
+                <div style="font-size:28px; text-align:center;">📈</div>
+                <div class="vis-label">Data-motivated</div>
+              </div>
+              <div class="vis-card" style="border:none; background:#F5F5F5; padding:14px;">
+                <div style="font-size:28px; text-align:center;">🤝</div>
+                <div class="vis-label">Community learner</div>
+              </div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SOCIAL PROOF ==================== -->
+  <section class="section">
+    <h2 class="section-title">Social Proof</h2>
+    <div class="section-grid">
+
+      <!-- Achievements -->
+      <div class="screen-card">
+        <div class="screen-label">Achievements</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <h1 class="vp-title display" style="text-align:center;">Join 2M+ users improving daily</h1>
+            <p class="vp-subtitle" style="text-align:center;">See why people love [App Name].</p>
+            <div class="stats-row">
+              <div class="stat-card"><div class="stat-num">2M+</div><div class="stat-label">Users</div></div>
+              <div class="stat-card"><div class="stat-num">4.8★</div><div class="stat-label">App Store</div></div>
+              <div class="stat-card"><div class="stat-num">50K+</div><div class="stat-label">Reviews</div></div>
+            </div>
+            <div class="stats-row">
+              <div class="stat-card"><div class="stat-num">12M+</div><div class="stat-label">Sessions</div></div>
+              <div class="stat-card"><div class="stat-num">94%</div><div class="stat-label">Satisfaction</div></div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- As Mentioned In -->
+      <div class="screen-card">
+        <div class="screen-label">As Mentioned In</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <h1 class="vp-title" style="text-align:center;">Trusted by the world's press</h1>
+
+            <div class="logo-row-block" style="margin-top:18px;">
+              <div class="logo-row-head">As Mentioned In</div>
+              <div class="logo-row">
+                <span class="as-seen-logo">Forbes</span>
+                <span class="as-seen-logo wired">WIRED</span>
+                <span class="as-seen-logo time">TIME</span>
+                <span class="as-seen-logo guardian">The Guardian</span>
+                <span class="as-seen-logo">Entrepreneur</span>
+              </div>
+            </div>
+
+            <div class="logo-row-block">
+              <div class="logo-row-head">App and Founder Featured On</div>
+              <div class="logo-row">
+                <span class="press-logo times">The Times</span>
+                <span class="press-logo bbc"><span>B</span><span>B</span><span>C</span></span>
+                <span class="press-logo tc"><span class="tc-box">TC</span><span class="tc-text">TechCrunch</span></span>
+                <span class="press-logo nyt">The New York Times</span>
+              </div>
+            </div>
+
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Ratings Carousel -->
+      <div class="screen-card">
+        <div class="screen-label">User Ratings Carousel</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:6px;">Loved by 180,000+ people</h1>
+
+            <div class="rating-hero">
+              <div class="rh-score">4.9</div>
+              <div class="rh-meta">
+                <div class="rh-stars">★★★★★</div>
+                <div class="rh-count">Rated by 50,000+ users</div>
+              </div>
+            </div>
+
+            <div class="carousel-track">
+              <div class="carousel-item">
+                <div class="testi-head"><div class="testi-av"></div><div class="testi-meta"><div class="testi-name">Jamie · 34 · NYC</div><div class="testi-loc">Member since 2024</div></div><div class="testi-stars">★★★★★</div></div>
+                <div class="testi-quote">"Finally something that actually stuck. I see the difference every week."</div>
+              </div>
+              <div class="carousel-item">
+                <div class="testi-head"><div class="testi-av"></div><div class="testi-meta"><div class="testi-name">Alex · 29 · London</div><div class="testi-loc">Member since 2024</div></div><div class="testi-stars">★★★★★</div></div>
+                <div class="testi-quote">"The check-ins kept me honest. Best habit app I've tried."</div>
+              </div>
+              <div class="carousel-item">
+                <div class="testi-head"><div class="testi-av"></div><div class="testi-meta"><div class="testi-name">Mia · 31 · Berlin</div><div class="testi-loc">Member since 2024</div></div><div class="testi-stars">★★★★★</div></div>
+                <div class="testi-quote">"I finally stopped overthinking. This felt like the first thing built for me."</div>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <div class="carousel-dot active"></div><div class="carousel-dot"></div><div class="carousel-dot"></div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== TRIAL REASSURANCE ==================== -->
+  <section class="section">
+    <h2 class="section-title">Trial Reassurance</h2>
+    <div class="section-grid">
+
+      <!-- Benefits + Reminder -->
+      <div class="screen-card">
+        <div class="screen-label">Benefits + Reminder</div>
+        <div class="viewport">
+
+          <div class="vp-body">
+            <div class="perm-icon" style="background:#E8F5E9;">🛡️</div>
+            <h1 class="vp-title" style="text-align:center;">Try it free for 7 days</h1>
+            <p class="vp-subtitle" style="text-align:center;">No charge today. We'll remind you 24 hours before your trial ends.</p>
+            <div class="perm-benefit-list">
+              <div class="perm-benefit"><div class="perm-benefit-icon">✓</div><div class="perm-benefit-text"><b>Full access</b> to every feature during your trial</div></div>
+              <div class="perm-benefit"><div class="perm-benefit-icon">🔔</div><div class="perm-benefit-text"><b>Reminder notification</b> before you're charged</div></div>
+              <div class="perm-benefit"><div class="perm-benefit-icon">↩️</div><div class="perm-benefit-text"><b>Cancel anytime</b> in your device Settings</div></div>
+            </div>
+            <div class="vp-cta-group">
+              <div class="vp-cta">Start Free Trial</div>
+              <div class="legal-micro">After trial, $9.99/month. Cancel anytime in Settings.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Simple -->
+      <div class="screen-card">
+        <div class="screen-label">Simple</div>
+        <div class="viewport">
+
+          <div class="vp-body" style="align-items:center; justify-content:center; text-align:center;">
+            <div class="img-opt img-l" style="margin-left:auto; margin-right:auto;"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Hero</div><div class="opt-size">350 × 240</div></div>
+            <h1 class="vp-title display" style="text-align:center;">Start free, upgrade anytime</h1>
+            <p class="vp-subtitle" style="text-align:center; max-width:300px;">Your trial is 100% free. If you love it, your subscription begins automatically. If not, cancel with one tap.</p>
+            <div style="display:flex; flex-direction:column; gap:10px; margin:20px 0; width:100%;">
+              <div style="display:flex; align-items:center; gap:12px; background:#F5F5F5; border-radius:14px; padding:14px 16px;">
+                <div style="font-size:20px; flex-shrink:0;">✓</div>
+                <div style="font-size:14px; color:#111; font-weight:600;">Full access to every feature</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px; background:#F5F5F5; border-radius:14px; padding:14px 16px;">
+                <div style="font-size:20px; flex-shrink:0;">🔔</div>
+                <div style="font-size:14px; color:#111; font-weight:600;">Reminder before you're charged</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px; background:#F5F5F5; border-radius:14px; padding:14px 16px;">
+                <div style="font-size:20px; flex-shrink:0;">↩️</div>
+                <div style="font-size:14px; color:#111; font-weight:600;">Cancel anytime, no questions</div>
+              </div>
+            </div>
+            <div class="vp-cta-group" style="width:100%;">
+              <div class="vp-cta">Start Free Trial</div>
+              <div class="legal-micro">Cancel anytime in Settings. No charge until trial ends.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+<!-- Paywall section removed — see separate paywall wireframe files -->
+</body>
+</html>

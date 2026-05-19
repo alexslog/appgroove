@@ -237,8 +237,8 @@
   .section { margin-bottom: 64px; }
   .section:last-child { margin-bottom: 0; }
 
-  /* Screens view: full-bleed iframe below the proto header */
-  body.view-screens .page { max-width: none; margin: 0; padding: 0; }
+  /* Wireframes view: full-bleed iframe below the proto header */
+  body.view-wireframes .page { max-width: none; margin: 0; padding: 0; }
   .screens-frame-wrap {
     position: fixed;
     top: var(--proto-header-h, 56px);
@@ -253,6 +253,50 @@
     height: 100%;
     border: 0;
     display: block;
+  }
+
+  /* Wireframes view with Web/In-app sub-tabs */
+  .wireframes-wrap {
+    position: fixed;
+    top: var(--proto-header-h, 56px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    background: #2B2B2B;
+  }
+  .wireframes-subnav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #1F1F1F;
+    border-bottom: 1px solid #2E2E2E;
+    flex: none;
+  }
+  .wf-tab {
+    background: transparent;
+    color: #BFBFBF;
+    border: 1px solid #3A3A3A;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .wf-tab:hover { color: #FFF; border-color: #555; }
+  .wf-tab.active {
+    background: #FFF;
+    color: #111;
+    border-color: #FFF;
+  }
+  .wireframes-frame-wrap {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    background: #2B2B2B;
   }
 
   /* Hero */
@@ -4058,7 +4102,7 @@ body:has(.home-ref) .proto-header {
   <nav class="proto-nav">
     <button type="button" class="proto-link active" data-view="home-return" onclick="switchView('home-return')">Home</button>
     <button type="button" class="proto-link" data-view="funnel-builder" onclick="switchView('funnel-builder')">Builder</button>
-    <button type="button" class="proto-link" data-view="all-screens" onclick="switchView('all-screens')">Screens</button>
+    <button type="button" class="proto-link" data-view="wireframes" onclick="switchView('wireframes')">Wireframes</button>
   </nav>
   <button type="button" class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
     <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -4942,10 +4986,16 @@ body:has(.home-ref) .proto-header {
   </div>
 </template>
 
-<!-- ============== ALL-SCREENS (funnel screens library, embedded) ============== -->
-<template id="tpl-all-screens">
-  <div class="screens-frame-wrap">
-    <iframe class="screens-frame" src="all-screen-types.html" title="Funnel Screens Library" loading="lazy"></iframe>
+<!-- ============== WIREFRAMES (web / in-app sub-tabs, embedded) ============== -->
+<template id="tpl-wireframes">
+  <div class="wireframes-wrap">
+    <div class="wireframes-subnav">
+      <button type="button" class="wf-tab active" data-wf="web" onclick="switchWireframe('web')">Web</button>
+      <button type="button" class="wf-tab" data-wf="inapp" onclick="switchWireframe('inapp')">In-app</button>
+    </div>
+    <div class="wireframes-frame-wrap">
+      <iframe class="screens-frame" id="wireframes-frame" src="web-funnel-wireframes.html" title="Web funnel wireframes" loading="lazy"></iframe>
+    </div>
   </div>
 </template>
 
@@ -5561,7 +5611,7 @@ body:has(.home-ref) .proto-header {
 
   // ---- View switching ----
   function switchView(name) {
-    if (!['home-return', 'funnel-builder', 'all-screens'].includes(name)) name = 'home-return';
+    if (!['home-return', 'funnel-builder', 'wireframes'].includes(name)) name = 'home-return';
     closeAllMenus();
     const root = document.getElementById('view-root');
     const tpl = document.getElementById('tpl-' + name);
@@ -5574,7 +5624,7 @@ body:has(.home-ref) .proto-header {
     document.body.classList.toggle('view-builder', name === 'funnel-builder');
     document.body.classList.toggle('view-return', name === 'home-return');
     document.body.classList.toggle('view-new', name === 'home-new');
-    document.body.classList.toggle('view-screens', name === 'all-screens');
+    document.body.classList.toggle('view-wireframes', name === 'wireframes');
     sortState = { key: null, dir: 'asc' };
     if (name === 'funnel-builder') {
       // Reset Builder state on (re)entry: Preview tab + chat sidebar expanded
@@ -5589,6 +5639,26 @@ body:has(.home-ref) .proto-header {
     }
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
+
+  // ---- Wireframes sub-tab switching ----
+  function switchWireframe(which) {
+    const frame = document.getElementById('wireframes-frame');
+    if (!frame) return;
+    const file = which === 'inapp'
+      ? 'inapp-funnel-wireframes.html'
+      : 'web-funnel-wireframes.html';
+    const title = which === 'inapp'
+      ? 'In-app funnel wireframes'
+      : 'Web funnel wireframes';
+    if (!frame.src.endsWith('/' + file) && !frame.src.endsWith(file)) {
+      frame.src = file;
+      frame.title = title;
+    }
+    document.querySelectorAll('.wf-tab').forEach(b => {
+      b.classList.toggle('active', b.dataset.wf === which);
+    });
+  }
+
   // ---- Theme toggle ----
   function toggleTheme() {
     document.body.classList.toggle('theme-dark');

@@ -1,0 +1,1456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Funnel Wireframes</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      background: #2B2B2B;
+      color: #EAEAEA;
+      padding: 56px 24px 96px;
+      min-height: 100vh;
+    }
+    .page-title { text-align: center; font-weight: 700; font-size: 32px; letter-spacing: -0.3px; margin: 0 0 8px; }
+    .page-sub { text-align: center; color: #9A9A9A; font-size: 14px; margin: 0 auto 48px; max-width: 700px; line-height: 1.5; }
+
+    /* ==================== Sections ==================== */
+    .section { max-width: 1760px; margin: 0 auto 64px; }
+    .section-title {
+      font-size: 13px; font-weight: 700; letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: #CFCFCF;
+      margin: 0 0 24px;
+      padding: 0 4px 10px;
+      border-bottom: 1px solid #3A3A3A;
+      text-align: left;
+    }
+    .section-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 56px 40px;
+    }
+    .section-grid + .section-grid {
+      margin-top: 56px;
+    }
+
+    .screen-card { display: flex; flex-direction: column; align-items: center; }
+    .screen-label {
+      color: #CFCFCF; font-size: 13px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.4px;
+      margin-bottom: 16px; text-align: center;
+    }
+
+    /* ==================== Viewport ==================== */
+    .viewport {
+      width: 390px; height: 844px;
+      background: #FAFAFA;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      display: flex; flex-direction: column;
+      box-shadow: 0 16px 44px rgba(0,0,0,0.35);
+      color: #111;
+    }
+
+    /* ==================== Unified Header ==================== */
+    .vp-header {
+      height: 56px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid #ECECEC;
+    }
+    .vp-header .back { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: #6A6A6A; font-size: 22px; visibility: hidden; }
+    .vp-header .logo-chip {
+      font-size: 11px; font-weight: 700; color: #7A7A7A;
+      letter-spacing: 0.6px;
+      border: 1px dashed #BFBFBF;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #F3F3F3;
+    }
+    .vp-header .right-slot { width: 32px; }
+
+    /* ==================== Progress ==================== */
+    .vp-progress { height: 4px; margin: 10px 20px 0; background: rgba(0,0,0,0.06); border-radius: 2px; flex-shrink: 0; }
+    .vp-progress .fill { height: 100%; background: #222; border-radius: 2px; }
+
+    /* ==================== Body ==================== */
+    .vp-body {
+      flex: 1;
+      padding: 18px 20px 22px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .vp-title { font-size: 26px; font-weight: 700; line-height: 1.15; color: #111; margin: 4px 0 8px; }
+    .vp-title.display { font-size: 30px; letter-spacing: -0.3px; }
+    .vp-subtitle { font-size: 15px; color: #6A6A6A; font-weight: 400; margin: 0 0 16px; line-height: 1.4; }
+    .vp-body-para { font-size: 15px; color: #333; line-height: 1.45; margin: 0 0 14px; }
+    .overline {
+      font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+      color: #888; font-weight: 600; margin: 0 0 10px;
+    }
+
+    /* ==================== Standardized image placeholder ==================== */
+    .img-opt {
+      position: relative;
+      width: 100%; background: #ECECEC; border-radius: 14px;
+      border: 1.5px dashed #C4C4C4;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2px;
+      color: #8A8A8A;
+      flex-shrink: 0;
+      padding: 8px;
+    }
+    .img-opt .opt-tag {
+      font-size: 9px; letter-spacing: 1.8px; font-weight: 700;
+      color: #9A9A9A; text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .img-opt .opt-name {
+      font-size: 14px; font-weight: 700; color: #555;
+      letter-spacing: 0.2px;
+    }
+    .img-opt .opt-size {
+      font-size: 11px; color: #8A8A8A; font-weight: 600; letter-spacing: 0.4px;
+      margin-top: 1px;
+    }
+
+    .img-xl { height: 350px; margin-bottom: 16px; }
+    .img-l  { height: 240px; margin-bottom: 14px; }
+    .img-m  { height: 120px; margin-bottom: 14px; }
+    .img-s  { height: 120px; margin-bottom: 14px; }
+    .img-xs { height: 120px; margin-bottom: 14px; }
+
+    .img-square-s {
+      width: 120px; height: 120px; border-radius: 18px;
+      margin: 8px auto 16px;
+    }
+    .img-square-s .opt-name { font-size: 12px; }
+    .img-square-s .opt-size { font-size: 10px; }
+
+    /* ==================== Pre-loading ==================== */
+    .preload-illo {
+      width: 100%; aspect-ratio: 1 / 1;
+      background: #ECECEC;
+      border: 1.5px dashed #C4C4C4;
+      border-radius: 16px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2px;
+      color: #8A8A8A;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .preload-illo .opt-tag { font-size: 9px; letter-spacing: 1.8px; font-weight: 700; color: #9A9A9A; margin-bottom: 2px; }
+    .preload-illo .opt-name { font-size: 14px; font-weight: 700; color: #555; }
+    .preload-illo .opt-size { font-size: 11px; color: #8A8A8A; font-weight: 600; margin-top: 1px; }
+    .preload-title {
+      font-size: 26px; font-weight: 800; color: #111;
+      line-height: 1.2; margin: 0 0 16px;
+    }
+    .preload-status { font-size: 14px; color: #555; margin-bottom: 10px; }
+    .preload-bar-wrap { display: flex; align-items: center; gap: 10px; }
+    .preload-bar { flex: 1; height: 10px; background: #ECECEC; border-radius: 5px; overflow: hidden; }
+    .preload-fill { height: 100%; background: #444; border-radius: 5px; width: 92%; }
+    .preload-percent { font-size: 14px; font-weight: 700; color: #111; }
+
+    /* ==================== Questions — shared patterns ==================== */
+    .q-options { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .q-item {
+      min-height: 56px;
+      border: 1px solid #DADADA; border-radius: 14px;
+      background: #FFF; color: #111;
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 18px;
+      font-size: 16px; font-weight: 600;
+    }
+    .q-item.selected { border: 2px solid #111; background: #F6F6F6; }
+
+    /* Binary */
+    .binary-row { display: flex; gap: 12px; margin-top: 6px; }
+    .binary-btn {
+      flex: 1; height: 88px; border: 1px solid #DADADA; border-radius: 18px;
+      background: #FFF; color: #111;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 700;
+    }
+
+    /* Multi-select */
+    .ms-item {
+      min-height: 56px;
+      border: 1px solid #DADADA; border-radius: 14px;
+      background: #FFF; color: #111;
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 16px;
+      font-size: 15px; font-weight: 600;
+    }
+    .ms-emoji {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: #F2F2F2; border: 1.5px dashed #C4C4C4;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; color: #AAAAAA; font-weight: 700;
+      letter-spacing: 0.4px;
+      flex-shrink: 0;
+    }
+    .ms-label { flex: 1; }
+    .ms-check {
+      width: 22px; height: 22px; border-radius: 6px;
+      border: 1.5px solid #BFBFBF; background: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      color: #FFF; font-size: 14px;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+    .ms-item.checked { border-color: #111; background: #F6F6F6; }
+    .ms-item.checked .ms-check { background: #111; border-color: #111; }
+    .ms-item.checked .ms-check::after { content: "✓"; }
+
+    /* Rating stars */
+    .rating-row { display: flex; justify-content: space-between; margin: 28px 0 12px; gap: 8px; }
+    .rating-num {
+      flex: 1; aspect-ratio: 1/1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: 700; color: #444; line-height: 1;
+      background: #F2F2F2; border: 1.5px solid #E6E6E6;
+      border-radius: 16px;
+    }
+    .rating-num.selected { color: #FFF; background: #111; border-color: #111; }
+    .rating-labels { display: flex; justify-content: space-between; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 20px; }
+
+    /* Visual grid */
+    .vis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+    .vis-card {
+      position: relative;
+      border: 1px solid #DADADA; border-radius: 16px;
+      background: #FFF; padding: 10px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .vis-card.checked {
+      border: 2px solid #111; padding: 9px;
+      background: #F8F8F8;
+    }
+    .vis-check {
+      position: absolute; top: 10px; right: 10px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #FFF; border: 1.5px solid #BFBFBF;
+      display: flex; align-items: center; justify-content: center;
+      color: transparent; font-size: 13px; font-weight: 700;
+      z-index: 2;
+    }
+    .vis-card.checked .vis-check {
+      background: #111; border-color: #111; color: #FFF;
+    }
+    .vis-card.checked .vis-check::after { content: "✓"; }
+    .vis-card .vis-img {
+      width: 100%; height: 118px;
+      background: #ECECEC; border: 1.5px dashed #C4C4C4; border-radius: 10px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1px; color: #8A8A8A;
+      padding: 6px;
+    }
+    .vis-card .vis-img .opt-tag { font-size: 8px; letter-spacing: 1.4px; font-weight: 700; color: #9A9A9A; }
+    .vis-card .vis-img .opt-name { font-size: 11px; font-weight: 700; color: #555; }
+    .vis-card .vis-img .opt-size { font-size: 9px; font-weight: 600; color: #8A8A8A; }
+    .vis-card .vis-label { font-size: 14px; font-weight: 600; color: #111; text-align: center; padding-bottom: 4px; }
+
+    /* ==================== Loading — circular ring ==================== */
+    .prog-ring {
+      width: 220px; height: 220px; border-radius: 50%;
+      margin: 28px auto 22px;
+      background: conic-gradient(#333 0% 62%, #E4E4E4 62% 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .prog-ring .ring-inner {
+      width: 180px; height: 180px; background: #FAFAFA;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px; font-weight: 700; color: #111; letter-spacing: -1px;
+    }
+    .status-label { text-align: center; font-size: 18px; font-weight: 600; color: #333; margin-bottom: 20px; }
+    .check-list { list-style: none; padding: 0; margin: 6px 0 0; }
+    .check-list li { font-size: 14px; color: #555; padding: 6px 0; display: flex; align-items: center; gap: 10px; }
+    .chk-mark {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #333; color: #FFF; font-size: 11px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .check-list li.pending { color: #A8A8A8; }
+    .check-list li.pending .chk-mark { background: #E4E4E4; color: transparent; }
+
+    /* ==================== Loading — 4 bars ==================== */
+    .loading-h-title { font-size: 22px; font-weight: 700; color: #111; text-align: center; margin: 8px 0 22px; }
+    .load-bars-list { display: flex; flex-direction: column; gap: 18px; }
+    .load-bar-head { display: flex; justify-content: space-between; align-items: center; font-size: 15px; margin-bottom: 8px; }
+    .load-bar-name { font-weight: 600; color: #111; }
+    .load-bar-name.pending { color: #999; font-weight: 500; }
+    .load-bar-pct { font-size: 14px; font-weight: 700; color: #111; }
+    .load-bar-pct.pending { color: #999; font-weight: 500; }
+    .load-bar-track { height: 6px; background: #EDEDF2; border-radius: 3px; overflow: hidden; }
+    .load-bar-fill { height: 100%; background: #111; border-radius: 3px; }
+
+    /* ==================== Loading — Personalization popup ==================== */
+    .loading-dim {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 110px;
+      z-index: 5;
+    }
+    .loading-popup {
+      width: 88%; background: #FFF; border-radius: 22px;
+      padding: 18px 18px 22px; text-align: center;
+      box-shadow: 0 20px 44px rgba(0,0,0,0.22);
+    }
+    .pp-eyebrow { font-size: 13px; color: #555; margin-bottom: 4px; }
+    .pp-title { font-size: 20px; font-weight: 800; color: #111; line-height: 1.2; margin-bottom: 14px; }
+    .pp-illo {
+      width: 150px; height: 120px; margin: 0 auto 16px;
+      background: #ECECEC; border: 1.5px dashed #C4C4C4;
+      border-radius: 12px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1px; color: #8A8A8A;
+      padding: 6px;
+    }
+    .pp-illo .opt-tag { font-size: 8px; letter-spacing: 1.4px; font-weight: 700; color: #9A9A9A; }
+    .pp-illo .opt-name { font-size: 11px; font-weight: 700; color: #555; }
+    .pp-illo .opt-size { font-size: 9px; font-weight: 600; color: #8A8A8A; }
+    .pp-opt {
+      background: #F2F2F2; border-radius: 999px; padding: 13px;
+      margin-bottom: 10px; font-size: 15px; font-weight: 600; color: #222;
+    }
+
+    /* ==================== Lead Capture ==================== */
+    .input-label {
+      font-size: 12px; color: #7A7A7A; font-weight: 600;
+      letter-spacing: 0.4px; margin: 0 0 6px 2px;
+    }
+    .input-field {
+      width: 100%; height: 56px;
+      border: 1px solid #DADADA; border-radius: 12px;
+      background: #FFF; color: #B5B5B5;
+      padding: 0 16px;
+      display: flex; align-items: center;
+      font-size: 16px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+    .checkbox-row { display: flex; gap: 10px; align-items: flex-start; margin: 6px 0 4px; }
+    .cbx {
+      width: 18px; height: 18px; border-radius: 4px;
+      background: #111; border: 1.5px solid #111;
+      flex-shrink: 0; position: relative; margin-top: 2px;
+    }
+    .cbx::after { content: "✓"; color: #FFF; font-size: 12px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .cbx-label { font-size: 12px; color: #7A7A7A; line-height: 1.4; }
+    .trust-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 12px; color: #7A7A7A; }
+
+    /* ==================== Result ==================== */
+    .result-tile-card {
+      background: #FFF; border: 1px solid #EAEAEA; border-radius: 18px;
+      padding: 22px 16px; text-align: center; margin-bottom: 14px;
+      flex-shrink: 0;
+    }
+    .result-score { font-size: 64px; font-weight: 800; color: #111; line-height: 1; letter-spacing: -2px; }
+    .result-archetype { font-size: 22px; font-weight: 700; color: #111; margin: 10px 0 4px; }
+    .result-tag { font-size: 13px; color: #7A7A7A; }
+    .verdict { font-size: 22px; font-weight: 700; line-height: 1.25; color: #111; margin: 6px 0 10px; }
+
+    .trait-tiles { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .trait-tiles.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .trait-tile {
+      display: flex; align-items: center; gap: 12px;
+      background: #F2F2F2; border-radius: 14px;
+      padding: 12px 14px;
+    }
+    .trait-tiles.grid2 .trait-tile {
+      flex-direction: column; align-items: flex-start; gap: 6px;
+      padding: 12px 12px; min-height: 86px;
+    }
+    .trait-tile .tt-icon {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #FFF; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #333; font-weight: 700;
+    }
+    .trait-tile .tt-label { flex: 1; font-size: 14px; font-weight: 700; color: #111; }
+    .trait-tiles.grid2 .tt-label { flex: 0 0 auto; margin-top: 2px; }
+    .trait-tile .tt-meta { font-size: 12px; color: #7A7A7A; font-weight: 500; }
+
+    /* Result B — 2x2 takeaway grid */
+    .takeaway-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; margin: 10px 0 4px;
+    }
+    .takeaway-tile {
+      display: flex; align-items: center; gap: 10px;
+      background: #F2F2F2; border-radius: 14px;
+      padding: 10px 10px;
+      min-height: 60px;
+    }
+    .takeaway-tile .tk-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: #FFF; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .takeaway-tile .tk-icon svg { width: 20px; height: 20px; }
+    .takeaway-tile .tk-meta { display: flex; flex-direction: column; min-width: 0; }
+    .takeaway-tile .tk-label { font-size: 10px; color: #7A7A7A; line-height: 1.15; }
+    .takeaway-tile .tk-value { font-size: 13px; font-weight: 800; color: #111; line-height: 1.2; margin-top: 2px; }
+
+    /* ==================== Projection — Before/After ==================== */
+    .twin-frame { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+    .twin-col { flex: 1; text-align: center; }
+    .twin-caption { font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px; color: #888; margin-bottom: 8px; font-weight: 600; }
+    .twin-box {
+      width: 100%; aspect-ratio: 150 / 240;
+      background: #ECECEC; border: 1.5px dashed #C4C4C4; border-radius: 12px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1px;
+      color: #8A8A8A;
+      padding: 6px;
+    }
+    .twin-box .opt-tag { font-size: 8px; letter-spacing: 1.4px; font-weight: 700; color: #9A9A9A; }
+    .twin-box .opt-name { font-size: 11px; font-weight: 700; color: #555; }
+    .twin-box .opt-size { font-size: 9px; font-weight: 600; color: #8A8A8A; }
+    .twin-arrow { font-size: 22px; color: #888; padding: 0 2px; }
+    .metric-block { text-align: center; margin: 2px 0 10px; }
+    .metric-value { font-size: 32px; font-weight: 700; color: #111; letter-spacing: -0.5px; }
+    .metric-by { font-size: 13px; color: #7A7A7A; margin-top: 2px; }
+    .trust-mini { font-size: 13px; color: #8A8A8A; text-align: center; margin-bottom: 10px; }
+
+    /* Projection — Graph */
+    .graph-card { background: #F2F2F2; border-radius: 16px; padding: 14px 12px 16px; margin-bottom: 12px; }
+    .graph-title { font-size: 14px; color: #111; text-align: center; margin-bottom: 12px; font-weight: 500; }
+    .graph-svg { width: 100%; height: 160px; display: block; }
+    .graph-xaxis { display: flex; justify-content: space-around; font-size: 10px; letter-spacing: 1px; font-weight: 700; color: #8A8A8A; margin-top: 2px; }
+    .graph-footnote { font-size: 11px; color: #999; margin: 4px 0 0; }
+
+    /* ==================== Social Proof ==================== */
+    .carousel-track {
+      display: flex; gap: 10px; overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+      margin: 0 -20px 12px;
+      padding-left: 20px; padding-right: 20px;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-item {
+      min-width: 280px; max-width: 280px;
+      background: #FFF; border: 1px solid #EAEAEA; border-radius: 14px;
+      padding: 14px; flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .testi-head { display: flex; align-items: center; gap: 10px; }
+    .testi-av { width: 36px; height: 36px; border-radius: 50%; background: #D8D8D8; flex-shrink: 0; }
+    .testi-meta { flex: 1; }
+    .testi-name { font-size: 13px; font-weight: 600; color: #111; }
+    .testi-loc { font-size: 11px; color: #7A7A7A; }
+    .testi-stars { font-size: 13px; color: #222; letter-spacing: 1px; }
+    .testi-quote { font-size: 14px; color: #222; line-height: 1.45; }
+    .carousel-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 10px; }
+    .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: #D4D4D4; }
+    .carousel-dot.active { background: #222; width: 20px; border-radius: 3px; }
+
+    .review-big { background: #F5F5F5; border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+    .stars-row { color: #222; font-size: 20px; letter-spacing: 2px; margin-bottom: 10px; }
+    .review-quote { font-size: 15px; color: #222; line-height: 1.45; margin-bottom: 10px; }
+    .review-author { font-size: 13px; color: #888; }
+
+    .as-seen-box { border: 1px solid #E4E4E4; border-radius: 14px; padding: 16px; margin-bottom: 12px; background: #FFF; }
+    .as-seen-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; font-size: 13px; color: #555; }
+    .as-seen-head::before, .as-seen-head::after { content: ""; flex: 1; height: 1px; background: #E4E4E4; }
+    .as-seen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; align-items: center; justify-items: center; }
+    .as-seen-grid .center-last { grid-column: 1 / -1; }
+    .as-seen-logo { font-family: Georgia, "Times New Roman", serif; font-weight: 700; color: #222; font-size: 20px; letter-spacing: -0.5px; }
+    .as-seen-logo.wired { background: #222; color: #FFF; padding: 2px 8px; font-family: sans-serif; letter-spacing: 2px; font-size: 15px; }
+    .as-seen-logo.time { font-style: normal; font-size: 24px; }
+    .as-seen-logo.guardian { font-style: italic; }
+
+    /* Aggregate rating hero */
+    .rating-hero {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px; background: #F5F5F5; border-radius: 16px;
+      margin-bottom: 14px;
+    }
+    .rating-hero .rh-score { font-size: 40px; font-weight: 800; color: #111; line-height: 1; letter-spacing: -1px; }
+    .rating-hero .rh-meta { display: flex; flex-direction: column; gap: 4px; }
+    .rating-hero .rh-stars { color: #111; font-size: 18px; letter-spacing: 2px; }
+    .rating-hero .rh-count { font-size: 12px; color: #7A7A7A; }
+
+    /* Compact logo row block (mentioned / featured) */
+    .logo-row-block { margin-bottom: 18px; }
+    .logo-row-head {
+      font-size: 10px; color: #7A7A7A; text-align: center;
+      text-transform: uppercase; letter-spacing: 2.2px; margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .logo-row {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 12px 16px; align-items: center;
+    }
+
+    /* Social Proof C — Laurels + Press */
+    .award-header { text-align: center; margin: 4px 0 2px; }
+    .award-title { font-size: 26px; font-weight: 800; color: #111; line-height: 1.2; letter-spacing: -0.3px; }
+    .award-sub { font-size: 10px; letter-spacing: 2.2px; font-weight: 700; color: #555; margin-top: 8px; text-transform: uppercase; }
+
+    .featured-label {
+      text-align: center; font-size: 10px; letter-spacing: 2.2px;
+      font-weight: 700; color: #6A6A6A;
+      margin: 16px 0 12px;
+      text-transform: uppercase;
+    }
+    .press-list { display: flex; flex-direction: column; gap: 10px; align-items: center; margin-bottom: 4px; }
+    .press-row { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .press-logo { color: #111; display: inline-block; line-height: 1; }
+    .press-logo.times { font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 19px; letter-spacing: 0.5px; }
+    .press-logo.bbc { display: inline-flex; gap: 2px; }
+    .press-logo.bbc span {
+      background: #111; color: #FFF;
+      padding: 3px 6px; font-size: 13px;
+      font-family: sans-serif; font-weight: 900; letter-spacing: 0.5px;
+    }
+    .press-logo.telegraph { font-family: Georgia, serif; font-style: italic; font-size: 17px; font-weight: 600; }
+    .press-logo.tc { display: inline-flex; align-items: center; gap: 4px; }
+    .press-logo.tc .tc-box { background: #111; color: #FFF; padding: 2px 5px; font-weight: 900; font-size: 10px; border-radius: 1px; }
+    .press-logo.tc .tc-text { font-weight: 800; font-size: 13px; }
+    .press-logo.nyt { font-family: "Times New Roman", Georgia, serif; font-style: italic; font-size: 17px; letter-spacing: 0.4px; font-weight: 500; }
+    .press-logo.independent { font-family: Georgia, serif; font-weight: 400; font-size: 14px; letter-spacing: 2.4px; text-transform: uppercase; }
+
+    /* ==================== Social Proof D (App Store Reviews) ==================== */
+    .sp-review-card {
+      border: 1.5px solid #F0F0F0; border-radius: 14px; padding: 14px 16px; margin-bottom: 10px;
+    }
+    .sp-review-head {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+    }
+    .sp-review-av { width: 28px; height: 28px; border-radius: 50%; background: #F0F0F0; flex-shrink: 0; }
+    .sp-review-name { font-size: 13px; font-weight: 600; color: #111; }
+    .sp-review-date { font-size: 11px; color: #AAAAAA; }
+    .sp-review-stars { margin-left: auto; font-size: 12px; color: #FFB800; }
+    .sp-review-text { font-size: 13px; color: #555; line-height: 1.45; margin: 0; }
+    .sp-rating-header { text-align: center; margin-bottom: 12px; }
+    .sp-rating-label { font-size: 13px; color: #888; font-weight: 500; }
+    .sp-rating-stars { display: flex; justify-content: center; gap: 3px; margin-top: 6px; font-size: 14px; color: #FFB800; }
+    .sp-rating-score { font-size: 13px; color: #888; margin-left: 4px; }
+
+    /* ==================== Trial Reassurance ==================== */
+    .trial-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: #F0F0F0;
+      display: flex; align-items: center; justify-content: center;
+      margin: 24px auto 18px;
+      font-size: 28px;
+    }
+    .trial-timeline { display: flex; flex-direction: column; gap: 0; padding: 0 8px; }
+    .trial-step { display: flex; gap: 12px; }
+    .trial-step-track { display: flex; flex-direction: column; align-items: center; }
+    .trial-step-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #111; color: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; flex-shrink: 0;
+    }
+    .trial-step-line { width: 1.5px; background: #DDDDDD; flex: 1; margin: 4px 0; }
+    .trial-step-content { padding-bottom: 20px; }
+    .trial-step-title { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 2px; }
+    .trial-step-desc { font-size: 13px; color: #888; line-height: 1.4; }
+    .trial-card {
+      display: flex; align-items: center; gap: 12px;
+      border: 1.5px solid #DADADA; border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 14px; font-weight: 500; color: #111;
+    }
+    .trial-card-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* ==================== Spin Wheel (B&W) ==================== */
+    .spin-heading { font-size: 24px; font-weight: 800; text-align: center; color: #111; line-height: 1.15; margin: 6px 0 6px; }
+    .spin-sub { font-size: 14px; color: #555; text-align: center; margin-bottom: 16px; line-height: 1.4; }
+    .spin-wheel-wrap { position: relative; width: 260px; height: 260px; margin: 0 auto 10px; }
+    .spin-wheel {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: conic-gradient(
+        #F0F0F0 0deg 60deg,
+        #CCCCCC 60deg 120deg,
+        #EAEAEA 120deg 180deg,
+        #B8B8B8 180deg 240deg,
+        #D8D8D8 240deg 300deg,
+        #2A2A2A 300deg 360deg
+      );
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+      border: 6px solid #FFF;
+      outline: 1px solid #E4E4E4;
+      position: relative;
+    }
+    .spin-pointer {
+      position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 18px solid #111;
+      z-index: 3;
+    }
+    .spin-label { position: absolute; font-weight: 800; font-size: 14px; white-space: nowrap; }
+    .spin-label.light { color: #FFF; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+    .spin-label.dark { color: #333; }
+    .spin-btn {
+      margin: 16px auto 0;
+      background: #111;
+      color: #FFF; font-weight: 800; font-size: 18px;
+      padding: 16px 30px; border-radius: 999px;
+      text-align: center;
+      width: 80%;
+    }
+    .spin-result { margin-top: 30px; font-size: 22px; font-weight: 800; color: #111; text-align: center; }
+
+    /* ==================== Save Offer ==================== */
+    .save-badge {
+      display: inline-block;
+      background: #111; color: #FFF;
+      font-size: 12px; font-weight: 700;
+      padding: 4px 14px; border-radius: 999px;
+      letter-spacing: 0.6px;
+      margin-bottom: 12px;
+    }
+    .save-offer-card {
+      border: 2px solid #111; border-radius: 18px;
+      padding: 20px 16px; text-align: center;
+      margin-bottom: 14px; background: #FAFAFA;
+    }
+    .save-offer-price { font-size: 36px; font-weight: 800; color: #111; letter-spacing: -1px; }
+    .save-offer-was { font-size: 14px; color: #8A8A8A; text-decoration: line-through; margin-top: 4px; }
+    .save-offer-desc { font-size: 14px; color: #555; margin-top: 8px; line-height: 1.4; }
+    .save-countdown { text-align: center; margin: 10px 0; font-size: 13px; color: #888; }
+    .save-countdown b { color: #111; font-weight: 700; }
+
+    /* ==================== Paywall A ==================== */
+    .timer-bar {
+      height: 36px; background: #111; color: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.4px;
+      flex-shrink: 0;
+    }
+    .plan-card {
+      border: 1px solid #DADADA; border-radius: 14px;
+      background: #FFF;
+      padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 10px;
+    }
+    .plan-card.selected { border: 2px solid #111; background: #F8F8F8; }
+    .plan-radio { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #BFBFBF; flex-shrink: 0; position: relative; }
+    .plan-card.selected .plan-radio { background: #111; border-color: #111; }
+    .plan-card.selected .plan-radio::after { content: ""; width: 8px; height: 8px; background: #FFF; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .plan-main { flex: 1; }
+    .plan-name { font-size: 15px; font-weight: 600; color: #111; }
+    .plan-was { font-size: 12px; color: #8A8A8A; text-decoration: line-through; margin-top: 2px; }
+    .plan-price-col { text-align: right; }
+    .plan-price { font-size: 24px; font-weight: 700; color: #111; letter-spacing: -0.5px; }
+    .plan-price-unit { font-size: 10px; color: #8A8A8A; }
+    .plan-total { font-size: 10px; color: #8A8A8A; margin-top: 2px; }
+    .pay-trust { display: flex; flex-wrap: wrap; gap: 8px 10px; font-size: 11px; color: #7A7A7A; margin: 10px 0 4px; }
+
+    /* ==================== Paywall B (Promo + Timer) ==================== */
+    .vp-sticky-top {
+      background: #FFF;
+      border: 2px solid #111;
+      border-radius: 999px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 4px 4px 4px 22px;
+      margin: 12px 14px 0;
+      flex-shrink: 0;
+    }
+    .sticky-timer { font-size: 22px; font-weight: 800; color: #111; letter-spacing: 0.5px; }
+    .sticky-btn { background: #111; color: #FFF; font-weight: 700; font-size: 14px; padding: 10px 22px; border-radius: 999px; }
+
+    .promo-block {
+      border: 1.5px solid #111; border-radius: 16px;
+      background: #F4F4F4;
+      padding: 14px 14px;
+      margin-bottom: 16px;
+    }
+    .promo-head {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      font-weight: 800; font-size: 17px; color: #111;
+      margin-bottom: 12px;
+    }
+    .promo-head .promo-badge {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: #111; color: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800;
+    }
+    .promo-row { display: flex; gap: 8px; align-items: stretch; }
+    .promo-code {
+      flex: 1; background: #FFF; border-radius: 10px;
+      padding: 8px 12px;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 700; color: #111;
+    }
+    .promo-code .chk {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: #111; color: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; flex-shrink: 0;
+    }
+    .promo-timer {
+      background: #111; color: #FFF; border-radius: 10px;
+      padding: 6px 14px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-width: 94px;
+    }
+    .promo-timer .pt-val { font-size: 22px; font-weight: 800; line-height: 1; letter-spacing: 0.5px; }
+    .promo-timer .pt-unit {
+      font-size: 9px; opacity: 0.8; margin-top: 3px;
+      display: flex; gap: 16px; letter-spacing: 1px;
+    }
+
+    .plan-card-b {
+      background: #FFF;
+      border: 1.5px solid #DADADA;
+      border-radius: 16px;
+      padding: 14px 14px;
+      margin-bottom: 10px;
+    }
+    .plan-card-b.selected { border: 2px solid #111; }
+    .plan-b-name {
+      font-size: 16px; font-weight: 800; color: #111;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .plan-b-body { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .plan-b-price-col { display: flex; flex-direction: column; gap: 2px; }
+    .plan-b-was { font-size: 13px; color: #8A8A8A; text-decoration: line-through; }
+    .plan-b-price { font-size: 22px; font-weight: 800; color: #111; letter-spacing: -0.3px; }
+    .plan-b-perday {
+      background: #EFEFEF; border-radius: 12px; padding: 8px 14px;
+      display: flex; align-items: center; gap: 10px;
+      min-width: 128px; justify-content: flex-end;
+    }
+    .plan-b-perday-was { font-size: 12px; color: #8A8A8A; text-decoration: line-through; }
+    .plan-b-perday-now { display: flex; align-items: flex-start; }
+    .plan-b-perday-now .pd-sign { font-size: 14px; font-weight: 800; color: #111; margin-top: 4px; }
+    .plan-b-perday-now .pd-val { font-size: 26px; font-weight: 800; color: #111; line-height: 1; letter-spacing: -0.8px; }
+    .plan-b-perday-now .pd-unit { display: flex; flex-direction: column; font-size: 9px; color: #6A6A6A; font-weight: 600; line-height: 1.1; margin-top: 2px; margin-left: 2px; }
+    .plan-card-b.selected .plan-b-perday { background: #111; }
+    .plan-card-b.selected .plan-b-perday-was { color: #BBB; }
+    .plan-card-b.selected .plan-b-perday-now .pd-sign,
+    .plan-card-b.selected .plan-b-perday-now .pd-val { color: #FFF; }
+    .plan-card-b.selected .plan-b-perday-now .pd-unit { color: #BBB; }
+
+    .pay-methods-row {
+      display: flex; gap: 8px; justify-content: center;
+      margin-top: 14px; flex-wrap: wrap;
+    }
+    .pay-method {
+      height: 32px; padding: 0 10px;
+      background: #FFF; border: 1px solid #E4E4E4; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: #111; letter-spacing: 0.4px;
+      min-width: 52px;
+    }
+    .pay-method.dark { background: #111; color: #FFF; border-color: #111; }
+    .pay-safe {
+      text-align: center; font-size: 13px; color: #555;
+      margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-weight: 600;
+    }
+    .pay-safe .shield {
+      width: 18px; height: 18px; border-radius: 4px;
+      background: #111; color: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+    }
+
+    /* ==================== Paywall C (Long-scroll) ==================== */
+    .pw-logo {
+      width: 60px; height: 24px;
+      border: 1.5px dashed #CCCCCC; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: #AAAAAA; font-weight: 500;
+      margin: 0 auto;
+    }
+    .pw-feat-list { display: flex; flex-direction: column; gap: 12px; padding: 0 8px; }
+    .pw-feat-item { display: flex; align-items: center; gap: 10px; }
+    .pw-feat-check {
+      width: 20px; height: 20px; border-radius: 50%; background: #E8F5E9;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 11px; color: #4CAF50;
+    }
+    .pw-feat-text { font-size: 14px; color: #333; }
+    .pw-plan-card {
+      border: 1.5px solid #E0E0E0; border-radius: 16px; padding: 16px; margin-bottom: 10px;
+    }
+    .pw-plan-card.featured { border: 2px solid #111; position: relative; }
+    .pw-plan-badge {
+      position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+      background: #111; color: #fff; font-size: 11px; font-weight: 600;
+      padding: 2px 12px; border-radius: 20px;
+    }
+    .pw-plan-row { display: flex; justify-content: space-between; align-items: flex-start; }
+    .pw-plan-name { font-size: 16px; font-weight: 700; color: #111; }
+    .pw-plan-price { font-size: 13px; color: #888; margin-top: 3px; }
+    .pw-plan-trial { font-size: 12px; color: #888; margin-top: 2px; }
+    .pw-plan-save {
+      background: #FFF9E6; border-radius: 8px; padding: 2px 8px;
+      font-size: 11px; font-weight: 600; color: #B8860B;
+      display: inline-block; margin-left: 8px;
+    }
+    .pw-radio {
+      width: 22px; height: 22px; border-radius: 50%; border: 2px solid #CCCCCC;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+    }
+    .pw-radio.selected { border-color: #111; }
+    .pw-radio.selected::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: #111; }
+    .pw-cta-btn {
+      background: #111; color: #fff; border-radius: 16px; padding: 16px;
+      text-align: center; font-size: 17px; font-weight: 600;
+    }
+    .pw-terms { font-size: 11px; color: #AAAAAA; text-align: center; line-height: 1.5; margin-top: 12px; }
+    .pw-terms u { text-decoration: underline; }
+    .pw-safe-badge {
+      display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 14px;
+    }
+    .pw-safe-icon {
+      width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #CCCCCC;
+      display: flex; align-items: center; justify-content: center; font-size: 10px; color: #AAAAAA;
+    }
+    .pw-safe-text { font-size: 13px; color: #AAAAAA; font-weight: 500; }
+    .pw-guarantee {
+      background: #FAFAFA; border-radius: 16px; padding: 24px 20px; text-align: center;
+    }
+    .pw-guarantee-icon {
+      width: 48px; height: 48px; border-radius: 50%; background: #E8F5E9;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px; font-size: 22px; color: #4CAF50;
+    }
+    .pw-guarantee-title { font-size: 17px; font-weight: 700; color: #111; margin-bottom: 8px; }
+    .pw-guarantee-text { font-size: 13px; color: #888; line-height: 1.5; }
+    .pw-benefits-title { font-size: 18px; font-weight: 700; color: #111; text-align: center; margin-bottom: 18px; }
+    .pw-benefit-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+    .pw-benefit-dot { width: 10px; height: 10px; border-radius: 50%; background: #CCCCCC; flex-shrink: 0; margin-top: 4px; }
+    .pw-benefit-text { font-size: 15px; color: #111; line-height: 1.4; }
+    .pw-divider { height: 1px; background: #F0F0F0; margin: 24px 0 20px; }
+    .pw-faq-title { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 12px; }
+    .pw-faq-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; border-bottom: 1px solid #F0F0F0;
+    }
+    .pw-faq-q { font-size: 14px; font-weight: 500; color: #111; }
+    .pw-faq-chevron { font-size: 16px; color: #CCCCCC; }
+    .pw-footer { text-align: center; padding: 20px 0 10px; font-size: 12px; color: #AAAAAA; }
+    .pw-cta-sub { text-align: center; font-size: 11px; color: #AAAAAA; margin-top: 8px; font-weight: 500; letter-spacing: 0.5px; }
+
+    /* ==================== Upsell ==================== */
+    .upsell-comparison { border: 1px solid #EAEAEA; border-radius: 18px; overflow: hidden; margin-bottom: 14px; }
+    .upsell-plan-header { display: flex; }
+    .upsell-plan-col {
+      flex: 1; padding: 12px 10px; text-align: center;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.6px;
+      text-transform: uppercase; color: #888;
+    }
+    .upsell-plan-col.current { background: #F5F5F5; }
+    .upsell-plan-col.upgrade { background: #111; color: #FFF; }
+    .upsell-row { display: flex; border-top: 1px solid #F0F0F0; }
+    .upsell-cell {
+      flex: 1; padding: 10px; text-align: center;
+      font-size: 13px; color: #333;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .upsell-cell.label { text-align: left; font-weight: 500; justify-content: flex-start; padding-left: 14px; }
+    .upsell-check { color: #111; font-size: 16px; font-weight: 700; }
+    .upsell-dash { color: #CCCCCC; font-size: 16px; }
+    .upsell-banner {
+      background: #F5F5F5; border-radius: 14px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .upsell-banner-icon { font-size: 24px; flex-shrink: 0; }
+    .upsell-banner-text { font-size: 14px; color: #333; line-height: 1.4; }
+    .upsell-banner-text b { font-weight: 700; color: #111; }
+
+    /* ==================== Handoff ==================== */
+    .handoff-hero {
+      width: 100%; height: 220px; margin: 10px 0 14px;
+      background: #F5F5F5; border-radius: 16px;
+      border: 1.5px dashed #C4C4C4;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .steps-list { list-style: decimal outside; padding-left: 22px; margin: 4px 0 10px; }
+    .steps-list li { font-size: 15px; color: #222; line-height: 1.5; padding: 4px 0; }
+    .steps-list li b { font-weight: 700; }
+
+    /* ==================== CTA ==================== */
+    .vp-cta-group { margin-top: auto; padding-top: 20px; flex-shrink: 0; }
+    .vp-cta {
+      height: 56px; border-radius: 28px;
+      background: #111; color: #FFF;
+      font-size: 17px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .vp-cta.disabled { background: #D2D2D2; color: #8A8A8A; }
+    .vp-cta.outline { background: transparent; border: 1.5px solid #DADADA; color: #111; }
+    .vp-cta.danger { background: #E53935; }
+    .vp-cta.secondary { background: transparent; color: #111; font-size: 14px; height: 44px; text-decoration: underline; }
+    .legal-micro { font-size: 11px; color: #9A9A9A; text-align: center; margin-top: 8px; line-height: 1.4; }
+
+    .perm-skip { text-align: center; font-size: 13px; color: #888; margin-top: 8px; text-decoration: underline; }
+    .perm-icon {
+      width: 80px; height: 80px; border-radius: 20px;
+      background: #F0F0F0;
+      display: flex; align-items: center; justify-content: center;
+      margin: 20px auto 18px;
+      font-size: 36px;
+    }
+    .text-area {
+      width: 100%; min-height: 180px;
+      border: 1px solid #DADADA; border-radius: 14px;
+      padding: 16px;
+      background: #FFF;
+      font-size: 15px; color: #B5B5B5;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-title">Web Funnel Wireframes</h1>
+  <p class="page-sub">Platform: Web. iPhone frame: 390 × 844px.</p>
+
+  <!-- ==================== WELCOME ==================== -->
+  <section class="section">
+    <h2 class="section-title">Welcome</h2>
+    <div class="section-grid">
+
+      <!-- Welcome -->
+      <div class="screen-card">
+        <div class="screen-label">Welcome</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <div class="img-opt img-xl"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Hero</div><div class="opt-size">350 × 350</div></div>
+            <h1 class="vp-title display">Your big outcome-framed headline</h1>
+            <p class="vp-subtitle">One-liner on the promise — outcome + time.</p>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Start -->
+      <div class="screen-card">
+        <div class="screen-label">Start</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <div class="img-opt img-l"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Hero</div><div class="opt-size">350 × 240</div></div>
+            <h1 class="vp-title">Ready to find your pattern?</h1>
+            <p class="vp-subtitle">Takes about 2 minutes. Answer honestly — no right or wrong.</p>
+            <div class="vp-cta-group"><div class="vp-cta">Start Now</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== QUESTIONS ==================== -->
+  <section class="section">
+    <h2 class="section-title">Questions</h2>
+    <div class="section-grid">
+
+      <!-- Single Select -->
+      <div class="screen-card">
+        <div class="screen-label">Single Select</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back" style="visibility:visible">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-progress"><div class="fill" style="width:14%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">What's your main goal?</h1>
+            <p class="vp-subtitle">Pick the one that fits best.</p>
+            <div class="q-options">
+              <div class="q-item"><div class="ms-emoji">⬡</div>Lose weight</div>
+              <div class="q-item selected"><div class="ms-emoji">⬡</div>Build consistent habits</div>
+              <div class="q-item"><div class="ms-emoji">⬡</div>Sleep better</div>
+              <div class="q-item"><div class="ms-emoji">⬡</div>Reduce stress</div>
+              <div class="q-item"><div class="ms-emoji">⬡</div>Something else</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-select -->
+      <div class="screen-card">
+        <div class="screen-label">Multi-select</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back" style="visibility:visible">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-progress"><div class="fill" style="width:28%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">Which apply to you?</h1>
+            <p class="vp-subtitle">Select all that apply.</p>
+            <div class="q-options">
+              <div class="ms-item checked"><div class="ms-emoji">⬡</div><div class="ms-label">Trouble focusing</div><div class="ms-check"></div></div>
+              <div class="ms-item checked"><div class="ms-emoji">⬡</div><div class="ms-label">Low energy</div><div class="ms-check"></div></div>
+              <div class="ms-item"><div class="ms-emoji">⬡</div><div class="ms-label">Scattered priorities</div><div class="ms-check"></div></div>
+              <div class="ms-item checked"><div class="ms-emoji">⬡</div><div class="ms-label">Poor sleep</div><div class="ms-check"></div></div>
+              <div class="ms-item"><div class="ms-emoji">⬡</div><div class="ms-label">Overthinking</div><div class="ms-check"></div></div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-grid">
+
+      <!-- Binary (Yes/No) -->
+      <div class="screen-card">
+        <div class="screen-label">Binary (Yes/No)</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back" style="visibility:visible">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-progress"><div class="fill" style="width:70%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">Do you often feel stuck on autopilot?</h1>
+            <p class="vp-subtitle">Your answer helps us tailor your path.</p>
+            <div class="binary-row">
+              <div class="binary-btn">Yes</div>
+              <div class="binary-btn">No</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rating 1–5 -->
+      <div class="screen-card">
+        <div class="screen-label">Rating 1–5</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back" style="visibility:visible">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-progress"><div class="fill" style="width:84%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">How would you rate your current energy?</h1>
+            <p class="vp-subtitle">1 = very low · 5 = very high</p>
+            <div class="rating-row">
+              <div class="rating-num">1</div>
+              <div class="rating-num">2</div>
+              <div class="rating-num selected">3</div>
+              <div class="rating-num">4</div>
+              <div class="rating-num">5</div>
+            </div>
+            <div class="rating-labels"><span>Very Low</span><span>Very High</span></div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== INTERSTITIAL ==================== -->
+  <section class="section">
+    <h2 class="section-title">Interstitial</h2>
+    <div class="section-grid">
+
+      <!-- Image Above -->
+      <div class="screen-card">
+        <div class="screen-label">Image Above</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-progress"><div class="fill" style="width:50%"></div></div>
+          <div class="vp-body">
+            <div class="img-opt img-l"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Feature</div><div class="opt-size">350 × 240</div></div>
+            <h1 class="vp-title">You're doing great</h1>
+            <p class="vp-body-para">Already noticed: 80% of people like you chose the same goal. Let's keep the momentum going.</p>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Below -->
+      <div class="screen-card">
+        <div class="screen-label">Image Below</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-progress"><div class="fill" style="width:50%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:10px;">You're on the right path</h1>
+            <p class="vp-body-para">80% of people who answered like you stuck with the plan for 30+ days. Your momentum is real — let's build on it.</p>
+            <div class="img-opt img-l" style="margin-top:6px;"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Feature</div><div class="opt-size">350 × 240</div></div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image In-between -->
+      <div class="screen-card">
+        <div class="screen-label">Image In-between</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-progress"><div class="fill" style="width:50%"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:10px;">You're making real progress</h1>
+            <div class="img-opt img-l" style="margin-top:6px;"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Feature</div><div class="opt-size">350 × 240</div></div>
+            <p class="vp-body-para">Most people in your group see a noticeable shift within the first two weeks. Keep going — your plan is working.</p>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== LOADING ==================== -->
+  <section class="section">
+    <h2 class="section-title">Loading</h2>
+    <div class="section-grid">
+
+      <!-- Circular Ring -->
+      <div class="screen-card">
+        <div class="screen-label">Circular Ring</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <div class="prog-ring"><div class="ring-inner">62%</div></div>
+            <div class="status-label">Matching your profile to 2.4M users…</div>
+            <ul class="check-list">
+              <li><span class="chk-mark">✓</span> Baseline calculated</li>
+              <li><span class="chk-mark">✓</span> Risk factors identified</li>
+              <li class="pending"><span class="chk-mark">✓</span> Personalized plan built</li>
+              <li class="pending"><span class="chk-mark">✓</span> Final recommendations</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bars -->
+      <div class="screen-card">
+        <div class="screen-label">Progress Bars</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <div class="loading-h-title">Analyzing your answers…</div>
+            <div class="load-bars-list">
+              <div class="load-bar-item">
+                <div class="load-bar-head"><div class="load-bar-name">Behavior indicators</div><div class="load-bar-pct">54%</div></div>
+                <div class="load-bar-track"><div class="load-bar-fill" style="width:54%"></div></div>
+              </div>
+              <div class="load-bar-item">
+                <div class="load-bar-head"><div class="load-bar-name pending">Daily habits</div><div class="load-bar-pct pending">0%</div></div>
+                <div class="load-bar-track"><div class="load-bar-fill" style="width:0%"></div></div>
+              </div>
+              <div class="load-bar-item">
+                <div class="load-bar-head"><div class="load-bar-name pending">Lifestyle</div><div class="load-bar-pct pending">0%</div></div>
+                <div class="load-bar-track"><div class="load-bar-fill" style="width:0%"></div></div>
+              </div>
+              <div class="load-bar-item">
+                <div class="load-bar-head"><div class="load-bar-name pending">Creating your plan</div><div class="load-bar-pct pending">0%</div></div>
+                <div class="load-bar-track"><div class="load-bar-fill" style="width:0%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== LEAD CAPTURE ==================== -->
+  <section class="section">
+    <h2 class="section-title">Lead Capture</h2>
+    <div class="section-grid">
+
+      <!-- Email -->
+      <div class="screen-card">
+        <div class="screen-label">Email</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:8px;">Where should we send your plan?</h1>
+            <p class="vp-subtitle">We'll email your full report + save your progress.</p>
+            <div class="input-field">you@email.com</div>
+            <div class="trust-row" style="margin:10px 0 0;"><span>🔒</span><span>We never share your email</span></div>
+            <div class="vp-cta-group">
+              <div class="vp-cta">Continue</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== RESULT ==================== -->
+  <section class="section">
+    <h2 class="section-title">Result</h2>
+    <div class="section-grid">
+
+      <!-- Score + 4 Tiles -->
+      <div class="screen-card">
+        <div class="screen-label">Score + 4 Tiles</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <div class="img-opt img-m"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Result Visual</div><div class="opt-size">350 × 120</div></div>
+            <h1 class="verdict">Your metabolism is slower than 72% of people your age</h1>
+            <p class="vp-body-para">Based on your answers, here's what's driving the score — and what to do next.</p>
+            <div class="trait-tiles">
+              <div class="trait-tile"><div class="tt-icon">A</div><div class="tt-label">Trait A</div><div class="tt-meta">High</div></div>
+              <div class="trait-tile"><div class="tt-icon">B</div><div class="tt-label">Trait B</div><div class="tt-meta">Moderate</div></div>
+              <div class="trait-tile"><div class="tt-icon">C</div><div class="tt-label">Trait C</div><div class="tt-meta">Low</div></div>
+              <div class="trait-tile"><div class="tt-icon">D</div><div class="tt-label">Trait D</div><div class="tt-meta">Balanced</div></div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">See My Plan</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PROJECTION ==================== -->
+  <section class="section">
+    <h2 class="section-title">Projection</h2>
+    <div class="section-grid">
+
+      <!-- Before / After -->
+      <div class="screen-card">
+        <div class="screen-label">Before / After</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title">Here's where you could be</h1>
+            <div class="twin-frame">
+              <div class="twin-col">
+                <div class="twin-caption">Now</div>
+                <div class="twin-box"><div class="opt-tag">OPTIONAL</div><div class="opt-name">Before</div><div class="opt-size">150 × 240</div></div>
+              </div>
+              <div class="twin-arrow">›</div>
+              <div class="twin-col">
+                <div class="twin-caption">After</div>
+                <div class="twin-box"><div class="opt-tag">OPTIONAL</div><div class="opt-name">After</div><div class="opt-size">150 × 240</div></div>
+              </div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-value">−8.4 kg</div>
+              <div class="metric-by">by July 15</div>
+            </div>
+            <div class="trust-mini">Based on 40k users with similar profiles</div>
+            <div class="vp-cta-group"><div class="vp-cta">See My Plan</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graph Curve -->
+      <div class="screen-card">
+        <div class="screen-label">Graph Curve</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title display" style="margin-top:8px;">Feel real progress by July 15</h1>
+            <div class="graph-card" style="margin-top:12px;">
+              <div class="graph-title">Your <b>Execution Power</b> level</div>
+              <svg class="graph-svg" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <line x1="0" y1="40" x2="320" y2="40" stroke="#D4D4D4" stroke-dasharray="3 3" stroke-width="1"/>
+                <line x1="0" y1="80" x2="320" y2="80" stroke="#D4D4D4" stroke-dasharray="3 3" stroke-width="1"/>
+                <line x1="0" y1="120" x2="320" y2="120" stroke="#D4D4D4" stroke-dasharray="3 3" stroke-width="1"/>
+                <line x1="60" y1="0" x2="60" y2="150" stroke="#D4D4D4" stroke-dasharray="2 3" stroke-width="1"/>
+                <line x1="140" y1="0" x2="140" y2="150" stroke="#D4D4D4" stroke-dasharray="2 3" stroke-width="1"/>
+                <line x1="220" y1="0" x2="220" y2="150" stroke="#D4D4D4" stroke-dasharray="2 3" stroke-width="1"/>
+                <line x1="290" y1="0" x2="290" y2="150" stroke="#D4D4D4" stroke-dasharray="2 3" stroke-width="1"/>
+                <path d="M10 115 L60 115 C100 115, 120 110, 140 95 S 190 50, 220 40 L290 35"
+                      fill="none" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="60" cy="115" r="5" fill="#444"/>
+                <circle cx="140" cy="95" r="5" fill="#555"/>
+                <circle cx="220" cy="40" r="5" fill="#333"/>
+                <circle cx="290" cy="35" r="7" fill="#111" stroke="#FFF" stroke-width="3"/>
+                <rect x="32" y="84" rx="8" ry="8" width="60" height="22" fill="#FFF" stroke="#444" stroke-width="1"/>
+                <text x="62" y="99" font-size="11" text-anchor="middle" fill="#111" font-family="sans-serif">Today</text>
+                <rect x="246" y="4" rx="8" ry="8" width="80" height="22" fill="#FFF" stroke="#D4D4D4" stroke-width="1"/>
+                <text x="286" y="19" font-size="11" text-anchor="middle" fill="#111" font-family="sans-serif">Your goal</text>
+              </svg>
+              <div class="graph-xaxis"><span>WEEK 1</span><span>WEEK 2</span><span>WEEK 3</span><span>WEEK 4</span></div>
+            </div>
+            <div class="graph-footnote">*Any results shown are provided for illustration purposes</div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SOCIAL PROOF ==================== -->
+  <section class="section">
+    <h2 class="section-title">Social Proof</h2>
+    <div class="section-grid">
+
+      <!-- User Rates -->
+      <div class="screen-card">
+        <div class="screen-label">User Rates</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:6px;">Loved by 180,000+ people</h1>
+            <div class="rating-hero">
+              <div class="rh-score">4.9</div>
+              <div class="rh-meta">
+                <div class="rh-stars">★★★★★</div>
+                <div class="rh-count">Rated by 50,000+ users</div>
+              </div>
+            </div>
+            <div class="carousel-track">
+              <div class="carousel-item">
+                <div class="testi-head"><div class="testi-av"></div><div class="testi-meta"><div class="testi-name">Jamie · 34 · NYC</div><div class="testi-loc">Member since 2024</div></div><div class="testi-stars">★★★★★</div></div>
+                <div class="testi-quote">"Finally something that actually stuck. I see the difference every week."</div>
+              </div>
+              <div class="carousel-item">
+                <div class="testi-head"><div class="testi-av"></div><div class="testi-meta"><div class="testi-name">Alex · 29 · London</div><div class="testi-loc">Member since 2024</div></div><div class="testi-stars">★★★★★</div></div>
+                <div class="testi-quote">"The check-ins kept me honest. Best habit app I've tried."</div>
+              </div>
+              <div class="carousel-item">
+                <div class="testi-head"><div class="testi-av"></div><div class="testi-meta"><div class="testi-name">Mia · 31 · Berlin</div><div class="testi-loc">Member since 2024</div></div><div class="testi-stars">★★★★★</div></div>
+                <div class="testi-quote">"I finally stopped overthinking. This felt like the first thing built for me."</div>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <div class="carousel-dot active"></div><div class="carousel-dot"></div><div class="carousel-dot"></div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mentioned & Featured -->
+      <div class="screen-card">
+        <div class="screen-label">Mentioned &amp; Featured</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="margin-top:6px; text-align:center;">Trusted by the world's press</h1>
+            <div class="logo-row-block" style="margin-top:18px;">
+              <div class="logo-row-head">As Mentioned In</div>
+              <div class="logo-row">
+                <span class="as-seen-logo">Forbes</span>
+                <span class="as-seen-logo wired">WIRED</span>
+                <span class="as-seen-logo time">TIME</span>
+                <span class="as-seen-logo guardian">The Guardian</span>
+                <span class="as-seen-logo">Entrepreneur</span>
+              </div>
+            </div>
+            <div class="logo-row-block">
+              <div class="logo-row-head">App and Founder Featured On</div>
+              <div class="logo-row">
+                <span class="press-logo times">The Times</span>
+                <span class="press-logo bbc"><span>B</span><span>B</span><span>C</span></span>
+                <span class="press-logo telegraph">The Telegraph</span>
+                <span class="press-logo tc"><span class="tc-box">TC</span><span class="tc-text">TechCrunch</span></span>
+                <span class="press-logo nyt">The New York Times</span>
+                <span class="press-logo independent">Independent</span>
+              </div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Combo -->
+      <div class="screen-card">
+        <div class="screen-label">Combo</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <div class="logo-row-block" style="margin-top:6px;">
+              <div class="logo-row-head">As Featured On</div>
+              <div class="logo-row">
+                <span class="press-logo times">The Times</span>
+                <span class="press-logo bbc"><span>B</span><span>B</span><span>C</span></span>
+                <span class="press-logo nyt">The New York Times</span>
+                <span class="as-seen-logo">Forbes</span>
+                <span class="as-seen-logo wired">WIRED</span>
+              </div>
+            </div>
+            <h1 class="vp-title" style="margin-top:14px; text-align:center;">Loved by users, trusted by press</h1>
+            <div class="rating-hero" style="margin-top:14px;">
+              <div class="rh-score">4.9</div>
+              <div class="rh-meta">
+                <div class="rh-stars">★★★★★</div>
+                <div class="rh-count">Rated by 50,000+ users</div>
+              </div>
+            </div>
+            <div class="carousel-track">
+              <div class="carousel-item">
+                <div class="testi-head"><div class="testi-av"></div><div class="testi-meta"><div class="testi-name">Jamie · 34 · NYC</div><div class="testi-loc">Member since 2024</div></div><div class="testi-stars">★★★★★</div></div>
+                <div class="testi-quote">"Finally something that actually stuck. I see the difference every week."</div>
+              </div>
+              <div class="carousel-item">
+                <div class="testi-head"><div class="testi-av"></div><div class="testi-meta"><div class="testi-name">Alex · 29 · London</div><div class="testi-loc">Member since 2024</div></div><div class="testi-stars">★★★★★</div></div>
+                <div class="testi-quote">"The check-ins kept me honest. Best habit app I've tried."</div>
+              </div>
+              <div class="carousel-item">
+                <div class="testi-head"><div class="testi-av"></div><div class="testi-meta"><div class="testi-name">Mia · 31 · Berlin</div><div class="testi-loc">Member since 2024</div></div><div class="testi-stars">★★★★★</div></div>
+                <div class="testi-quote">"I finally stopped overthinking. This felt like the first thing built for me."</div>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <div class="carousel-dot active"></div><div class="carousel-dot"></div><div class="carousel-dot"></div>
+            </div>
+            <div class="vp-cta-group"><div class="vp-cta">Continue</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== HANDOFF ==================== -->
+  <section class="section">
+    <h2 class="section-title">Handoff</h2>
+    <div class="section-grid">
+
+      <!-- Handoff -->
+      <div class="screen-card">
+        <div class="screen-label">Handoff</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <h1 class="vp-title" style="text-align:center;">Just one more step</h1>
+            <div class="img-opt img-l"><div class="opt-tag">OPTIONAL</div><div class="opt-name">App mockup</div><div class="opt-size">350 × 240</div></div>
+            <h2 style="text-align:center; font-size:20px; font-weight:700; color:#111; margin:2px 0 10px;">Time to download the app!</h2>
+            <ol class="steps-list">
+              <li>Click the button below to download the app</li>
+              <li>Open app and tap <b>"Sign in"</b></li>
+              <li>Use the <b>email</b> that you used for signing up</li>
+            </ol>
+            <div class="vp-cta-group">
+              <div class="vp-cta">Download the App</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Download App -->
+      <div class="screen-card">
+        <div class="screen-label">Download App</div>
+        <div class="viewport">
+          <div class="vp-header"><div class="back">‹</div><div class="logo-chip">Name</div><div class="right-slot"></div></div>
+          <div class="vp-body">
+            <div class="img-opt img-l"><div class="opt-tag">OPTIONAL</div><div class="opt-name">App mockup</div><div class="opt-size">350 × 240</div></div>
+            <h1 class="vp-title display">Start Free — Upgrade Later</h1>
+            <p class="vp-subtitle">Get your personalized starter plan for free. No credit card needed. Upgrade anytime to unlock the full experience.</p>
+            <div class="vp-cta-group">
+              <div class="vp-cta">Download App</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
