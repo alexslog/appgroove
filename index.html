@@ -3793,6 +3793,259 @@
   }
   .analytics-info-name { font-size: 18px; font-weight: 700; color: var(--ink); }
   .analytics-info-sub { font-size: 13px; color: var(--ink-dim); margin-top: 2px; }
+
+/* ============================================================
+   .home-ref — scoped overrides to match the reference design
+   ============================================================ */
+body:has(.home-ref) {
+  background:
+    radial-gradient(circle at center, #D8D8D8 0.9px, transparent 1.2px) 0 0 / 18px 18px,
+    #F3F3F3;
+}
+body:has(.home-ref) .proto-header {
+  background: rgba(243, 243, 243, 0.85);
+  backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid #E6E6E6;
+}
+
+.home-ref {
+  --rf-ink: #111;
+  --rf-ink-soft: #5A5A5A;
+  --rf-ink-muted: #8C8C8C;
+  --rf-surface: #FFFFFF;
+  --rf-border: #ECECEC;
+  --rf-border-strong: #E2E2E2;
+  --rf-green-bg: #E4F6EC;
+  --rf-green-ink: #1A8649;
+  --rf-red-bg:   #FDECEC;
+  --rf-red-ink:  #C7332D;
+  --rf-yellow-bg:#FFF3D6;
+  --rf-yellow-ink:#9A6700;
+  --rf-orange-bg:#FFF2DF;
+  --rf-orange-ink:#B86A18;
+  --rf-orange-border:#F2C99A;
+  --rf-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  color: var(--rf-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+}
+
+.home-ref > section { order: 5; margin: 0; }
+.home-ref > section:first-of-type { order: 1; }
+.home-ref > #section-experiments { order: 2; }
+.home-ref > #section-table { order: 3; }
+
+/* Section header */
+.home-ref .section-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.home-ref .sec-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--rf-ink);
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+.home-ref .sec-title-centered {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.home-ref .sec-sub { color: var(--rf-ink-muted); font-weight: 500; }
+
+/* Date / status filter pill */
+.home-ref .date-picker {
+  background: var(--rf-surface);
+  border: 1px solid var(--rf-border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--rf-ink-soft);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.02);
+}
+.home-ref .date-picker svg { color: var(--rf-ink-muted); }
+.home-ref .date-picker .caret { color: var(--rf-ink-muted); }
+
+/* Metric cards */
+.home-ref .metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+@media (max-width: 1000px) { .home-ref .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px)  { .home-ref .metrics-grid { grid-template-columns: 1fr; } }
+
+.home-ref .metric-card {
+  background: var(--rf-surface);
+  border: 1px solid var(--rf-border);
+  border-radius: var(--rf-radius);
+  padding: 16px 18px;
+  box-shadow: none;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.home-ref .metric-card:hover { border-color: var(--rf-border-strong); transform: none; }
+
+.home-ref .metric-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--rf-ink-soft);
+  margin-bottom: 10px;
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+.home-ref .metric-label .m-ico {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  color: var(--rf-ink-muted);
+}
+.home-ref .metric-label .m-ico svg { width: 100%; height: 100%; }
+
+.home-ref .metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.home-ref .metric-value {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--rf-ink);
+}
+.home-ref .delta {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.home-ref .delta.up   { background: var(--rf-green-bg); color: var(--rf-green-ink); }
+.home-ref .delta.down { background: var(--rf-red-bg);   color: var(--rf-red-ink); }
+.home-ref .delta.flat { background: #F0F0F0;            color: var(--rf-ink-muted); }
+
+/* Tables */
+.home-ref .table-card {
+  background: var(--rf-surface);
+  border: 1px solid var(--rf-border);
+  border-radius: var(--rf-radius);
+  overflow: hidden;
+  box-shadow: none;
+}
+.home-ref .table-card table { width: 100%; border-collapse: collapse; }
+.home-ref .table-card thead th {
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--rf-ink-muted);
+  background: transparent;
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--rf-border);
+}
+.home-ref .table-card thead th:first-child::after {
+  content: " ↑";
+  color: var(--rf-ink-muted);
+  font-size: 11px;
+}
+.home-ref .table-card tbody td {
+  padding: 16px 18px;
+  font-size: 14px;
+  color: var(--rf-ink);
+  border-top: 1px solid var(--rf-border);
+  vertical-align: middle;
+}
+.home-ref .table-card tbody tr:first-child td { border-top: none; }
+.home-ref .table-card tbody tr:hover { background: #FAFAFA; }
+
+.home-ref .name-cell { color: var(--rf-ink); font-weight: 500; }
+.home-ref .name-wrap .type-icon-sm { color: var(--rf-ink-muted); }
+
+.home-ref .link-cell { color: var(--rf-ink-soft); }
+.home-ref .url-col .row-icon-btn { color: var(--rf-ink-muted); }
+.home-ref .updated-cell { color: var(--rf-ink-muted); font-size: 12px; }
+.home-ref .status-stack { gap: 4px; }
+
+/* Status pills with colored dots */
+.home-ref .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--rf-border-strong);
+  color: var(--rf-ink-soft);
+  text-transform: none;
+}
+.home-ref .pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+.home-ref .pill-active  { background: var(--rf-green-bg); color: var(--rf-green-ink); border-color: transparent; }
+.home-ref .pill-paused  { background: var(--rf-yellow-bg); color: var(--rf-yellow-ink); border-color: transparent; }
+.home-ref .pill-stopped { background: var(--rf-red-bg); color: var(--rf-red-ink); border-color: transparent; }
+.home-ref .pill-draft   { background: #F1F1F1; color: var(--rf-ink-muted); border-color: transparent; }
+
+/* Variant pills */
+.home-ref .cell-pills { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.home-ref .cell-pill {
+  background: var(--rf-surface);
+  border: 1px solid var(--rf-border-strong);
+  color: var(--rf-ink-soft);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.home-ref .cell-pill-winner {
+  background: var(--rf-orange-bg);
+  color: var(--rf-orange-ink);
+  border-color: var(--rf-orange-border);
+}
+.home-ref .cell-pill-more { color: var(--rf-ink-muted); background: var(--rf-surface); }
+
+/* More-button */
+.home-ref .more-btn {
+  color: var(--rf-ink-muted);
+  background: transparent;
+  border: none;
+}
+.home-ref .more-btn:hover { background: #F2F2F2; }
+
+/* Explore section (kept at bottom) */
+.home-ref .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.home-ref .explore-card {
+  background: var(--rf-surface);
+  border: 1px solid var(--rf-border);
+  border-radius: var(--rf-radius);
+  padding: 18px;
+  box-shadow: none;
+}
+.home-ref .explore-title { color: var(--rf-ink); font-weight: 600; }
+.home-ref .explore-desc { color: var(--rf-ink-muted); }
+.home-ref .explore-emoji { filter: none; }
 </style>
 </head>
 <body>
@@ -3824,10 +4077,11 @@
 
 <!-- ============== HOME-RETURN (returning user) ============== -->
 <template id="tpl-home-return">
+<div class="home-ref">
 
     <section class="section">
     <div class="section-header-row">
-      <div class="sec-title">📊 Dashboard</div>
+      <div class="sec-title">Analytics</div>
       <div class="date-picker" onclick="toggleDatePicker('dp1', event)">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M2 6h12M5 1.5v2M11 1.5v2"/></svg>
         <span id="dp1-label">Last 30 days</span>
@@ -3844,59 +4098,59 @@
     </div>
     <div class="metrics-grid">
       <div class="metric-card is-clickable" onclick="showAnalytics('revenue')">
-        <div class="metric-label">💰 Revenue</div>
+        <div class="metric-label"><span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1.5 2.5h-3L9 4z"/><path d="M8.5 6.5h7c2.2 2 3.5 4.5 3.5 7.5a5.5 5.5 0 0 1-5.5 5.5h-3A5.5 5.5 0 0 1 5 14c0-3 1.3-5.5 3.5-7.5z"/><path d="M12 10v6M10.5 11.5h2.25a1.25 1.25 0 1 1 0 2.5h-1.5a1.25 1.25 0 1 0 0 2.5H13.5"/></svg></span>Revenue</div>
         <div class="metric-row">
           <span class="metric-value">$48,210</span>
-          <span class="delta up">▲ 8.2%</span>
+          <span class="delta up">+8.2%</span>
         </div>
       </div>
       <div class="metric-card is-clickable" onclick="showAnalytics('subs')">
-        <div class="metric-label">🔔 Subscriptions</div>
+        <div class="metric-label"><span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1.5 2.5h-3L9 4z"/><path d="M8.5 6.5h7c2.2 2 3.5 4.5 3.5 7.5a5.5 5.5 0 0 1-5.5 5.5h-3A5.5 5.5 0 0 1 5 14c0-3 1.3-5.5 3.5-7.5z"/><path d="M12 10v6M10.5 11.5h2.25a1.25 1.25 0 1 1 0 2.5h-1.5a1.25 1.25 0 1 0 0 2.5H13.5"/></svg></span>Subscriptions</div>
         <div class="metric-row">
           <span class="metric-value">1,142</span>
-          <span class="delta up">▲ 14.0%</span>
+          <span class="delta up">+14.0%</span>
         </div>
       </div>
       <div class="metric-card is-clickable" onclick="showAnalytics('arpu')">
-        <div class="metric-label">👤 ARPU</div>
+        <div class="metric-label"><span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1.5 2.5h-3L9 4z"/><path d="M8.5 6.5h7c2.2 2 3.5 4.5 3.5 7.5a5.5 5.5 0 0 1-5.5 5.5h-3A5.5 5.5 0 0 1 5 14c0-3 1.3-5.5 3.5-7.5z"/><path d="M12 10v6M10.5 11.5h2.25a1.25 1.25 0 1 1 0 2.5h-1.5a1.25 1.25 0 1 0 0 2.5H13.5"/></svg></span>ARPU</div>
         <div class="metric-row">
           <span class="metric-value">$42.18</span>
-          <span class="delta up">▲ 1.1%</span>
+          <span class="delta up">+1.1%</span>
         </div>
       </div>
       <div class="metric-card is-clickable" onclick="showAnalytics('churn')">
-        <div class="metric-label">📉 Churn Rate</div>
+        <div class="metric-label"><span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1.5 2.5h-3L9 4z"/><path d="M8.5 6.5h7c2.2 2 3.5 4.5 3.5 7.5a5.5 5.5 0 0 1-5.5 5.5h-3A5.5 5.5 0 0 1 5 14c0-3 1.3-5.5 3.5-7.5z"/><path d="M12 10v6M10.5 11.5h2.25a1.25 1.25 0 1 1 0 2.5h-1.5a1.25 1.25 0 1 0 0 2.5H13.5"/></svg></span>Churn Rate</div>
         <div class="metric-row">
           <span class="metric-value">4.2%</span>
-          <span class="delta down">▲ 0.4%</span>
+          <span class="delta down">+0.4%</span>
         </div>
       </div>
       <div class="metric-card is-clickable" onclick="showAnalytics('visitors')">
-        <div class="metric-label">👥 Visitors</div>
+        <div class="metric-label"><span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1.5 2.5h-3L9 4z"/><path d="M8.5 6.5h7c2.2 2 3.5 4.5 3.5 7.5a5.5 5.5 0 0 1-5.5 5.5h-3A5.5 5.5 0 0 1 5 14c0-3 1.3-5.5 3.5-7.5z"/><path d="M12 10v6M10.5 11.5h2.25a1.25 1.25 0 1 1 0 2.5h-1.5a1.25 1.25 0 1 0 0 2.5H13.5"/></svg></span>Visitors</div>
         <div class="metric-row">
           <span class="metric-value">124,581</span>
-          <span class="delta up">▲ 6.4%</span>
+          <span class="delta up">+6.4%</span>
         </div>
       </div>
       <div class="metric-card is-clickable" onclick="showAnalytics('cr')">
-        <div class="metric-label">🎯 Conversion</div>
+        <div class="metric-label"><span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1.5 2.5h-3L9 4z"/><path d="M8.5 6.5h7c2.2 2 3.5 4.5 3.5 7.5a5.5 5.5 0 0 1-5.5 5.5h-3A5.5 5.5 0 0 1 5 14c0-3 1.3-5.5 3.5-7.5z"/><path d="M12 10v6M10.5 11.5h2.25a1.25 1.25 0 1 1 0 2.5h-1.5a1.25 1.25 0 1 0 0 2.5H13.5"/></svg></span>Conversion</div>
         <div class="metric-row">
           <span class="metric-value">3.82%</span>
-          <span class="delta up">▲ 0.5%</span>
+          <span class="delta up">+6.5%</span>
         </div>
       </div>
       <div class="metric-card is-clickable" onclick="showAnalytics('paySuccess')">
-        <div class="metric-label">✅ Payment Success</div>
+        <div class="metric-label"><span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1.5 2.5h-3L9 4z"/><path d="M8.5 6.5h7c2.2 2 3.5 4.5 3.5 7.5a5.5 5.5 0 0 1-5.5 5.5h-3A5.5 5.5 0 0 1 5 14c0-3 1.3-5.5 3.5-7.5z"/><path d="M12 10v6M10.5 11.5h2.25a1.25 1.25 0 1 1 0 2.5h-1.5a1.25 1.25 0 1 0 0 2.5H13.5"/></svg></span>Payment Success</div>
         <div class="metric-row">
           <span class="metric-value">97.2%</span>
-          <span class="delta up">▲ 0.2%</span>
+          <span class="delta up">+0.2%</span>
         </div>
       </div>
       <div class="metric-card is-clickable" onclick="showAnalytics('dispute')">
-        <div class="metric-label">⚠️ Dispute Rate</div>
+        <div class="metric-label"><span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1.5 2.5h-3L9 4z"/><path d="M8.5 6.5h7c2.2 2 3.5 4.5 3.5 7.5a5.5 5.5 0 0 1-5.5 5.5h-3A5.5 5.5 0 0 1 5 14c0-3 1.3-5.5 3.5-7.5z"/><path d="M12 10v6M10.5 11.5h2.25a1.25 1.25 0 1 1 0 2.5h-1.5a1.25 1.25 0 1 0 0 2.5H13.5"/></svg></span>Dispute Rate</div>
         <div class="metric-row">
           <span class="metric-value">0.1%</span>
-          <span class="delta flat">— 0.0%</span>
+          <span class="delta flat">+0.0%</span>
         </div>
       </div>
     </div>
@@ -3904,7 +4158,7 @@
 
   <section class="section" id="section-table">
     <div class="section-header-row">
-      <div class="sec-title">📊 Funnels</div>
+      <div class="sec-title">Funnels</div>
       <div class="date-picker" onclick="toggleDatePicker('sf-funnels', event)">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M4 8h8M6 12h4"/></svg>
         <span id="sf-funnels-label">Status: All</span>
@@ -4081,7 +4335,7 @@
   <!-- ===== EXPERIMENTS TABLE ===== -->
   <section class="section" id="section-experiments">
     <div class="section-header-row">
-      <div class="sec-title">🧪 Experiments</div>
+      <div class="sec-title">Experiments</div>
       <div class="date-picker" onclick="toggleDatePicker('sf-experiments', event)">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M4 8h8M6 12h4"/></svg>
         <span id="sf-experiments-label">Status: All</span>
@@ -4133,7 +4387,7 @@
             <td>
               <div class="cell-pills">
                 <span class="cell-pill" title="Control — Original layout">Control</span>
-                <span class="cell-pill" title="Variant A — Full-page paywall">Variant A 🏆</span>
+                <span class="cell-pill cell-pill-winner" title="Variant A — Full-page paywall">Variant A 🏆</span>
                 <span class="cell-pill cell-pill-more" title="Variant B — Modal paywall">+1</span>
               </div>
             </td>
@@ -4179,7 +4433,7 @@
             </td>
             <td>
               <div class="cell-pills">
-                <span class="cell-pill" title="Control — Original CTA headline">Control 🏆</span>
+                <span class="cell-pill cell-pill-winner" title="Control — Original CTA headline">Control 🏆</span>
                 <span class="cell-pill" title="Variant — Short bold headline">Variant</span>
               </div>
             </td>
@@ -4229,6 +4483,7 @@
       </a>
     </div>
   </section>
+</div>
 </template>
 
 <!-- ============== BUILDER (formerly Funnel Builder) ============== -->
