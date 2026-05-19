@@ -743,14 +743,15 @@
   .ar-input::placeholder { color: #9A9A9A; }
   .ar-send {
     width: 32px; height: 32px; border-radius: 999px;
-    border: 1px solid #E2E2E2; background: #FFFFFF;
-    color: #5A5A5A;
+    border: 1px solid #111; background: #111;
+    color: #FFFFFF;
     cursor: pointer;
     display: inline-flex; align-items: center; justify-content: center;
     flex: none;
-    transition: background .15s ease, color .15s ease, border-color .15s ease;
+    transition: background .15s ease, border-color .15s ease, transform .1s ease;
   }
-  .ar-send:hover { background: #111; color: #FFF; border-color: #111; }
+  .ar-send:hover { background: #000; border-color: #000; }
+  .ar-send:active { transform: translateY(1px); }
 
   /* Center grid area */
   .ar-main {
@@ -6125,7 +6126,7 @@ body:has(.home-ref) .proto-header {
           <button type="button" class="ar-input-plus" aria-label="Attach">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
           </button>
-          <input type="text" class="ar-input" placeholder="Analyze funnel" style="text-align: right;">
+          <input type="text" class="ar-input" placeholder="Continue" style="text-align: right;">
           <button type="button" class="ar-send" aria-label="Send" onclick="openSignupModal()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 6l6 6-6 6"/></svg>
           </button>
